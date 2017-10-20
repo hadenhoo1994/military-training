@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.sys.dao.MsgReceiveDao">
+
+    <sql id="MsgReceiveColumns">
+        a.id as "id",
+        a.msg_id as "msgId",
+        a.update_by as "updateBy",
+        a.update_date as "updateDate",
+        a.status as "status",
+        b.username as "updateUser.username",
+        b.name as "updateUser.name",
+        c.type as "msgSend.type",
+        c.title as "msgSend.title",
+        c.content as "msgSend.content",
+        c.level as "msgSend.level",
+        d.username as "createUser.username",
+        d.name as "createUser.name",
+        d.photo as "createUser.photo"
+    </sql>
+
+    <sql id="MsgReceiveJoins">
+        LEFT JOIN sys_user b ON b.id = a.update_by LEFT JOIN sys_msg_send c ON c.id = a.msg_id LEFT JOIN sys_user d ON
+        d.id = c.create_by
+    </sql>
+
+    <select id="get" resultType="cn.iutils.sys.entity.MsgReceive">
+        SELECT
+        <include refid="MsgReceiveColumns"/>
+        FROM sys_msg_receive a
+        <include refid="MsgReceiveJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(1) FROM sys_msg_receive a
+        <include refid="MsgReceiveJoins"/>
+        <where>
+            <if test="page.entity.status!=null and page.entity.status!='' and page.entity.status!='-1'">
+                and a.status=#{page.entity.status}
+            </if>
+            <if test="page.entity.user!=null">
+                and a.update_by=#{page.entity.user.id}
+            </if>
+            <if test="page.entity.msgSend.type!=null and page.entity.msgSend.type!=''">
+                and c.type = #{page.entity.msgSend.type}
+            </if>
+            <if test="page.key!=null and page.key!=''">
+                and (
+                c.title like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                or
+                c.content like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                )
+            </if>
+        </where>
+    </select>
+
+    <select id="findPage" resultType="cn.iutils.sys.entity.MsgReceive">
+        SELECT
+        <include refid="MsgReceiveColumns"/>
+        FROM sys_msg_receive a
+        <include refid="MsgReceiveJoins"/>
+        <where>
+            <if test="page.entity.status!=null and page.entity.status!='' and page.entity.status!='-1'">
+                and a.status=#{page.entity.status}
+            </if>
+            <if test="page.entity.user!=null">
+                and a.update_by=#{page.entity.user.id}
+            </if>
+            <if test="page.entity.msgSend.type!=null and page.entity.msgSend.type!=''">
+                and c.type = #{page.entity.msgSend.type}
+            </if>
+            <if test="page.key!=null and page.key!=''">
+                and (
+                c.title like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                or
+                c.content like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                )
+            </if>
+        </where>
+        <if test="page.orderBy!=''">
+            ORDER BY ${page.orderBy} LIMIT ${page.pageNo*page.pageSize},${page.pageSize}
+        </if>
+    </select>
+
+    <!-- 批量添加 -->
+    <insert id="saveBatch">
+        insert into sys_msg_receive(
+        msg_id,
+        update_by,
+        update_date,
+        status
+        )
+        values
+        <foreach collection="msgReceives" item="item" separator=",">
+            (
+            #{item.msgId},
+            #{item.updateBy},
+            #{item.updateDate},
+            #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        update sys_msg_receive set
+        status=#{status}
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from sys_msg_receive where id=#{id}
+    </delete>
+
+    <!-- 根据消息ID删除记录 -->
+    <delete id="deleteByMsgId">
+        delete from sys_msg_receive where msg_id=#{msgId}
+    </delete>
+</mapper>

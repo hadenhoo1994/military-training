@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.mt.dao.UserInfoDao">
+
+    <sql id="UserInfoColumns">
+        a.id AS "id",
+        a.name AS "name",
+        a.full_name AS "fullName",
+        a.gender AS "gender",
+        a.class_id AS "classId",
+        a.class_name AS "className",
+        a.profession_id AS "professionId",
+        a.profession_name AS "professionName",
+        a.department_id AS "departmentId",
+        a.department_name AS "departmentName",
+        a.platoon_id AS "platoonId",
+        a.platoon_name AS "platoonName",
+        a.company_id AS "companyId",
+        a.company_name AS "companyName",
+        a.battalion_id AS "battalionId",
+        a.battalion_name AS "battalionName",
+        a.mobile_number AS "mobileNumber",
+        a.qq AS "qq",
+        a.wx AS "wx",
+        a.img_url AS "imgUrl",
+        a.address AS "address",
+        a.identity AS "identity",
+        a.create_by AS "createBy",
+        a.create_date AS "createDate",
+        a.update_by AS "updateBy",
+        a.update_date AS "updateDate",
+        a.remarks AS "remarks",
+        a.status AS "status"
+    </sql>
+
+    <sql id="UserInfoJoins">
+
+    </sql>
+
+    <select id="get" resultType="cn.iutils.mt.entity.UserInfo">
+        SELECT
+        <include refid="UserInfoColumns"/>
+        FROM mt_user_info a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(0) FROM mt_user_info a
+        <where>
+        <if test="page.entity != null">
+            <if test="page.entity.id != null">
+                AND id = #{page.entity.id}
+            </if>
+            <if test="page.entity.name != null">
+                AND name = #{page.entity.name}
+            </if>
+            <if test="page.entity.fullName != null">
+                AND full_name = #{page.entity.fullName}
+            </if>
+            <if test="page.entity.gender != null">
+                AND gender = #{page.entity.gender}
+            </if>
+            <if test="page.entity.classId != null">
+                AND class_id = #{page.entity.classId}
+            </if>
+            <if test="page.entity.className != null">
+                AND class_name = #{page.entity.className}
+            </if>
+            <if test="page.entity.professionId != null">
+                AND profession_id = #{page.entity.professionId}
+            </if>
+            <if test="page.entity.professionName != null">
+                AND profession_name = #{page.entity.professionName}
+            </if>
+            <if test="page.entity.departmentId != null">
+                AND department_id = #{page.entity.departmentId}
+            </if>
+            <if test="page.entity.departmentName != null">
+                AND department_name = #{page.entity.departmentName}
+            </if>
+            <if test="page.entity.platoonId != null">
+                AND platoon_id = #{page.entity.platoonId}
+            </if>
+            <if test="page.entity.platoonName != null">
+                AND platoon_name = #{page.entity.platoonName}
+            </if>
+            <if test="page.entity.companyId != null">
+                AND company_id = #{page.entity.companyId}
+            </if>
+            <if test="page.entity.companyName != null">
+                AND company_name = #{page.entity.companyName}
+            </if>
+            <if test="page.entity.battalionId != null">
+                AND battalion_id = #{page.entity.battalionId}
+            </if>
+            <if test="page.entity.battalionName != null">
+                AND battalion_name = #{page.entity.battalionName}
+            </if>
+            <if test="page.entity.mobileNumber != null">
+                AND mobile_number = #{page.entity.mobileNumber}
+            </if>
+            <if test="page.entity.qq != null">
+                AND qq = #{page.entity.qq}
+            </if>
+            <if test="page.entity.wx != null">
+                AND wx = #{page.entity.wx}
+            </if>
+            <if test="page.entity.imgUrl != null">
+                AND img_url = #{page.entity.imgUrl}
+            </if>
+            <if test="page.entity.address != null">
+                AND address = #{page.entity.address}
+            </if>
+            <if test="page.entity.identity != null">
+                AND identity = #{page.entity.identity}
+            </if>
+            <if test="page.entity.createBy != null">
+                AND create_by = #{page.entity.createBy}
+            </if>
+            <if test="page.entity.createDate != null">
+                AND create_date = #{page.entity.createDate}
+            </if>
+            <if test="page.entity.updateBy != null">
+                AND update_by = #{page.entity.updateBy}
+            </if>
+            <if test="page.entity.updateDate != null">
+                AND update_date = #{page.entity.updateDate}
+            </if>
+            <if test="page.entity.remarks != null">
+                AND remarks = #{page.entity.remarks}
+            </if>
+            <if test="page.entity.status != null">
+                AND status = #{page.entity.status}
+            </if>
+        </if>
+        </where>
+    </select>
+
+    <select id="findCount" resultType="int">
+        SELECT count(0) FROM mt_user_info a
+        <where>
+            <if test="entity.id != null">
+                AND id = #{entity.id}
+            </if>
+            <if test="entity.name != null">
+                AND name = #{entity.name}
+            </if>
+            <if test="entity.fullName != null">
+                AND full_name = #{entity.fullName}
+            </if>
+            <if test="entity.gender != null">
+                AND gender = #{entity.gender}
+            </if>
+            <if test="entity.classId != null">
+                AND class_id = #{entity.classId}
+            </if>
+            <if test="entity.className != null">
+                AND class_name = #{entity.className}
+            </if>
+            <if test="entity.professionId != null">
+                AND profession_id = #{entity.professionId}
+            </if>
+            <if test="entity.professionName != null">
+                AND profession_name = #{entity.professionName}
+            </if>
+            <if test="entity.departmentId != null">
+                AND department_id = #{entity.departmentId}
+            </if>
+            <if test="entity.departmentName != null">
+                AND department_name = #{entity.departmentName}
+            </if>
+            <if test="entity.platoonId != null">
+                AND platoon_id = #{entity.platoonId}
+            </if>
+            <if test="entity.platoonName != null">
+                AND platoon_name = #{entity.platoonName}
+            </if>
+            <if test="entity.companyId != null">
+                AND company_id = #{entity.companyId}
+            </if>
+            <if test="entity.companyName != null">
+                AND company_name = #{entity.companyName}
+            </if>
+            <if test="entity.battalionId != null">
+                AND battalion_id = #{entity.battalionId}
+            </if>
+            <if test="entity.battalionName != null">
+                AND battalion_name = #{entity.battalionName}
+            </if>
+            <if test="entity.mobileNumber != null">
+                AND mobile_number = #{entity.mobileNumber}
+            </if>
+            <if test="entity.qq != null">
+                AND qq = #{entity.qq}
+            </if>
+            <if test="entity.wx != null">
+                AND wx = #{entity.wx}
+            </if>
+            <if test="entity.imgUrl != null">
+                AND img_url = #{entity.imgUrl}
+            </if>
+            <if test="entity.address != null">
+                AND address = #{entity.address}
+            </if>
+            <if test="entity.identity != null">
+                AND identity = #{entity.identity}
+            </if>
+            <if test="entity.createBy != null">
+                AND create_by = #{entity.createBy}
+            </if>
+            <if test="entity.createDate != null">
+                AND create_date = #{entity.createDate}
+            </if>
+            <if test="entity.updateBy != null">
+                AND update_by = #{entity.updateBy}
+            </if>
+            <if test="entity.updateDate != null">
+                AND update_date = #{entity.updateDate}
+            </if>
+            <if test="entity.remarks != null">
+                AND remarks = #{entity.remarks}
+            </if>
+            <if test="entity.status != null">
+                AND status = #{entity.status}
+            </if>
+        </where>
+    </select>
+
+    <select id="findOne" resultType="cn.iutils.mt.entity.UserInfo">
+        SELECT
+        <include refid="UserInfoColumns"/>
+        FROM mt_user_info a
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="name != null">
+                AND name = #{name}
+            </if>
+            <if test="fullName != null">
+                AND full_name = #{fullName}
+            </if>
+            <if test="gender != null">
+                AND gender = #{gender}
+            </if>
+            <if test="classId != null">
+                AND class_id = #{classId}
+            </if>
+            <if test="className != null">
+                AND class_name = #{className}
+            </if>
+            <if test="professionId != null">
+                AND profession_id = #{professionId}
+            </if>
+            <if test="professionName != null">
+                AND profession_name = #{professionName}
+            </if>
+            <if test="departmentId != null">
+                AND department_id = #{departmentId}
+            </if>
+            <if test="departmentName != null">
+                AND department_name = #{departmentName}
+            </if>
+            <if test="platoonId != null">
+                AND platoon_id = #{platoonId}
+            </if>
+            <if test="platoonName != null">
+                AND platoon_name = #{platoonName}
+            </if>
+            <if test="companyId != null">
+                AND company_id = #{companyId}
+            </if>
+            <if test="companyName != null">
+                AND company_name = #{companyName}
+            </if>
+            <if test="battalionId != null">
+                AND battalion_id = #{battalionId}
+            </if>
+            <if test="battalionName != null">
+                AND battalion_name = #{battalionName}
+            </if>
+            <if test="mobileNumber != null">
+                AND mobile_number = #{mobileNumber}
+            </if>
+            <if test="qq != null">
+                AND qq = #{qq}
+            </if>
+            <if test="wx != null">
+                AND wx = #{wx}
+            </if>
+            <if test="imgUrl != null">
+                AND img_url = #{imgUrl}
+            </if>
+            <if test="address != null">
+                AND address = #{address}
+            </if>
+            <if test="identity != null">
+                AND identity = #{identity}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy}
+            </if>
+            <if test="createDate != null">
+                AND create_date = #{createDate}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy}
+            </if>
+            <if test="updateDate != null">
+                AND update_date = #{updateDate}
+            </if>
+            <if test="remarks != null">
+                AND remarks = #{remarks}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="findList" resultType="cn.iutils.mt.entity.UserInfo">
+        SELECT <include refid="UserInfoColumns"/>
+        FROM mt_user_info a
+        <where>
+                <if test="id != null">
+                    AND id = #{id}
+                </if>
+                <if test="name != null">
+                    AND name = #{name}
+                </if>
+                <if test="fullName != null">
+                    AND full_name = #{fullName}
+                </if>
+                <if test="gender != null">
+                    AND gender = #{gender}
+                </if>
+                <if test="classId != null">
+                    AND class_id = #{classId}
+                </if>
+                <if test="className != null">
+                    AND class_name = #{className}
+                </if>
+                <if test="professionId != null">
+                    AND profession_id = #{professionId}
+                </if>
+                <if test="professionName != null">
+                    AND profession_name = #{professionName}
+                </if>
+                <if test="departmentId != null">
+                    AND department_id = #{departmentId}
+                </if>
+                <if test="departmentName != null">
+                    AND department_name = #{departmentName}
+                </if>
+                <if test="platoonId != null">
+                    AND platoon_id = #{platoonId}
+                </if>
+                <if test="platoonName != null">
+                    AND platoon_name = #{platoonName}
+                </if>
+                <if test="companyId != null">
+                    AND company_id = #{companyId}
+                </if>
+                <if test="companyName != null">
+                    AND company_name = #{companyName}
+                </if>
+                <if test="battalionId != null">
+                    AND battalion_id = #{battalionId}
+                </if>
+                <if test="battalionName != null">
+                    AND battalion_name = #{battalionName}
+                </if>
+                <if test="mobileNumber != null">
+                    AND mobile_number = #{mobileNumber}
+                </if>
+                <if test="qq != null">
+                    AND qq = #{qq}
+                </if>
+                <if test="wx != null">
+                    AND wx = #{wx}
+                </if>
+                <if test="imgUrl != null">
+                    AND img_url = #{imgUrl}
+                </if>
+                <if test="address != null">
+                    AND address = #{address}
+                </if>
+                <if test="identity != null">
+                    AND identity = #{identity}
+                </if>
+                <if test="createBy != null">
+                    AND create_by = #{createBy}
+                </if>
+                <if test="createDate != null">
+                    AND create_date = #{createDate}
+                </if>
+                <if test="updateBy != null">
+                    AND update_by = #{updateBy}
+                </if>
+                <if test="updateDate != null">
+                    AND update_date = #{updateDate}
+                </if>
+                <if test="remarks != null">
+                    AND remarks = #{remarks}
+                </if>
+                <if test="status != null">
+                    AND status = #{status}
+                </if>
+        </where>
+    </select>
+
+    <select id="findPage" resultType="cn.iutils.mt.entity.UserInfo">
+        SELECT <include refid="UserInfoColumns"/>
+        FROM mt_user_info a
+        <where>
+            <if test="entity.id != null">
+                AND id = #{entity.id}
+            </if>
+            <if test="entity.name != null">
+                AND name = #{entity.name}
+            </if>
+            <if test="entity.fullName != null">
+                AND full_name = #{entity.fullName}
+            </if>
+            <if test="entity.gender != null">
+                AND gender = #{entity.gender}
+            </if>
+            <if test="entity.classId != null">
+                AND class_id = #{entity.classId}
+            </if>
+            <if test="entity.className != null">
+                AND class_name = #{entity.className}
+            </if>
+            <if test="entity.professionId != null">
+                AND profession_id = #{entity.professionId}
+            </if>
+            <if test="entity.professionName != null">
+                AND profession_name = #{entity.professionName}
+            </if>
+            <if test="entity.departmentId != null">
+                AND department_id = #{entity.departmentId}
+            </if>
+            <if test="entity.departmentName != null">
+                AND department_name = #{entity.departmentName}
+            </if>
+            <if test="entity.platoonId != null">
+                AND platoon_id = #{entity.platoonId}
+            </if>
+            <if test="entity.platoonName != null">
+                AND platoon_name = #{entity.platoonName}
+            </if>
+            <if test="entity.companyId != null">
+                AND company_id = #{entity.companyId}
+            </if>
+            <if test="entity.companyName != null">
+                AND company_name = #{entity.companyName}
+            </if>
+            <if test="entity.battalionId != null">
+                AND battalion_id = #{entity.battalionId}
+            </if>
+            <if test="entity.battalionName != null">
+                AND battalion_name = #{entity.battalionName}
+            </if>
+            <if test="entity.mobileNumber != null">
+                AND mobile_number = #{entity.mobileNumber}
+            </if>
+            <if test="entity.qq != null">
+                AND qq = #{entity.qq}
+            </if>
+            <if test="entity.wx != null">
+                AND wx = #{entity.wx}
+            </if>
+            <if test="entity.imgUrl != null">
+                AND img_url = #{entity.imgUrl}
+            </if>
+            <if test="entity.address != null">
+                AND address = #{entity.address}
+            </if>
+            <if test="entity.identity != null">
+                AND identity = #{entity.identity}
+            </if>
+            <if test="entity.createBy != null">
+                AND create_by = #{entity.createBy}
+            </if>
+            <if test="entity.createDate != null">
+                AND create_date = #{entity.createDate}
+            </if>
+            <if test="entity.updateBy != null">
+                AND update_by = #{entity.updateBy}
+            </if>
+            <if test="entity.updateDate != null">
+                AND update_date = #{entity.updateDate}
+            </if>
+            <if test="entity.remarks != null">
+                AND remarks = #{entity.remarks}
+            </if>
+            <if test="entity.status != null">
+                AND status = #{entity.status}
+            </if>
+        </where>
+        <if test="page.orderBy!=''">
+            ORDER BY ${page.orderBy} LIMIT ${page.pageNo*page.pageSize},${page.pageSize}
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into mt_user_info(
+                name,
+                full_name,
+                gender,
+                class_id,
+                class_name,
+                profession_id,
+                profession_name,
+                department_id,
+                department_name,
+                platoon_id,
+                platoon_name,
+                company_id,
+                company_name,
+                battalion_id,
+                battalion_name,
+                mobile_number,
+                qq,
+                wx,
+                img_url,
+                address,
+                identity,
+                create_by,
+                create_date,
+                update_by,
+                update_date,
+                remarks,
+                status
+        ) values (
+                #{name},
+                #{fullName},
+                #{gender},
+                #{classId},
+                #{className},
+                #{professionId},
+                #{professionName},
+                #{departmentId},
+                #{departmentName},
+                #{platoonId},
+                #{platoonName},
+                #{companyId},
+                #{companyName},
+                #{battalionId},
+                #{battalionName},
+                #{mobileNumber},
+                #{qq},
+                #{wx},
+                #{imgUrl},
+                #{address},
+                #{identity},
+                #{createBy},
+                #{createDate},
+                #{updateBy},
+                #{updateDate},
+                #{remarks},
+                #{status}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into mt_user_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="name != null">
+                name,
+            </if>
+            <if test="fullName != null">
+                full_name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="className != null">
+                class_name,
+            </if>
+            <if test="professionId != null">
+                profession_id,
+            </if>
+            <if test="professionName != null">
+                profession_name,
+            </if>
+            <if test="departmentId != null">
+                department_id,
+            </if>
+            <if test="departmentName != null">
+                department_name,
+            </if>
+            <if test="platoonId != null">
+                platoon_id,
+            </if>
+            <if test="platoonName != null">
+                platoon_name,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="battalionId != null">
+                battalion_id,
+            </if>
+            <if test="battalionName != null">
+                battalion_name,
+            </if>
+            <if test="mobileNumber != null">
+                mobile_number,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="wx != null">
+                wx,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="identity != null">
+                identity,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="status != null">
+                status
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="fullName != null">
+                #{fullName},
+            </if>
+            <if test="gender != null">
+                #{gender},
+            </if>
+            <if test="classId != null">
+                #{classId},
+            </if>
+            <if test="className != null">
+                #{className},
+            </if>
+            <if test="professionId != null">
+                #{professionId},
+            </if>
+            <if test="professionName != null">
+                #{professionName},
+            </if>
+            <if test="departmentId != null">
+                #{departmentId},
+            </if>
+            <if test="departmentName != null">
+                #{departmentName},
+            </if>
+            <if test="platoonId != null">
+                #{platoonId},
+            </if>
+            <if test="platoonName != null">
+                #{platoonName},
+            </if>
+            <if test="companyId != null">
+                #{companyId},
+            </if>
+            <if test="companyName != null">
+                #{companyName},
+            </if>
+            <if test="battalionId != null">
+                #{battalionId},
+            </if>
+            <if test="battalionName != null">
+                #{battalionName},
+            </if>
+            <if test="mobileNumber != null">
+                #{mobileNumber},
+            </if>
+            <if test="qq != null">
+                #{qq},
+            </if>
+            <if test="wx != null">
+                #{wx},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="identity != null">
+                #{identity},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createDate != null">
+                #{createDate},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate},
+            </if>
+            <if test="remarks != null">
+                #{remarks},
+            </if>
+            <if test="status != null">
+                #{status}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        update mt_user_info set
+                name = #{name},
+                full_name = #{fullName},
+                gender = #{gender},
+                class_id = #{classId},
+                class_name = #{className},
+                profession_id = #{professionId},
+                profession_name = #{professionName},
+                department_id = #{departmentId},
+                department_name = #{departmentName},
+                platoon_id = #{platoonId},
+                platoon_name = #{platoonName},
+                company_id = #{companyId},
+                company_name = #{companyName},
+                battalion_id = #{battalionId},
+                battalion_name = #{battalionName},
+                mobile_number = #{mobileNumber},
+                qq = #{qq},
+                wx = #{wx},
+                img_url = #{imgUrl},
+                address = #{address},
+                identity = #{identity},
+                create_by = #{createBy},
+                create_date = #{createDate},
+                update_by = #{updateBy},
+                update_date = #{updateDate},
+                remarks = #{remarks},
+                status = #{status}
+        where id = #{id}
+    </update>
+
+    <update id="updateSelective" parameterType="cn.iutils.mt.entity.UserInfo">
+        update mt_user_info
+        <set>
+            <if test="name != null">
+            name = #{name},
+            </if>
+            <if test="fullName != null">
+            full_name = #{fullName},
+            </if>
+            <if test="gender != null">
+            gender = #{gender},
+            </if>
+            <if test="classId != null">
+            class_id = #{classId},
+            </if>
+            <if test="className != null">
+            class_name = #{className},
+            </if>
+            <if test="professionId != null">
+            profession_id = #{professionId},
+            </if>
+            <if test="professionName != null">
+            profession_name = #{professionName},
+            </if>
+            <if test="departmentId != null">
+            department_id = #{departmentId},
+            </if>
+            <if test="departmentName != null">
+            department_name = #{departmentName},
+            </if>
+            <if test="platoonId != null">
+            platoon_id = #{platoonId},
+            </if>
+            <if test="platoonName != null">
+            platoon_name = #{platoonName},
+            </if>
+            <if test="companyId != null">
+            company_id = #{companyId},
+            </if>
+            <if test="companyName != null">
+            company_name = #{companyName},
+            </if>
+            <if test="battalionId != null">
+            battalion_id = #{battalionId},
+            </if>
+            <if test="battalionName != null">
+            battalion_name = #{battalionName},
+            </if>
+            <if test="mobileNumber != null">
+            mobile_number = #{mobileNumber},
+            </if>
+            <if test="qq != null">
+            qq = #{qq},
+            </if>
+            <if test="wx != null">
+            wx = #{wx},
+            </if>
+            <if test="imgUrl != null">
+            img_url = #{imgUrl},
+            </if>
+            <if test="address != null">
+            address = #{address},
+            </if>
+            <if test="identity != null">
+            identity = #{identity},
+            </if>
+            <if test="createBy != null">
+            create_by = #{createBy},
+            </if>
+            <if test="createDate != null">
+            create_date = #{createDate},
+            </if>
+            <if test="updateBy != null">
+            update_by = #{updateBy},
+            </if>
+            <if test="updateDate != null">
+            update_date = #{updateDate},
+            </if>
+            <if test="remarks != null">
+            remarks = #{remarks},
+            </if>
+            <if test="status != null">
+            status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from mt_user_info where id=#{id}
+    </delete>
+
+</mapper>
