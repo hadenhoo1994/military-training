@@ -1,6 +1,7 @@
 package cn.iutils.sys.controller;
 
 import cn.iutils.common.Page;
+import cn.iutils.common.utils.CacheUtils;
 import cn.iutils.common.utils.UserUtils;
 import cn.iutils.sys.entity.Organization;
 import cn.iutils.sys.entity.User;
@@ -114,6 +115,9 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Role role, RedirectAttributes redirectAttributes) {
         roleService.save(role);
+        //修改缓存
+        User user = userService.getUserByUserName(UserUtils.getLoginUser().getUsername());
+        CacheUtils.put(user.getUsername(), user);
         addMessage(redirectAttributes, "保存成功");
         return "redirect:" + adminPath + "/role/update?id=" + role.getId();
     }
