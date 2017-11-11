@@ -24,6 +24,18 @@
                             <form class="am-form tpl-form-border-form" data-am-validator modelAttribute="grade" action="${ctx}/mt/grade/<c:choose><c:when test="${empty grade.id}">create</c:when><c:otherwise>update</c:otherwise></c:choose>" method="post">
                             <input type="hidden" name="id" value="${grade.id}"/>
                                     <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">系id：</label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" name="departmentId" placeholder="系id" value="${grade.departmentId}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">系名称：</label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" name="departmentName" placeholder="系名称" value="${grade.departmentName}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">届名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="name" placeholder="届名称" value="${grade.name}" required/>

@@ -1,7 +1,7 @@
 package cn.iutils.mt.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import cn.iutils.sys.entity.DataEntity;
+
 import java.util.Date;
 
 /**
@@ -15,10 +15,6 @@ public class Department extends DataEntity<Department> {
 
     // 系名称
     private String name;
-    // 第几届id
-    private Integer gradeId;
-    // 第几届
-    private String gradeName;
 
     public Department() {
         super();
@@ -36,28 +32,10 @@ public class Department extends DataEntity<Department> {
         this.name = name;
     }
 
-    public Integer getGradeId(){
-        return gradeId;
-    }
-
-    public void setGradeId(Integer gradeId){
-        this.gradeId = gradeId;
-    }
-
-    public String getGradeName(){
-        return gradeName;
-    }
-
-    public void setGradeName(String gradeName){
-        this.gradeName = gradeName;
-    }
-
     private Department(Builder builder) {
         super();
         setId(builder.id);
         setName(builder.name);
-        setGradeId(builder.gradeId);
-        setGradeName(builder.gradeName);
         setCreateBy(builder.createBy);
         setCreateDate(builder.createDate);
         setUpdateBy(builder.updateBy);
@@ -75,8 +53,6 @@ public class Department extends DataEntity<Department> {
     public static final class Builder {
         private String id;
         private String name;
-        private Integer gradeId;
-        private String gradeName;
         private String createBy;
         private Date createDate;
         private String updateBy;
@@ -101,18 +77,6 @@ public class Department extends DataEntity<Department> {
 
         public Builder name(String name) {
             this.name = name;
-            return this;
-        }
-
-
-        public Builder gradeId(Integer gradeId) {
-            this.gradeId = gradeId;
-            return this;
-        }
-
-
-        public Builder gradeName(String gradeName) {
-            this.gradeName = gradeName;
             return this;
         }
 

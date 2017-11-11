@@ -57,6 +57,8 @@
                                     <thead>
                                     <tr>
                                             <th>主键id</th>
+                                            <th>系id</th>
+                                            <th>系名称</th>
                                             <th>届名称</th>
                                             <th>创建人</th>
                                             <th>创建时间</th>
@@ -71,6 +73,8 @@
                                     <c:forEach items="${page.list}" var="grade" varStatus="status">
                                         <tr>
                                                 <td>${grade.id}</td>
+                                                <td>${grade.departmentId}</td>
+                                                <td>${grade.departmentName}</td>
                                                 <td>${grade.name}</td>
                                                 <td>${grade.createBy}</td>
                                                 <td>${grade.createDate}</td>

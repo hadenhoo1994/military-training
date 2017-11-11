@@ -44,7 +44,7 @@ public class DepartmentController extends BaseController {
     @RequiresPermissions("mt:department:view")
     @RequestMapping()
     public String list(Model model, Page<Department> page) {
-        model.addAttribute("page", page.setList(departmentService.findPage(page)));
+        model.addAttribute("page", page.setList(departmentService.findPage(page,new Department())));
         return "mt/department/list";
     }
 

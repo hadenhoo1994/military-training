@@ -15,6 +15,8 @@ public class GradeVO extends Grade {
     public GradeVO(Grade entity) {
         super();
         setId(entity.getId());
+        setDepartmentId(entity.getDepartmentId());
+        setDepartmentName(entity.getDepartmentName());
         setName(entity.getName());
         setCreateBy(entity.getCreateBy());
         setCreateDate(entity.getCreateDate());

@@ -30,18 +30,6 @@
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届id：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="gradeId" placeholder="第几届id" value="${department.gradeId}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="gradeName" placeholder="第几届" value="${department.gradeName}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">备注：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="remarks" placeholder="备注" value="${department.remarks}" required/>

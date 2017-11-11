@@ -13,6 +13,10 @@ public class Grade extends DataEntity<Grade> {
 
     private static final long serialVersionUID = 1L;
 
+    // 系id
+    private Integer departmentId;
+    // 系名称
+    private String departmentName;
     // 届名称
     private String name;
 
@@ -22,6 +26,22 @@ public class Grade extends DataEntity<Grade> {
 
     public Grade(String id){
         super(id);
+    }
+
+    public Integer getDepartmentId(){
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId){
+        this.departmentId = departmentId;
+    }
+
+    public String getDepartmentName(){
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName){
+        this.departmentName = departmentName;
     }
 
     public String getName(){
@@ -35,6 +55,8 @@ public class Grade extends DataEntity<Grade> {
     private Grade(Builder builder) {
         super();
         setId(builder.id);
+        setDepartmentId(builder.departmentId);
+        setDepartmentName(builder.departmentName);
         setName(builder.name);
         setCreateBy(builder.createBy);
         setCreateDate(builder.createDate);
@@ -52,6 +74,8 @@ public class Grade extends DataEntity<Grade> {
 
     public static final class Builder {
         private String id;
+        private Integer departmentId;
+        private String departmentName;
         private String name;
         private String createBy;
         private Date createDate;
@@ -71,6 +95,18 @@ public class Grade extends DataEntity<Grade> {
 
         public Builder id(String id) {
             this.id = id;
+            return this;
+        }
+
+
+        public Builder departmentId(Integer departmentId) {
+            this.departmentId = departmentId;
+            return this;
+        }
+
+
+        public Builder departmentName(String departmentName) {
+            this.departmentName = departmentName;
             return this;
         }
 

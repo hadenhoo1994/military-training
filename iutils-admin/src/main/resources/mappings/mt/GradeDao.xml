@@ -4,6 +4,8 @@
 
     <sql id="GradeColumns">
         a.id AS "id",
+        a.department_id AS "departmentId",
+        a.department_name AS "departmentName",
         a.name AS "name",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
@@ -30,6 +32,12 @@
         <if test="page.entity != null">
             <if test="page.entity.id != null">
                 AND id = #{page.entity.id}
+            </if>
+            <if test="page.entity.departmentId != null">
+                AND department_id = #{page.entity.departmentId}
+            </if>
+            <if test="page.entity.departmentName != null">
+                AND department_name = #{page.entity.departmentName}
             </if>
             <if test="page.entity.name != null">
                 AND name = #{page.entity.name}
@@ -61,6 +69,12 @@
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
+            </if>
+            <if test="entity.departmentId != null">
+                AND department_id = #{entity.departmentId}
+            </if>
+            <if test="entity.departmentName != null">
+                AND department_name = #{entity.departmentName}
             </if>
             <if test="entity.name != null">
                 AND name = #{entity.name}
@@ -94,6 +108,12 @@
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="departmentId != null">
+                AND department_id = #{departmentId}
+            </if>
+            <if test="departmentName != null">
+                AND department_name = #{departmentName}
+            </if>
             <if test="name != null">
                 AND name = #{name}
             </if>
@@ -124,6 +144,12 @@
         <where>
                 <if test="id != null">
                     AND id = #{id}
+                </if>
+                <if test="departmentId != null">
+                    AND department_id = #{departmentId}
+                </if>
+                <if test="departmentName != null">
+                    AND department_name = #{departmentName}
                 </if>
                 <if test="name != null">
                     AND name = #{name}
@@ -156,6 +182,12 @@
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.departmentId != null">
+                AND department_id = #{entity.departmentId}
+            </if>
+            <if test="entity.departmentName != null">
+                AND department_name = #{entity.departmentName}
+            </if>
             <if test="entity.name != null">
                 AND name = #{entity.name}
             </if>
@@ -185,6 +217,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_grade(
+                department_id,
+                department_name,
                 name,
                 create_by,
                 create_date,
@@ -193,6 +227,8 @@
                 remarks,
                 status
         ) values (
+                #{departmentId},
+                #{departmentName},
                 #{name},
                 #{createBy},
                 #{createDate},
@@ -206,6 +242,12 @@
     <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Grade" useGeneratedKeys="true" keyProperty="id">
         insert into mt_grade
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="departmentId != null">
+                department_id,
+            </if>
+            <if test="departmentName != null">
+                department_name,
+            </if>
             <if test="name != null">
                 name,
             </if>
@@ -229,6 +271,12 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="departmentId != null">
+                #{departmentId},
+            </if>
+            <if test="departmentName != null">
+                #{departmentName},
+            </if>
             <if test="name != null">
                 #{name},
             </if>
@@ -255,6 +303,8 @@
 
     <update id="update">
         update mt_grade set
+                department_id = #{departmentId},
+                department_name = #{departmentName},
                 name = #{name},
                 create_by = #{createBy},
                 create_date = #{createDate},
@@ -268,6 +318,12 @@
     <update id="updateSelective" parameterType="cn.iutils.mt.entity.Grade">
         update mt_grade
         <set>
+            <if test="departmentId != null">
+            department_id = #{departmentId},
+            </if>
+            <if test="departmentName != null">
+            department_name = #{departmentName},
+            </if>
             <if test="name != null">
             name = #{name},
             </if>
