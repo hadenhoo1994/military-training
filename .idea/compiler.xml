@@ -12,6 +12,7 @@
     <bytecodeTargetLevel>
       <module name="iutils" target="1.8" />
       <module name="iutils-admin" target="1.8" />
+      <module name="military" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
