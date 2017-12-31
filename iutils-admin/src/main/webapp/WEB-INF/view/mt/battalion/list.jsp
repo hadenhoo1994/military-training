@@ -56,28 +56,24 @@
                                 <table id="contentTable" class="am-table am-table-compact am-table-striped tpl-table-black">
                                     <thead>
                                     <tr>
-                                            <th>主键id</th>
+                                            <th>序号</th>
                                             <th>连名称</th>
-                                            <th>创建人</th>
                                             <th>创建时间</th>
-                                            <th>修改人</th>
                                             <th>修改时间</th>
                                             <th>备注</th>
-                                            <th>状态 0:正常 1:删除</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${page.list}" var="battalion" varStatus="status">
                                         <tr>
-                                                <td>${battalion.id}</td>
+                                                <td>${status.index+1}</td>
                                                 <td>${battalion.name}</td>
-                                                <td>${battalion.createBy}</td>
-                                                <td>${battalion.createDate}</td>
-                                                <td>${battalion.updateBy}</td>
-                                                <td>${battalion.updateDate}</td>
+                                            <td><fmt:formatDate value="${battalion.createDate}"
+                                                                pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${battalion.updateDate}"
+                                                                pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${battalion.remarks}</td>
-                                                <td>${battalion.status}</td>
                                             <td>
                                                 <a href="javascript:;" onclick="openModel('修改营表','${ctx}/mt/battalion/update?id=${battalion.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/battalion/${battalion.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>

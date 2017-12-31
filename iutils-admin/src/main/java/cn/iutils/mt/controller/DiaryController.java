@@ -44,7 +44,7 @@ public class DiaryController extends BaseController {
     @RequiresPermissions("mt:diary:view")
     @RequestMapping()
     public String list(Model model, Page<Diary> page) {
-        model.addAttribute("page", page.setList(diaryService.findPage(page)));
+        model.addAttribute("page", page.setList(diaryService.findPage(page,new Diary())));
         return "mt/diary/list";
     }
 

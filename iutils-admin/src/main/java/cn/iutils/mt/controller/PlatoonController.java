@@ -44,7 +44,7 @@ public class PlatoonController extends BaseController {
     @RequiresPermissions("mt:platoon:view")
     @RequestMapping()
     public String list(Model model, Page<Platoon> page) {
-        model.addAttribute("page", page.setList(platoonService.findPage(page)));
+        model.addAttribute("page", page.setList(platoonService.findPage(page,new Platoon())));
         return "mt/platoon/list";
     }
 

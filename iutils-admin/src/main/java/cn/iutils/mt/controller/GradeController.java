@@ -44,7 +44,7 @@ public class GradeController extends BaseController {
     @RequiresPermissions("mt:grade:view")
     @RequestMapping()
     public String list(Model model, Page<Grade> page) {
-        model.addAttribute("page", page.setList(gradeService.findPage(page)));
+        model.addAttribute("page", page.setList(gradeService.findPage(page,new Grade())));
         return "mt/grade/list";
     }
 

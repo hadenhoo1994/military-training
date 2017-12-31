@@ -44,7 +44,7 @@ public class ProjectController extends BaseController {
     @RequiresPermissions("mt:project:view")
     @RequestMapping()
     public String list(Model model, Page<Project> page) {
-        model.addAttribute("page", page.setList(projectService.findPage(page)));
+        model.addAttribute("page", page.setList(projectService.findPage(page,new Project())));
         return "mt/project/list";
     }
 

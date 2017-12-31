@@ -44,7 +44,7 @@ public class BattalionController extends BaseController {
     @RequiresPermissions("mt:battalion:view")
     @RequestMapping()
     public String list(Model model, Page<Battalion> page) {
-        model.addAttribute("page", page.setList(battalionService.findPage(page)));
+        model.addAttribute("page", page.setList(battalionService.findPage(page,new Battalion())));
         return "mt/battalion/list";
     }
 

@@ -44,7 +44,7 @@ public class CompanyController extends BaseController {
     @RequiresPermissions("mt:company:view")
     @RequestMapping()
     public String list(Model model, Page<Company> page) {
-        model.addAttribute("page", page.setList(companyService.findPage(page)));
+        model.addAttribute("page", page.setList(companyService.findPage(page,new Company())));
         return "mt/company/list";
     }
 

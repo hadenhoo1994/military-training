@@ -18,10 +18,11 @@ import cn.iutils.mt.entity.Classes;
 import cn.iutils.mt.service.ClassesService;
 
 /**
-* 班级表 控制器
-* @author iutils.cn
-* @version 1.0
-*/
+ * 班级表 控制器
+ *
+ * @author iutils.cn
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("${adminPath}/mt/classes")
 public class ClassesController extends BaseController {
@@ -44,13 +45,13 @@ public class ClassesController extends BaseController {
     @RequiresPermissions("mt:classes:view")
     @RequestMapping()
     public String list(Model model, Page<Classes> page) {
-        model.addAttribute("page", page.setList(classesService.findPage(page)));
+        model.addAttribute("page", page.setList(classesService.findPage(page, new Classes())));
         return "mt/classes/list";
     }
 
     @RequiresPermissions("mt:classes:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Classes classes,Model model) {
+    public String create(Classes classes, Model model) {
         model.addAttribute("classes", classes);
         return "mt/classes/form";
     }
@@ -59,8 +60,8 @@ public class ClassesController extends BaseController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Classes classes, RedirectAttributes redirectAttributes) {
         classesService.save(classes);
-        addMessage(redirectAttributes,"新增成功");
-        return "redirect:"+ adminPath +"/mt/classes/update?id="+classes.getId();
+        addMessage(redirectAttributes, "新增成功");
+        return "redirect:" + adminPath + "/mt/classes/update?id=" + classes.getId();
     }
 
     @RequiresPermissions("mt:classes:update")
@@ -74,15 +75,15 @@ public class ClassesController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Classes classes, RedirectAttributes redirectAttributes) {
         classesService.save(classes);
-        addMessage(redirectAttributes,"修改成功");
-        return "redirect:"+ adminPath +"/mt/classes/update?id="+classes.getId();
+        addMessage(redirectAttributes, "修改成功");
+        return "redirect:" + adminPath + "/mt/classes/update?id=" + classes.getId();
     }
 
     @RequiresPermissions("mt:classes:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") String id,int pageNo,int pageSize, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable("id") String id, int pageNo, int pageSize, RedirectAttributes redirectAttributes) {
         classesService.delete(id);
-        addMessage(redirectAttributes,"删除成功");
-        return "redirect:"+ adminPath +"/mt/classes?pageNo="+pageNo+"&pageSize="+pageSize;
+        addMessage(redirectAttributes, "删除成功");
+        return "redirect:" + adminPath + "/mt/classes?pageNo=" + pageNo + "&pageSize=" + pageSize;
     }
 }

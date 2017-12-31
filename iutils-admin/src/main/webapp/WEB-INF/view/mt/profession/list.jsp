@@ -56,36 +56,28 @@
                                 <table id="contentTable" class="am-table am-table-compact am-table-striped tpl-table-black">
                                     <thead>
                                     <tr>
-                                            <th>主键id</th>
+                                            <th>序号</th>
                                             <th>专业名称</th>
-                                            <th>专业所属系id</th>
                                             <th>专业所属系名称</th>
-                                            <th>第几届id</th>
-                                            <th>第几届</th>
-                                            <th>创建人</th>
+                                            <th>届数</th>
                                             <th>创建时间</th>
-                                            <th>修改人</th>
-                                            <th>修改时间</th>
+                                             <th>修改时间</th>
                                             <th>备注</th>
-                                            <th>状态 0:正常 1:删除</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${page.list}" var="profession" varStatus="status">
                                         <tr>
-                                                <td>${profession.id}</td>
+                                                <td>${status.index+1}</td>
                                                 <td>${profession.name}</td>
-                                                <td>${profession.departmentId}</td>
                                                 <td>${profession.departmentName}</td>
-                                                <td>${profession.gradeId}</td>
                                                 <td>${profession.gradeName}</td>
-                                                <td>${profession.createBy}</td>
-                                                <td>${profession.createDate}</td>
-                                                <td>${profession.updateBy}</td>
-                                                <td>${profession.updateDate}</td>
+                                            <td><fmt:formatDate value="${profession.createDate}"
+                                                                pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${profession.updateDate}"
+                                                                pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${profession.remarks}</td>
-                                                <td>${profession.status}</td>
                                             <td>
                                                 <a href="javascript:;" onclick="openModel('修改专业表','${ctx}/mt/profession/update?id=${profession.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/profession/${profession.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>

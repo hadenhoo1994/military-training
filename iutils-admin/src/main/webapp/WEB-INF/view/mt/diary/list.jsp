@@ -56,7 +56,7 @@
                                 <table id="contentTable" class="am-table am-table-compact am-table-striped tpl-table-black">
                                     <thead>
                                     <tr>
-                                            <th>主键id</th>
+                                            <th>序号</th>
                                             <th>创建人</th>
                                             <th>创建时间</th>
                                             <th>修改人</th>
@@ -69,11 +69,9 @@
                                     <tbody>
                                     <c:forEach items="${page.list}" var="diary" varStatus="status">
                                         <tr>
-                                                <td>${diary.id}</td>
-                                                <td>${diary.createBy}</td>
-                                                <td>${diary.createDate}</td>
-                                                <td>${diary.updateBy}</td>
-                                                <td>${diary.updateDate}</td>
+                                                <td>${status.index+1}</td>
+                                            <td><fmt:formatDate value="${diary.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${diary.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${diary.remarks}</td>
                                                 <td>${diary.status}</td>
                                             <td>

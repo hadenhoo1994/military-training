@@ -26,7 +26,7 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">备注：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="remarks" placeholder="备注" value="${diary.remarks}" required/>
+                                            <input type="text" name="remarks" placeholder="备注" value="${diary.remarks}" />
                                         </div>
                                     </div>
                             <div class="am-form-group">

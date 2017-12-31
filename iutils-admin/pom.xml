@@ -377,33 +377,6 @@
             <version>2.7.0</version>
         </dependency>
 
-        <!-- alimsn -->
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>3.2.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aliyun-java-sdk-core-3.2.3.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-            <version>1.0.0-SANPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aliyun-java-sdk-dysmsapi-1.0.0-SANPSHOT.jar
-            </systemPath>
-        </dependency>
-
-        <!-- fastdfs-client-java -->
-        <dependency>
-            <groupId>org.csource</groupId>
-            <artifactId>fastdfs-client-java</artifactId>
-            <version>1.27-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/fastdfs-client-java-1.27-SNAPSHOT.jar
-            </systemPath>
-        </dependency>
-
         <!-- jwt -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

@@ -42,21 +42,21 @@
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届id：</label>
+                                        <label class="am-u-sm-3 am-form-label">届级id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="gradeId" placeholder="第几届id" value="${profession.gradeId}" required/>
+                                            <input type="text" name="gradeId" placeholder="届级id" value="${profession.gradeId}" required/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届：</label>
+                                        <label class="am-u-sm-3 am-form-label">届级：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="gradeName" placeholder="第几届" value="${profession.gradeName}" required/>
+                                            <input type="text" name="gradeName" placeholder="届级id" value="${profession.gradeName}" required/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">备注：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="remarks" placeholder="备注" value="${profession.remarks}" required/>
+                                            <input type="text" name="remarks" placeholder="备注" value="${profession.remarks}" />
                                         </div>
                                     </div>
                             <div class="am-form-group">

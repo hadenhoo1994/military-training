@@ -44,7 +44,7 @@ public class UserInfoController extends BaseController {
     @RequiresPermissions("mt:userInfo:view")
     @RequestMapping()
     public String list(Model model, Page<UserInfo> page) {
-        model.addAttribute("page", page.setList(userInfoService.findPage(page)));
+        model.addAttribute("page", page.setList(userInfoService.findPage(page,new UserInfo())));
         return "mt/userInfo/list";
     }
 

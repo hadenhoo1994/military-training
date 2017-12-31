@@ -44,7 +44,7 @@ public class ProfessionController extends BaseController {
     @RequiresPermissions("mt:profession:view")
     @RequestMapping()
     public String list(Model model, Page<Profession> page) {
-        model.addAttribute("page", page.setList(professionService.findPage(page)));
+        model.addAttribute("page", page.setList(professionService.findPage(page,new Profession())));
         return "mt/profession/list";
     }
 

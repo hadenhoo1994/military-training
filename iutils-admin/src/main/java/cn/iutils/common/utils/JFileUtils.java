@@ -1,8 +1,5 @@
 package cn.iutils.common.utils;
 
-import cn.iutils.common.utils.dfs.FastDFSClient;
-import jodd.io.FileUtil;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.FileUtils;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
@@ -10,14 +7,10 @@ import org.apache.tools.zip.ZipOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Enumeration;
 
 import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
