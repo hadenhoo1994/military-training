@@ -1,0 +1,57 @@
+.iutilsEditor {
+    border: 1px solid #ddd;
+}
+
+.iutilsEditor-tools {
+    height: 28px;
+}
+
+.iutilsEditor-tools .am-btn-group {
+    border-right: 1px solid #eee;
+}
+
+.iutilsEditor-tools .am-btn-group:last-child {
+    border-right: none;
+}
+
+.iutilsEditor-content {
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    min-height: 220px;
+    overflow-y: auto;
+    display: block;
+    box-sizing: border-box;
+    border-top: 1px solid #eee;
+    outline: none;
+}
+
+.iutilsEditor-code {
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    min-height: 220px;
+    overflow-y: auto;
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    border-top: 1px solid #eee;
+    outline: none;
+    resize: none;
+    display: none;
+}
+
+.am-btn-iutils {
+    color: #444;
+    background-color: #fff;
+    border-color: transparent;
+}
+
+.am-btn-iutils:hover, .am-btn-iutils:active {
+    background-color: #e7e7e7;
+    color: #0e90d2;
+}
+
+.am-btn-iutils.active {
+    color: #0e90d2;
+}

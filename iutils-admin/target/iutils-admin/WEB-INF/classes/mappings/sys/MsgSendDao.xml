@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.sys.dao.MsgSendDao">
+
+    <sql id="MsgSendColumns">
+        a.id as "id",
+        a.type as "type",
+        a.title as "title",
+        a.content as "content",
+        a.level as "level",
+        a.users as "users",
+        a.create_by as "createBy",
+        a.create_date as "createDate",
+        a.status as "status"
+    </sql>
+
+    <sql id="MsgSendJoins">
+
+    </sql>
+
+    <select id="get" resultType="cn.iutils.sys.entity.MsgSend">
+        SELECT
+        <include refid="MsgSendColumns"/>
+        FROM sys_msg_send a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="cn.iutils.sys.entity.MsgSend">
+        SELECT
+        <include refid="MsgSendColumns"/>
+        FROM sys_msg_send a
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(1) FROM sys_msg_send a
+        <where>
+            <if test="page.entity.type!=null and page.entity.type!=''">
+                and a.type = #{page.entity.type}
+            </if>
+            <if test="page.entity.status!=null and page.entity.status!=''">
+                and a.status = #{page.entity.status}
+            </if>
+            <if test="page.entity.user!=null">
+                and a.create_by = #{page.entity.user.id}
+            </if>
+            <if test="page.key!=null and page.key!=''">
+                and (
+                a.title like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                or
+                a.content like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                )
+            </if>
+        </where>
+    </select>
+
+    <select id="findPage" resultType="cn.iutils.sys.entity.MsgSend">
+        SELECT
+        <include refid="MsgSendColumns"/>
+        FROM sys_msg_send a
+        <where>
+            <if test="page.entity.type!=null and page.entity.type!=''">
+                and a.type = #{page.entity.type}
+            </if>
+            <if test="page.entity.status!=null and page.entity.status!=''">
+                and a.status = #{page.entity.status}
+            </if>
+            <if test="page.entity.user!=null">
+                and a.create_by = #{page.entity.user.id}
+            </if>
+            <if test="page.key!=null and page.key!=''">
+                and (
+                a.title like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                or
+                a.content like
+                <if test="page.entity.dbType == 'oracle'">'%'||#{page.key}||'%'</if>
+                <if test="page.entity.dbType == 'mssql'">'%'+#{page.key}+'%'</if>
+                <if test="page.entity.dbType == 'mysql'">CONCAT('%',#{page.key},'%')</if>
+                )
+            </if>
+        </where>
+        <if test="page.orderBy!=''">
+            ORDER BY ${page.orderBy} LIMIT ${page.pageNo*page.pageSize},${page.pageSize}
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_msg_send(
+        type,
+        title,
+        content,
+        level,
+        users,
+        create_by,
+        create_date,
+        status
+        )
+        values(
+        #{type},
+        #{title},
+        #{content},
+        #{level},
+        #{users},
+        #{createBy},
+        #{createDate},
+        #{status}
+        )
+    </insert>
+
+    <update id="update">
+        update sys_msg_send set
+        type=#{type},
+        title=#{title},
+        content=#{content},
+        level=#{level},
+        users=#{users},
+        create_by=#{createBy},
+        create_date=#{createDate},
+        status=#{status}
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from sys_msg_send where id=#{id}
+    </delete>
+</mapper>
