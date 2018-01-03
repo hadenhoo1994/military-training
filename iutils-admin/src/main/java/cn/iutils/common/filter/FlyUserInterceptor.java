@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FlyUserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object obj = request.getSession().getAttribute("user_info");
+        Object obj = request.getSession().getAttribute("userInfo");
         if (obj == null || !(obj instanceof UserInfo)) {
             if (request.getRequestURI().equalsIgnoreCase("/fly")) {
                 return true;
