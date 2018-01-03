@@ -30,12 +30,6 @@
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">排全称：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="fullName" placeholder="排全称" value="${platoon.fullName}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">连id：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="companyId" placeholder="连id" value="${platoon.companyId}" required/>
@@ -62,7 +56,7 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">学生数：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="studentNum" placeholder="学生数" value="${platoon.studentNum}" required/>
+                                            <input type="text" name="studentNum" placeholder="学生数" value="${platoon.studentNum}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">

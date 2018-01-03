@@ -57,7 +57,7 @@
                                     <thead>
                                     <tr>
                                             <th>序号</th>
-                                            <th>连名称</th>
+                                            <th>营名称</th>
                                             <th>创建时间</th>
                                             <th>修改时间</th>
                                             <th>备注</th>

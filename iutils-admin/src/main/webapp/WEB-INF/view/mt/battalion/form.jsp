@@ -24,9 +24,9 @@
                             <form class="am-form tpl-form-border-form" data-am-validator modelAttribute="battalion" action="${ctx}/mt/battalion/<c:choose><c:when test="${empty battalion.id}">create</c:when><c:otherwise>update</c:otherwise></c:choose>" method="post">
                             <input type="hidden" name="id" value="${battalion.id}"/>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">连名称：</label>
+                                        <label class="am-u-sm-3 am-form-label">营名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="name" placeholder="连名称" value="${battalion.name}" required/>
+                                            <input type="text" name="name" placeholder="营名称" value="${battalion.name}" required/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">

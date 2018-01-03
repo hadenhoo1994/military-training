@@ -75,7 +75,8 @@
                                                 <td>${platoon.name}</td>
                                                 <td>${platoon.fullName}</td>
                                                 <td>${platoon.companyName}</td>
-                                                <td>${platoon.battalionName}</td>
+                                            <td>${platoon.battalionName}</td>
+                                            <td>${platoon.studentNum}</td>
                                             <td><fmt:formatDate value="${platoon.createDate}"
                                                                 pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                             <td><fmt:formatDate value="${platoon.updateDate}"

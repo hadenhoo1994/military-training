@@ -58,6 +58,7 @@ public class PlatoonController extends BaseController {
     @RequiresPermissions("mt:platoon:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Platoon platoon, RedirectAttributes redirectAttributes) {
+        platoon.setFullName(platoon.getBattalionName() + platoon.getCompanyName() + platoon.getName());
         platoonService.save(platoon);
         addMessage(redirectAttributes,"新增成功");
         return "redirect:"+ adminPath +"/mt/platoon/update?id="+platoon.getId();
