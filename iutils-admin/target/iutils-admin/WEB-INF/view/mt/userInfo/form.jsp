@@ -30,129 +30,124 @@
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">班级全称：</label>
+                                        <label class="am-u-sm-3 am-form-label">性别：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="fullName" placeholder="班级全称" value="${userInfo.fullName}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">性别 0:男 1:女：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="gender" placeholder="性别 0:男 1:女" value="${userInfo.gender}" required/>
+                                            <select name="gender">
+                                                <option value="0">男</option>
+                                                <option value="1">女</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">班级id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="classId" placeholder="班级id" value="${userInfo.classId}" required/>
+                                            <input type="text" name="classId" placeholder="班级id" value="${userInfo.classId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">班级名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="className" placeholder="班级名称" value="${userInfo.className}" required/>
+                                            <input type="text" name="className" placeholder="班级名称" value="${userInfo.className}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">专业id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="professionId" placeholder="专业id" value="${userInfo.professionId}" required/>
+                                            <input type="text" name="professionId" placeholder="专业id" value="${userInfo.professionId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">专业名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="professionName" placeholder="专业名称" value="${userInfo.professionName}" required/>
+                                            <input type="text" name="professionName" placeholder="专业名称" value="${userInfo.professionName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">系别id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="departmentId" placeholder="系别id" value="${userInfo.departmentId}" required/>
+                                            <input type="text" name="departmentId" placeholder="系别id" value="${userInfo.departmentId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">系别名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="departmentName" placeholder="系别名称" value="${userInfo.departmentName}" required/>
+                                            <input type="text" name="departmentName" placeholder="系别名称" value="${userInfo.departmentName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">排id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="platoonId" placeholder="排id" value="${userInfo.platoonId}" required/>
+                                            <input type="text" name="platoonId" placeholder="排id" value="${userInfo.platoonId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">排名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="platoonName" placeholder="排名称" value="${userInfo.platoonName}" required/>
+                                            <input type="text" name="platoonName" placeholder="排名称" value="${userInfo.platoonName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">连id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="companyId" placeholder="连id" value="${userInfo.companyId}" required/>
+                                            <input type="text" name="companyId" placeholder="连id" value="${userInfo.companyId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">连名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="companyName" placeholder="连名称" value="${userInfo.companyName}" required/>
+                                            <input type="text" name="companyName" placeholder="连名称" value="${userInfo.companyName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">营id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="battalionId" placeholder="营id" value="${userInfo.battalionId}" required/>
+                                            <input type="text" name="battalionId" placeholder="营id" value="${userInfo.battalionId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">营名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="battalionName" placeholder="营名称" value="${userInfo.battalionName}" required/>
+                                            <input type="text" name="battalionName" placeholder="营名称" value="${userInfo.battalionName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">手机号码：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="mobileNumber" placeholder="手机号码" value="${userInfo.mobileNumber}" required/>
+                                            <input type="text" name="mobileNumber" placeholder="手机号码" value="${userInfo.mobileNumber}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">qq号码：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="qq" placeholder="qq号码" value="${userInfo.qq}" required/>
+                                            <input type="text" name="qq" placeholder="qq号码" value="${userInfo.qq}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">微信号：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="wx" placeholder="微信号" value="${userInfo.wx}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">头像：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="imgUrl" placeholder="头像" value="${userInfo.imgUrl}" required/>
+                                            <input type="text" name="wx" placeholder="微信号" value="${userInfo.wx}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">住址：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="address" placeholder="住址" value="${userInfo.address}" required/>
+                                            <input type="text" name="address" placeholder="住址" value="${userInfo.address}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">用户身份标识 0:学生 1:教师 2:教官：</label>
+                                        <label class="am-u-sm-3 am-form-label">用户身份标识：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="identity" placeholder="用户身份标识 0:学生 1:教师 2:教官" value="${userInfo.identity}" required/>
+                                            <select name="identity">
+                                                <option value="0">学生</option>
+                                                <option value="1">教师</option>
+                                                <option value="2">教官</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">备注：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="remarks" placeholder="备注" value="${userInfo.remarks}" required/>
+                                            <input type="text" name="remarks" placeholder="备注" value="${userInfo.remarks}" />
                                         </div>
                                     </div>
                             <div class="am-form-group">

@@ -56,68 +56,47 @@
                                 <table id="contentTable" class="am-table am-table-compact am-table-striped tpl-table-black">
                                     <thead>
                                     <tr>
-                                            <th>主键id</th>
+                                            <th>序号</th>
+                                            <th>性别</th>
                                             <th>姓名</th>
-                                            <th>班级全称</th>
-                                            <th>性别 0:男 1:女</th>
-                                            <th>班级id</th>
                                             <th>班级名称</th>
-                                            <th>专业id</th>
                                             <th>专业名称</th>
-                                            <th>系别id</th>
                                             <th>系别名称</th>
-                                            <th>排id</th>
                                             <th>排名称</th>
-                                            <th>连id</th>
                                             <th>连名称</th>
-                                            <th>营id</th>
                                             <th>营名称</th>
                                             <th>手机号码</th>
                                             <th>qq号码</th>
                                             <th>微信号</th>
-                                            <th>头像</th>
-                                            <th>住址</th>
-                                            <th>用户身份标识 0:学生 1:教师 2:教官</th>
-                                            <th>创建人</th>
+                                            <th>用户身份</th>
                                             <th>创建时间</th>
-                                            <th>修改人</th>
                                             <th>修改时间</th>
                                             <th>备注</th>
-                                            <th>状态 0:正常 1:删除</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${page.list}" var="userInfo" varStatus="status">
                                         <tr>
-                                                <td>${userInfo.id}</td>
-                                                <td>${userInfo.name}</td>
-                                                <td>${userInfo.fullName}</td>
-                                                <td>${userInfo.gender}</td>
-                                                <td>${userInfo.classId}</td>
-                                                <td>${userInfo.className}</td>
-                                                <td>${userInfo.professionId}</td>
+                                                <td>${status.index+1}</td>
+                                            <c:if test="${userInfo.gender==0}">  <td>男</td> </c:if>
+                                            <c:if test="${userInfo.gender==1}">  <td>女</td> </c:if>
+                                            <td>${userInfo.name}</td>
+                                            <td>${userInfo.className}</td>
                                                 <td>${userInfo.professionName}</td>
-                                                <td>${userInfo.departmentId}</td>
                                                 <td>${userInfo.departmentName}</td>
-                                                <td>${userInfo.platoonId}</td>
                                                 <td>${userInfo.platoonName}</td>
-                                                <td>${userInfo.companyId}</td>
                                                 <td>${userInfo.companyName}</td>
-                                                <td>${userInfo.battalionId}</td>
                                                 <td>${userInfo.battalionName}</td>
                                                 <td>${userInfo.mobileNumber}</td>
                                                 <td>${userInfo.qq}</td>
                                                 <td>${userInfo.wx}</td>
-                                                <td>${userInfo.imgUrl}</td>
-                                                <td>${userInfo.address}</td>
-                                                <td>${userInfo.identity}</td>
-                                                <td>${userInfo.createBy}</td>
-                                                <td>${userInfo.createDate}</td>
-                                                <td>${userInfo.updateBy}</td>
-                                                <td>${userInfo.updateDate}</td>
+                                            <c:if test="${userInfo.identity==0}">  <td>学生</td> </c:if>
+                                            <c:if test="${userInfo.identity==1}">  <td>老师</td> </c:if>
+                                            <c:if test="${userInfo.identity==2}">  <td>教官</td> </c:if>
+                                            <td><fmt:formatDate value="${userInfo.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${userInfo.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${userInfo.remarks}</td>
-                                                <td>${userInfo.status}</td>
                                             <td>
                                                 <a href="javascript:;" onclick="openModel('修改用户表','${ctx}/mt/userInfo/update?id=${userInfo.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/userInfo/${userInfo.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>

@@ -54,13 +54,13 @@
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届id：</label>
+                                        <label class="am-u-sm-3 am-form-label">届数id：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="gradeId" placeholder="第几届id" value="${classes.gradeId}" required/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">第几届：</label>
+                                        <label class="am-u-sm-3 am-form-label">届数名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="gradeName" placeholder="第几届" value="${classes.gradeName}" required/>
                                         </div>
@@ -68,19 +68,19 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">班级学生数：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="studentNum" placeholder="班级学生数" value="${classes.studentNum}" required/>
+                                            <input type="text" name="studentNum" placeholder="班级学生数" value="${classes.studentNum}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">班级班主任id：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="directorId" placeholder="班级班主任id" value="${classes.directorId}" required/>
+                                            <input type="text" name="directorId" placeholder="班级班主任id" value="${classes.directorId}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">班级班主任名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="directorName" placeholder="班级班主任名称" value="${classes.directorName}" required/>
+                                            <input type="text" name="directorName" placeholder="班级班主任名称" value="${classes.directorName}" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
