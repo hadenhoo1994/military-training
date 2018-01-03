@@ -5,6 +5,7 @@
     <sql id="UserInfoColumns">
         a.id AS "id",
         a.name AS "name",
+        a.password AS "password",
         a.full_name AS "fullName",
         a.gender AS "gender",
         a.class_id AS "classId",
@@ -53,6 +54,9 @@
             </if>
             <if test="page.entity.name != null">
                 AND name = #{page.entity.name}
+            </if>
+            <if test="page.entity.password != null">
+                AND password = #{page.entity.password}
             </if>
             <if test="page.entity.fullName != null">
                 AND full_name = #{page.entity.fullName}
@@ -144,6 +148,9 @@
             </if>
             <if test="entity.name != null">
                 AND name = #{entity.name}
+            </if>
+            <if test="entity.password != null">
+                AND password = #{entity.password}
             </if>
             <if test="entity.fullName != null">
                 AND full_name = #{entity.fullName}
@@ -237,6 +244,9 @@
             <if test="name != null">
                 AND name = #{name}
             </if>
+            <if test="password != null">
+                AND password = #{password}
+            </if>
             <if test="fullName != null">
                 AND full_name = #{fullName}
             </if>
@@ -327,6 +337,9 @@
                 </if>
                 <if test="name != null">
                     AND name = #{name}
+                </if>
+                <if test="password != null">
+                    AND password = #{password}
                 </if>
                 <if test="fullName != null">
                     AND full_name = #{fullName}
@@ -419,6 +432,9 @@
             <if test="entity.name != null">
                 AND name = #{entity.name}
             </if>
+            <if test="entity.password != null">
+                AND password = #{entity.password}
+            </if>
             <if test="entity.fullName != null">
                 AND full_name = #{entity.fullName}
             </if>
@@ -506,6 +522,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_user_info(
                 name,
+                password,
                 full_name,
                 gender,
                 class_id,
@@ -534,6 +551,7 @@
                 status
         ) values (
                 #{name},
+                #{password},
                 #{fullName},
                 #{gender},
                 #{classId},
@@ -568,6 +586,9 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="name != null">
                 name,
+            </if>
+            <if test="password != null">
+                password,
             </if>
             <if test="fullName != null">
                 full_name,
@@ -651,6 +672,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="name != null">
                 #{name},
+            </if>
+            <if test="password != null">
+                #{password},
             </if>
             <if test="fullName != null">
                 #{fullName},
@@ -736,6 +760,7 @@
     <update id="update">
         update mt_user_info set
                 name = #{name},
+                password = #{password},
                 full_name = #{fullName},
                 gender = #{gender},
                 class_id = #{classId},
@@ -770,6 +795,9 @@
         <set>
             <if test="name != null">
             name = #{name},
+            </if>
+            <if test="password != null">
+            password = #{password},
             </if>
             <if test="fullName != null">
             full_name = #{fullName},

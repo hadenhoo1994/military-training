@@ -103,6 +103,9 @@
     <!-- 全局异常处理器-->
     <bean id="handlerExceptionResolver" class="cn.iutils.common.exception.DefaultExceptionHandler"/>
 
+    <!--&lt;!&ndash;fly用户登录拦截&ndash;&gt;-->
+    <!--<bean id="flyUserInfo" class="cn.iutils.common.filter.FlyUserInterceptor"></bean>-->
+
     <!-- shiro权限验证 -->
     <aop:config proxy-target-class="true"></aop:config>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">

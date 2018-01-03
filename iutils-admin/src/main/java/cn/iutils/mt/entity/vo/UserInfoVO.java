@@ -3,19 +3,19 @@ package cn.iutils.mt.entity.vo;
 import cn.iutils.mt.entity.UserInfo;
 
 /**
- * 用户表
- *
- * @author iutils.cn
- * @version 1.0
- */
+* 用户表
+* @author iutils.cn
+* @version 1.0
+*/
 public class UserInfoVO extends UserInfo {
 
     private static final long serialVersionUID = 1L;
 
-    public UserInfoVO(UserInfo entity) {
+    public UserInfoVO(UserInfo entity){
         super();
         setId(entity.getId());
         setName(entity.getName());
+        setPassword(entity.getPassword());
         setFullName(entity.getFullName());
         setGender(entity.getGender());
         setClassId(entity.getClassId());

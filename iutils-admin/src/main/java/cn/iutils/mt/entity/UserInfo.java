@@ -15,6 +15,8 @@ public class UserInfo extends DataEntity<UserInfo> {
 
     // 姓名
     private String name;
+    // 密码
+    private String password;
     // 班级全称
     private String fullName;
     // 性别 0:男 1:女
@@ -70,6 +72,14 @@ public class UserInfo extends DataEntity<UserInfo> {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getFullName(){
@@ -236,6 +246,7 @@ public class UserInfo extends DataEntity<UserInfo> {
         super();
         setId(builder.id);
         setName(builder.name);
+        setPassword(builder.password);
         setFullName(builder.fullName);
         setGender(builder.gender);
         setClassId(builder.classId);
@@ -273,6 +284,7 @@ public class UserInfo extends DataEntity<UserInfo> {
     public static final class Builder {
         private String id;
         private String name;
+        private String password;
         private String fullName;
         private Integer gender;
         private Integer classId;
@@ -317,6 +329,12 @@ public class UserInfo extends DataEntity<UserInfo> {
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+
+        public Builder password(String password) {
+            this.password = password;
             return this;
         }
 

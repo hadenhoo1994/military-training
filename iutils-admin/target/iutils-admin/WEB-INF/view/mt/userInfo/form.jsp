@@ -113,7 +113,7 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">手机号码：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="mobileNumber" placeholder="手机号码" value="${userInfo.mobileNumber}" />
+                                            <input type="text" name="mobileNumber" placeholder="手机号码" value="${userInfo.mobileNumber}" required/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
