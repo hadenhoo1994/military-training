@@ -112,7 +112,7 @@
                 var url = res.results.fileName;
                 var imgDiv = $("#imgDiv");
                 $("#imgLog").hide();
-                imgDiv.attr("src", "/static/upload/img/" + url);
+                imgDiv.attr("src", "/static/upload/" + url);
                 imgDiv.show();
             }
             , error: function () {

@@ -131,7 +131,7 @@
             return;
         }
         var imgDiv = $("#imgDiv");
-        var str = '<div class="layui-col-md15"><img src="/static/upload/img/' + url + '"id="imgs' + uploadNum + '"></div>'
+        var str = '<div class="layui-col-md15"><img src="/static/upload/' + url + '"id="imgs' + uploadNum + '"></div>'
         imgDiv.append(str);
         $("#uploadNum").text(uploadNum + 1);
     }
