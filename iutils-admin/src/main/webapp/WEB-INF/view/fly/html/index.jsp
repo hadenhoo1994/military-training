@@ -70,7 +70,7 @@
     </ul> 
 
     <div class="fly-column-right layui-hide-xs">
-      <a href="/fly/my/addDiary" class="layui-btn">发布图志</a>
+      <a href="/fly/my/addMonent" class="layui-btn">发布图志</a>
       <a href="/fly/my/addDiary" class="layui-btn">提交日记</a>
     </div>
     <div class="layui-hide-sm layui-show-xs-block" style="margin-top: -10px; padding-bottom: 10px; text-align: center;">

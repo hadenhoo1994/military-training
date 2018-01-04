@@ -4,6 +4,9 @@
 
     <sql id="DiaryColumns">
         a.id AS "id",
+        a.user_id AS "userId",
+        a.content AS "content",
+        a.title AS "title",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
         a.update_by AS "updateBy",
@@ -29,6 +32,15 @@
         <if test="page.entity != null">
             <if test="page.entity.id != null">
                 AND id = #{page.entity.id}
+            </if>
+            <if test="page.entity.userId != null">
+                AND user_id = #{page.entity.userId}
+            </if>
+            <if test="page.entity.content != null">
+                AND content = #{page.entity.content}
+            </if>
+            <if test="page.entity.title != null">
+                AND title = #{page.entity.title}
             </if>
             <if test="page.entity.createBy != null">
                 AND create_by = #{page.entity.createBy}
@@ -57,6 +69,15 @@
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
+            </if>
+            <if test="entity.userId != null">
+                AND user_id = #{entity.userId}
+            </if>
+            <if test="entity.content != null">
+                AND content = #{entity.content}
+            </if>
+            <if test="entity.title != null">
+                AND title = #{entity.title}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -87,6 +108,15 @@
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="content != null">
+                AND content = #{content}
+            </if>
+            <if test="title != null">
+                AND title = #{title}
+            </if>
             <if test="createBy != null">
                 AND create_by = #{createBy}
             </if>
@@ -114,6 +144,15 @@
         <where>
                 <if test="id != null">
                     AND id = #{id}
+                </if>
+                <if test="userId != null">
+                    AND user_id = #{userId}
+                </if>
+                <if test="content != null">
+                    AND content = #{content}
+                </if>
+                <if test="title != null">
+                    AND title = #{title}
                 </if>
                 <if test="createBy != null">
                     AND create_by = #{createBy}
@@ -143,6 +182,15 @@
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.userId != null">
+                AND user_id = #{entity.userId}
+            </if>
+            <if test="entity.content != null">
+                AND content = #{entity.content}
+            </if>
+            <if test="entity.title != null">
+                AND title = #{entity.title}
+            </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
             </if>
@@ -169,6 +217,9 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_diary(
+                user_id,
+                content,
+                title,
                 create_by,
                 create_date,
                 update_by,
@@ -176,6 +227,9 @@
                 remarks,
                 status
         ) values (
+                #{userId},
+                #{content},
+                #{title},
                 #{createBy},
                 #{createDate},
                 #{updateBy},
@@ -188,6 +242,15 @@
     <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Diary" useGeneratedKeys="true" keyProperty="id">
         insert into mt_diary
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
             <if test="createBy != null">
                 create_by,
             </if>
@@ -208,6 +271,15 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="content != null">
+                #{content},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
             <if test="createBy != null">
                 #{createBy},
             </if>
@@ -231,6 +303,9 @@
 
     <update id="update">
         update mt_diary set
+                user_id = #{userId},
+                content = #{content},
+                title = #{title},
                 create_by = #{createBy},
                 create_date = #{createDate},
                 update_by = #{updateBy},
@@ -243,6 +318,15 @@
     <update id="updateSelective" parameterType="cn.iutils.mt.entity.Diary">
         update mt_diary
         <set>
+            <if test="userId != null">
+            user_id = #{userId},
+            </if>
+            <if test="content != null">
+            content = #{content},
+            </if>
+            <if test="title != null">
+            title = #{title},
+            </if>
             <if test="createBy != null">
             create_by = #{createBy},
             </if>

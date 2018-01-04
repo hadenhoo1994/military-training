@@ -146,6 +146,7 @@
         <property name="filterChainDefinitions">
             <!-- ${restPath}/api/** = anon,userAccess,slog -->
             <value>
+                /file/** = anon
                 /static/** = anon
                 /jcaptcha* = anon
                 ${restPath}/** = anon

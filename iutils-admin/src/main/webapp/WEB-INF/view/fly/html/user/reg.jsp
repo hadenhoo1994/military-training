@@ -15,7 +15,7 @@
 
 <div class="fly-header layui-bg-black">
   <div class="layui-container">
-    <a class="fly-logo" href="/">
+    <a class="fly-logo" href="/fly">
       <img src="/static/res/images/logo.png" alt="layui">
     </a>
     

@@ -357,19 +357,6 @@
             <version>2.0-alpha-1</version>
         </dependency>
 
-        <!-- poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.15</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.15</version>
-        </dependency>
-
         <!-- alioss -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
@@ -397,13 +384,6 @@
             <version>2.1.0</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- webcollector -->
-        <dependency>
-            <groupId>cn.edu.hfut.dmic.webcollector</groupId>
-            <artifactId>WebCollector</artifactId>
-            <version>2.52</version>
-        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -428,30 +408,7 @@
             <version>2.9.9</version>
         </dependency>
 
-        <!-- 微信小程序 -->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-miniapp</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <!-- 微信支付 -->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-pay</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <!-- 公众号（订阅号及服务号）-->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-mp</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <!-- 企业号 -->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-cp</artifactId>
-            <version>2.7.0</version>
-        </dependency>
+
 
     </dependencies>
 

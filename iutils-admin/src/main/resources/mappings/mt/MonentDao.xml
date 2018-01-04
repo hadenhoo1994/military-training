@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.iutils.mt.dao.DiaryDao">
+<mapper namespace="cn.iutils.mt.dao.MonentDao">
 
-    <sql id="DiaryColumns">
+    <sql id="MonentColumns">
         a.id AS "id",
         a.user_id AS "userId",
+        a.user_name AS "userName",
         a.content AS "content",
-        a.title AS "title",
+        a.img_url AS "imgUrl",
+        a.like_num AS "likeNum",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
         a.update_by AS "updateBy",
@@ -15,19 +17,19 @@
         a.status AS "status"
     </sql>
 
-    <sql id="DiaryJoins">
+    <sql id="MonentJoins">
 
     </sql>
 
-    <select id="get" resultType="cn.iutils.mt.entity.Diary">
+    <select id="get" resultType="cn.iutils.mt.entity.Monent">
         SELECT
-        <include refid="DiaryColumns"/>
-        FROM mt_diary a
+        <include refid="MonentColumns"/>
+        FROM mt_monent a
         WHERE a.id = #{id}
     </select>
 
     <select id="count" resultType="int">
-        SELECT count(0) FROM mt_diary a
+        SELECT count(0) FROM mt_monent a
         <where>
         <if test="page.entity != null">
             <if test="page.entity.id != null">
@@ -36,11 +38,17 @@
             <if test="page.entity.userId != null">
                 AND user_id = #{page.entity.userId}
             </if>
+            <if test="page.entity.userName != null">
+                AND user_name = #{page.entity.userName}
+            </if>
             <if test="page.entity.content != null">
                 AND content = #{page.entity.content}
             </if>
-            <if test="page.entity.title != null">
-                AND title = #{page.entity.title}
+            <if test="page.entity.imgUrl != null">
+                AND img_url = #{page.entity.imgUrl}
+            </if>
+            <if test="page.entity.likeNum != null">
+                AND like_num = #{page.entity.likeNum}
             </if>
             <if test="page.entity.createBy != null">
                 AND create_by = #{page.entity.createBy}
@@ -65,7 +73,7 @@
     </select>
 
     <select id="findCount" resultType="int">
-        SELECT count(0) FROM mt_diary a
+        SELECT count(0) FROM mt_monent a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
@@ -73,11 +81,17 @@
             <if test="entity.userId != null">
                 AND user_id = #{entity.userId}
             </if>
+            <if test="entity.userName != null">
+                AND user_name = #{entity.userName}
+            </if>
             <if test="entity.content != null">
                 AND content = #{entity.content}
             </if>
-            <if test="entity.title != null">
-                AND title = #{entity.title}
+            <if test="entity.imgUrl != null">
+                AND img_url = #{entity.imgUrl}
+            </if>
+            <if test="entity.likeNum != null">
+                AND like_num = #{entity.likeNum}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -100,10 +114,10 @@
         </where>
     </select>
 
-    <select id="findOne" resultType="cn.iutils.mt.entity.Diary">
+    <select id="findOne" resultType="cn.iutils.mt.entity.Monent">
         SELECT
-        <include refid="DiaryColumns"/>
-        FROM mt_diary a
+        <include refid="MonentColumns"/>
+        FROM mt_monent a
         <where>
             <if test="id != null">
                 AND id = #{id}
@@ -111,11 +125,17 @@
             <if test="userId != null">
                 AND user_id = #{userId}
             </if>
+            <if test="userName != null">
+                AND user_name = #{userName}
+            </if>
             <if test="content != null">
                 AND content = #{content}
             </if>
-            <if test="title != null">
-                AND title = #{title}
+            <if test="imgUrl != null">
+                AND img_url = #{imgUrl}
+            </if>
+            <if test="likeNum != null">
+                AND like_num = #{likeNum}
             </if>
             <if test="createBy != null">
                 AND create_by = #{createBy}
@@ -138,9 +158,9 @@
         </where>
     </select>
 
-    <select id="findList" resultType="cn.iutils.mt.entity.Diary">
-        SELECT <include refid="DiaryColumns"/>
-        FROM mt_diary a
+    <select id="findList" resultType="cn.iutils.mt.entity.Monent">
+        SELECT <include refid="MonentColumns"/>
+        FROM mt_monent a
         <where>
                 <if test="id != null">
                     AND id = #{id}
@@ -148,11 +168,17 @@
                 <if test="userId != null">
                     AND user_id = #{userId}
                 </if>
+                <if test="userName != null">
+                    AND user_name = #{userName}
+                </if>
                 <if test="content != null">
                     AND content = #{content}
                 </if>
-                <if test="title != null">
-                    AND title = #{title}
+                <if test="imgUrl != null">
+                    AND img_url = #{imgUrl}
+                </if>
+                <if test="likeNum != null">
+                    AND like_num = #{likeNum}
                 </if>
                 <if test="createBy != null">
                     AND create_by = #{createBy}
@@ -175,9 +201,9 @@
         </where>
     </select>
 
-    <select id="findPage" resultType="cn.iutils.mt.entity.Diary">
-        SELECT <include refid="DiaryColumns"/>
-        FROM mt_diary a
+    <select id="findPage" resultType="cn.iutils.mt.entity.Monent">
+        SELECT <include refid="MonentColumns"/>
+        FROM mt_monent a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
@@ -185,11 +211,17 @@
             <if test="entity.userId != null">
                 AND user_id = #{entity.userId}
             </if>
+            <if test="entity.userName != null">
+                AND user_name = #{entity.userName}
+            </if>
             <if test="entity.content != null">
                 AND content = #{entity.content}
             </if>
-            <if test="entity.title != null">
-                AND title = #{entity.title}
+            <if test="entity.imgUrl != null">
+                AND img_url = #{entity.imgUrl}
+            </if>
+            <if test="entity.likeNum != null">
+                AND like_num = #{entity.likeNum}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -216,10 +248,12 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_diary(
+        insert into mt_monent(
                 user_id,
+                user_name,
                 content,
-                title,
+                img_url,
+                like_num,
                 create_by,
                 create_date,
                 update_by,
@@ -228,8 +262,10 @@
                 status
         ) values (
                 #{userId},
+                #{userName},
                 #{content},
-                #{title},
+                #{imgUrl},
+                #{likeNum},
                 #{createBy},
                 #{createDate},
                 #{updateBy},
@@ -239,17 +275,23 @@
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Diary" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_diary
+    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Monent" useGeneratedKeys="true" keyProperty="id">
+        insert into mt_monent
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="userId != null">
                 user_id,
             </if>
+            <if test="userName != null">
+                user_name,
+            </if>
             <if test="content != null">
                 content,
             </if>
-            <if test="title != null">
-                title,
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="likeNum != null">
+                like_num,
             </if>
             <if test="createBy != null">
                 create_by,
@@ -274,11 +316,17 @@
             <if test="userId != null">
                 #{userId},
             </if>
+            <if test="userName != null">
+                #{userName},
+            </if>
             <if test="content != null">
                 #{content},
             </if>
-            <if test="title != null">
-                #{title},
+            <if test="imgUrl != null">
+                #{imgUrl},
+            </if>
+            <if test="likeNum != null">
+                #{likeNum},
             </if>
             <if test="createBy != null">
                 #{createBy},
@@ -302,10 +350,12 @@
     </insert>
 
     <update id="update">
-        update mt_diary set
+        update mt_monent set
                 user_id = #{userId},
+                user_name = #{userName},
                 content = #{content},
-                title = #{title},
+                img_url = #{imgUrl},
+                like_num = #{likeNum},
                 create_by = #{createBy},
                 create_date = #{createDate},
                 update_by = #{updateBy},
@@ -315,17 +365,23 @@
         where id = #{id}
     </update>
 
-    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Diary">
-        update mt_diary
+    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Monent">
+        update mt_monent
         <set>
             <if test="userId != null">
             user_id = #{userId},
             </if>
+            <if test="userName != null">
+            user_name = #{userName},
+            </if>
             <if test="content != null">
             content = #{content},
             </if>
-            <if test="title != null">
-            title = #{title},
+            <if test="imgUrl != null">
+            img_url = #{imgUrl},
+            </if>
+            <if test="likeNum != null">
+            like_num = #{likeNum},
             </if>
             <if test="createBy != null">
             create_by = #{createBy},
@@ -350,7 +406,7 @@
     </update>
 
     <delete id="delete">
-        delete from mt_diary where id=#{id}
+        delete from mt_monent where id=#{id}
     </delete>
 
 </mapper>

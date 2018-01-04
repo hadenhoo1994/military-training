@@ -1,30 +1,34 @@
 package cn.iutils.mt.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import cn.iutils.sys.entity.DataEntity;
-
 import java.util.Date;
 
 /**
-* 日记表
+* 动态表
 * @author iutils.cn
 * @version 1.0
 */
-public class Diary extends DataEntity<Diary> {
+public class Monent extends DataEntity<Monent> {
 
     private static final long serialVersionUID = 1L;
 
     // 
     private Integer userId;
-    // 日记内容
+    // 
+    private String userName;
+    // 
     private String content;
-    // 日记标题
-    private String title;
+    // 
+    private String imgUrl;
+    // 
+    private Integer likeNum;
 
-    public Diary() {
+    public Monent() {
         super();
     }
 
-    public Diary(String id){
+    public Monent(String id){
         super(id);
     }
 
@@ -36,6 +40,14 @@ public class Diary extends DataEntity<Diary> {
         this.userId = userId;
     }
 
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
     public String getContent(){
         return content;
     }
@@ -44,20 +56,30 @@ public class Diary extends DataEntity<Diary> {
         this.content = content;
     }
 
-    public String getTitle(){
-        return title;
+    public String getImgUrl(){
+        return imgUrl;
     }
 
-    public void setTitle(String title){
-        this.title = title;
+    public void setImgUrl(String imgUrl){
+        this.imgUrl = imgUrl;
     }
 
-    private Diary(Builder builder) {
+    public Integer getLikeNum(){
+        return likeNum;
+    }
+
+    public void setLikeNum(Integer likeNum){
+        this.likeNum = likeNum;
+    }
+
+    private Monent(Builder builder) {
         super();
         setId(builder.id);
         setUserId(builder.userId);
+        setUserName(builder.userName);
         setContent(builder.content);
-        setTitle(builder.title);
+        setImgUrl(builder.imgUrl);
+        setLikeNum(builder.likeNum);
         setCreateBy(builder.createBy);
         setCreateDate(builder.createDate);
         setUpdateBy(builder.updateBy);
@@ -75,8 +97,10 @@ public class Diary extends DataEntity<Diary> {
     public static final class Builder {
         private String id;
         private Integer userId;
+        private String userName;
         private String content;
-        private String title;
+        private String imgUrl;
+        private Integer likeNum;
         private String createBy;
         private Date createDate;
         private String updateBy;
@@ -88,8 +112,8 @@ public class Diary extends DataEntity<Diary> {
             super();
         }
 
-        public Diary build() {
-            return new Diary(this);
+        public Monent build() {
+            return new Monent(this);
         }
 
 
@@ -105,14 +129,26 @@ public class Diary extends DataEntity<Diary> {
         }
 
 
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+
         public Builder content(String content) {
             this.content = content;
             return this;
         }
 
 
-        public Builder title(String title) {
-            this.title = title;
+        public Builder imgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+            return this;
+        }
+
+
+        public Builder likeNum(Integer likeNum) {
+            this.likeNum = likeNum;
             return this;
         }
 
