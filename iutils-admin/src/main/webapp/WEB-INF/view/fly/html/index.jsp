@@ -103,8 +103,9 @@
                 <cite>${monent.userInfo.name}</cite>
               </a>
               <span>发表于：<fmt:formatDate value="${monent.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></span>
-              <span class="fly-list-nums">
-                  <i class="layui-icon" title="点赞" id="likeBtn" style="font-size: 20px;color: #6c6c6c;" data-id="${monent.id}" onclick="addNum()">&#xe6c6;</i> <em id="likeNum" style="font-size: 20px;">${monent.likeNum}</em>
+              <span class="fly-list-nums" id="likes" onclick="addNum(this)">
+                <i class="layui-icon" title="点赞"  style="font-size: 20px;color: #6c6c6c;">&#xe6c6;</i>
+                  <span style="font-size: 20px;" data-id="${monent.id}" >${monent.likeNum}</span>
               </span>
             </div>
           </li>
@@ -132,11 +133,11 @@
 <script src="/static/res/layui/layui.js"></script>
 <script>
     function addNum(likeBtn){
-        var likeBtn = $("#likeBtn");
-        var id = likeBtn.attr("data-id");
-        var likeNum = parseInt($("#likeNum").text());
-        //点击后 赞数+1
-        $("#likeNum").text(likeNum+1)
+        var sp=likeBtn;
+        var likeEle = sp.childNodes[3];
+        var id = $(likeEle).attr("data-id");
+        var likeNum = parseInt($(likeEle).text());
+        alert("id:" + id + ",likeNum:" + likeNum);
     }
 
 </script>
