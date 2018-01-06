@@ -1,6 +1,7 @@
 package cn.iutils.mt.entity.vo;
 
 import cn.iutils.mt.entity.Diary;
+import cn.iutils.mt.entity.DiaryImg;
 
 import java.util.List;
 
@@ -14,13 +15,13 @@ public class DiaryVO extends Diary {
     private String img1;
     private String img2;
     private String img3;
-    private List<DiaryImgVO> imgs;
+    private List<DiaryImg> imgs;
 
-    public List<DiaryImgVO> getImgs() {
+    public List<DiaryImg> getImgs() {
         return imgs;
     }
 
-    public void setImgs(List<DiaryImgVO> imgs) {
+    public void setImgs(List<DiaryImg> imgs) {
         this.imgs = imgs;
     }
 
@@ -54,6 +55,8 @@ public class DiaryVO extends Diary {
 
     public DiaryVO(Diary entity) {
         super();
+        setTitle(entity.getTitle());
+        setContent(entity.getContent());
         setId(entity.getId());
         setCreateBy(entity.getCreateBy());
         setCreateDate(entity.getCreateDate());

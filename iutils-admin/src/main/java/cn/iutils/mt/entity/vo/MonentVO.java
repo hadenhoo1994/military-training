@@ -1,9 +1,7 @@
 package cn.iutils.mt.entity.vo;
 
 import cn.iutils.mt.entity.Monent;
-import org.springframework.format.annotation.DateTimeFormat;
-import cn.iutils.sys.entity.DataEntity;
-import java.util.Date;
+import cn.iutils.mt.entity.UserInfo;
 
 /**
 * 动态表
@@ -11,8 +9,18 @@ import java.util.Date;
 * @version 1.0
 */
 public class MonentVO extends Monent {
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     private static final long serialVersionUID = 1L;
+    public MonentVO(){}
 
     public MonentVO(Monent entity){
         super();
@@ -29,5 +37,7 @@ public class MonentVO extends Monent {
         setRemarks(entity.getRemarks());
         setStatus(entity.getStatus());
     }
+
+
 
 }

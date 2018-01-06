@@ -1,7 +1,9 @@
 package cn.iutils.mt.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import cn.iutils.common.utils.json.ImgUrlUsing;
 import cn.iutils.sys.entity.DataEntity;
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -52,6 +54,7 @@ public class UserInfo extends DataEntity<UserInfo> {
     // 微信号
     private String wx;
     // 头像
+    @JSONField(serializeUsing = ImgUrlUsing.class)
     private String imgUrl;
     // 住址
     private String address;

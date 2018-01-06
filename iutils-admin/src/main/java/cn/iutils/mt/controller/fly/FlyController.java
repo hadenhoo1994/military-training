@@ -1,8 +1,15 @@
 package cn.iutils.mt.controller.fly;
 
 import cn.iutils.common.BaseController;
+import cn.iutils.common.Page;
 import cn.iutils.common.ResultJson;
+import cn.iutils.mt.entity.Diary;
+import cn.iutils.mt.entity.Monent;
 import cn.iutils.mt.entity.UserInfo;
+import cn.iutils.mt.entity.vo.DiaryVO;
+import cn.iutils.mt.entity.vo.MonentVO;
+import cn.iutils.mt.service.DiaryService;
+import cn.iutils.mt.service.MonentService;
 import cn.iutils.mt.service.UserInfoService;
 import com.mzlion.core.json.fastjson.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 日志内容 军训图片上传等
@@ -21,15 +29,31 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/fly")
 public class FlyController extends BaseController {
     @Autowired
-    UserInfoService userInfoService;
+    private UserInfoService userInfoService;
+    @Autowired
+    private MonentService monentService;
+    @Autowired
+    private DiaryService diaryService;
 
+    /**
+     * 首页
+     *
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping()
-    public String list(Model model, HttpServletRequest request) {
+    public String list(Model model, HttpServletRequest request, Page<MonentVO> monentPage) {
+        //当前登录用户
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
-            return "fly/html/index";
+            model.addAttribute("user", null);
         }
         model.addAttribute("user", userInfo);
+        //首页显示图志
+        List<MonentVO> monentList = monentService.getFirstPage(monentPage);
+        monentPage.setList(monentList);
+        model.addAttribute("monentPage", monentPage);
         return "fly/html/index";
     }
 
@@ -56,7 +80,7 @@ public class FlyController extends BaseController {
     public String addDiary(Model model, HttpServletRequest request) {
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
-            return "fly/html/index";
+            return "fly/html/login";
         }
         model.addAttribute("user", userInfo);
         return "fly/html/jie/addDiary";
@@ -69,24 +93,42 @@ public class FlyController extends BaseController {
     public String addMonent(Model model, HttpServletRequest request) {
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
-            return "fly/html/index";
+            return "fly/html/login";
         }
         model.addAttribute("user", userInfo);
         return "fly/html/jie/addMonent";
     }
 
     /**
-     * 我的日记页面
+     * 我的日记
      */
     @RequestMapping("/my/diary")
-    public String diary(Model model, HttpServletRequest request) {
+    public String myMiary(Model model, HttpServletRequest request) {
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
-            return "fly/html/index";
+            return "fly/html/login";
         }
         //我的日记内容
         model.addAttribute("user", userInfo);
-        return "fly/html/jie/myDiary";
+        List<DiaryVO> diaryVOList = diaryService.getMyDiary(userInfo.getId());
+        model.addAttribute("diaryList", diaryVOList);
+        return "fly/html/user/diary";
+    }
+
+    /**
+     * 我的图志
+     */
+    @RequestMapping("/my/monent")
+    public String myMonent(Model model, HttpServletRequest request) {
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        if (userInfo == null) {
+            return "fly/html/login";
+        }
+        //我的心情列表
+        model.addAttribute("user", userInfo);
+        List<Monent> monentList = monentService.findList(Monent.newBuilder().userId(Integer.valueOf(userInfo.getId())).build());
+        model.addAttribute("monentList", monentList);
+        return "fly/html/user/monent";
     }
 
 

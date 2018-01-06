@@ -22,3 +22,6 @@
 hs_err_pid*
 /iutils-admin/target
 /.idea
+/iutils-admin/.idea
+/iutils-admin/target
+/iutils-admin/*.iml

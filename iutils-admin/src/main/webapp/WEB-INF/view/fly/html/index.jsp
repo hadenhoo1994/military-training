@@ -18,9 +18,8 @@
     <a class="fly-logo" href="/fly">
       <img src="/static/res/images/logo.png" alt="layui">
     </a>
-    
-    <ul class="layui-nav fly-nav-user">
 
+    <ul class="layui-nav fly-nav-user">
       <c:choose>
         <c:when test="${user==null}">
           <!-- 未登入的状态 -->
@@ -62,12 +61,12 @@
   <div class="layui-container">
     <ul class="layui-clear">
       <li class="layui-this"><a href="">图志</a></li>
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li> 
-      
+      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li>
+
       <!-- 用户登入后显示 -->
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="../user/index.html">我的日记</a></li>
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="../user/index.html#collection">我的图志</a></li>
-    </ul> 
+      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="/fly/my/diary">我的日记</a></li>
+      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="/fly/my/monent">我的图志</a></li>
+    </ul>
 
     <div class="fly-column-right layui-hide-xs">
       <a href="/fly/my/addMonent" class="layui-btn">发布图志</a>
@@ -84,36 +83,36 @@
     <div class="layui-col-md15">
       <div class="fly-panel" style="margin-bottom: 0;">
 
-        <ul class="fly-list">          
+        <ul class="fly-list">
+          <c:forEach items="${monentPage.list}" var="monent">
           <li>
-            <a href="user/home.html" class="fly-avatar">
-              <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
+            <a href="#" class="fly-avatar" disabled="">
+              <c:choose>
+                <c:when test="${monent.userInfo.imgUrl==null||monent.userInfo.imgUrl==''}"><img src="/static/assets/img/user.png"></c:when>
+                <c:otherwise>
+                  <img src="${monent.userInfo.imgUrl}">
+                </c:otherwise>
+              </c:choose>
             </a>
             <h2>
-              <a class="layui-badge">分享</a>
-              <a href="detail.html">基于 layui 的极简社区页面模版</a>
+              <a class="layui-badge">心情</a>
+              <a href="#" disabled="">${monent.content}</a>
             </h2>
             <div class="fly-list-info">
               <a href="user/home.html" link>
-                <cite>贤心</cite>
+                <cite>${monent.userInfo.name}</cite>
               </a>
-              <span>刚刚</span>
-              
-              <span class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 60</span>
-              <!--<span class="layui-badge fly-badge-accept layui-hide-xs">已结</span>-->
-              <span class="fly-list-nums"> 
-                <i class="iconfont icon-pinglun1" title="回答"></i> 66
+              <span>发表于：<fmt:formatDate value="${monent.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></span>
+              <span class="fly-list-nums">
+                  <i class="layui-icon" title="点赞" id="likeBtn" style="font-size: 20px;color: #6c6c6c;" data-id="${monent.id}" onclick="addNum()">&#xe6c6;</i> <em id="likeNum" style="font-size: 20px;">${monent.likeNum}</em>
               </span>
             </div>
-            <div class="fly-list-badge">
-              <span class="layui-badge layui-bg-black">置顶</span>
-              <!--<span class="layui-badge layui-bg-red">精帖</span>-->
-            </div>
           </li>
+          </c:forEach>
         </ul>
-        
+
         <!-- <div class="fly-none">没有相关数据</div> -->
-    
+
         <div style="text-align: center">
           <div class="laypage-main"><span class="laypage-curr">1</span><a href="/jie/page/2/">2</a><a href="/jie/page/3/">3</a><a href="/jie/page/4/">4</a><a href="/jie/page/5/">5</a><span>…</span><a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a><a href="/jie/page/2/" class="laypage-next">下一页</a></div>
         </div>
@@ -129,8 +128,18 @@
   </div>
 </div>
 
-
+<script src="/static/3rd-lib/jquery/2.2.3/jquery.min.js"></script>
 <script src="/static/res/layui/layui.js"></script>
+<script>
+    function addNum(likeBtn){
+        var likeBtn = $("#likeBtn");
+        var id = likeBtn.attr("data-id");
+        var likeNum = parseInt($("#likeNum").text());
+        //点击后 赞数+1
+        $("#likeNum").text(likeNum+1)
+    }
+
+</script>
 <script>
 layui.cache.page = 'jie';
 layui.cache.user = {
