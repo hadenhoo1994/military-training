@@ -58,6 +58,11 @@ public class BattalionController extends BaseController {
     @RequiresPermissions("mt:battalion:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Battalion battalion, RedirectAttributes redirectAttributes) {
+        Battalion check = battalionService.findOne(Battalion.newBuilder().name(battalion.getName()).build());
+        if (check != null){
+            addMessage(redirectAttributes,"该营已存在");
+            return "redirect:"+ adminPath +"/mt/battalion/update?id="+battalion.getId();
+        }
         battalionService.save(battalion);
         addMessage(redirectAttributes,"新增成功");
         return "redirect:"+ adminPath +"/mt/battalion/update?id="+battalion.getId();
@@ -73,6 +78,11 @@ public class BattalionController extends BaseController {
     @RequiresPermissions("mt:battalion:update")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Battalion battalion, RedirectAttributes redirectAttributes) {
+        Battalion check = battalionService.findOne(Battalion.newBuilder().name(battalion.getName()).build());
+        if (check != null){
+            addMessage(redirectAttributes,"该营已存在");
+            return "redirect:"+ adminPath +"/mt/battalion/update?id="+battalion.getId();
+        }
         battalionService.save(battalion);
         addMessage(redirectAttributes,"修改成功");
         return "redirect:"+ adminPath +"/mt/battalion/update?id="+battalion.getId();

@@ -1,9 +1,7 @@
 package cn.iutils.mt.entity;
 
-import cn.iutils.common.utils.json.ImgUrlUsing;
+import org.springframework.format.annotation.DateTimeFormat;
 import cn.iutils.sys.entity.DataEntity;
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.util.Date;
 
 /**
@@ -31,6 +29,10 @@ public class UserInfo extends DataEntity<UserInfo> {
     private Integer professionId;
     // 专业名称
     private String professionName;
+    // 届id
+    private Integer gradeId;
+    // 届名称
+    private String gradeName;
     // 系别id
     private Integer departmentId;
     // 系别名称
@@ -54,7 +56,6 @@ public class UserInfo extends DataEntity<UserInfo> {
     // 微信号
     private String wx;
     // 头像
-    @JSONField(serializeUsing = ImgUrlUsing.class)
     private String imgUrl;
     // 住址
     private String address;
@@ -131,6 +132,22 @@ public class UserInfo extends DataEntity<UserInfo> {
 
     public void setProfessionName(String professionName){
         this.professionName = professionName;
+    }
+
+    public Integer getGradeId(){
+        return gradeId;
+    }
+
+    public void setGradeId(Integer gradeId){
+        this.gradeId = gradeId;
+    }
+
+    public String getGradeName(){
+        return gradeName;
+    }
+
+    public void setGradeName(String gradeName){
+        this.gradeName = gradeName;
     }
 
     public Integer getDepartmentId(){
@@ -256,6 +273,8 @@ public class UserInfo extends DataEntity<UserInfo> {
         setClassName(builder.className);
         setProfessionId(builder.professionId);
         setProfessionName(builder.professionName);
+        setGradeId(builder.gradeId);
+        setGradeName(builder.gradeName);
         setDepartmentId(builder.departmentId);
         setDepartmentName(builder.departmentName);
         setPlatoonId(builder.platoonId);
@@ -294,6 +313,8 @@ public class UserInfo extends DataEntity<UserInfo> {
         private String className;
         private Integer professionId;
         private String professionName;
+        private Integer gradeId;
+        private String gradeName;
         private Integer departmentId;
         private String departmentName;
         private Integer platoonId;
@@ -374,6 +395,18 @@ public class UserInfo extends DataEntity<UserInfo> {
 
         public Builder professionName(String professionName) {
             this.professionName = professionName;
+            return this;
+        }
+
+
+        public Builder gradeId(Integer gradeId) {
+            this.gradeId = gradeId;
+            return this;
+        }
+
+
+        public Builder gradeName(String gradeName) {
+            this.gradeName = gradeName;
             return this;
         }
 

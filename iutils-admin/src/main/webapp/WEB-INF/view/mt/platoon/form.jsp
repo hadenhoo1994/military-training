@@ -22,35 +22,40 @@
                         </div>
                         <div class="widget-body am-fr">
                             <form class="am-form tpl-form-border-form" data-am-validator modelAttribute="platoon" action="${ctx}/mt/platoon/<c:choose><c:when test="${empty platoon.id}">create</c:when><c:otherwise>update</c:otherwise></c:choose>" method="post">
-                            <input type="hidden" name="id" value="${platoon.id}"/>
-                                    <div class="am-form-group">
+                                <input type="hidden" name="id" value="${platoon.id}"/>
+                                <input type="hidden" id="bid" value="${platoon.battalionId}"/>
+                                <input type="hidden" id="cid" value="${platoon.companyId}"/>
+                                <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">排名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="name" placeholder="排名称" value="${platoon.name}" required/>
                                         </div>
                                     </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">连id：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="companyId" placeholder="连id" value="${platoon.companyId}" required/>
-                                        </div>
+
+                                    <div class="am-form-group" hidden>
+                                      <label class="am-u-sm-3 am-form-label">营名称：</label>
+                                         <div class="am-u-sm-9">
+                                            <input type="text" name="battalionName" id="battalionName" placeholder="营名称" value="${platoon.battalionName}" hidden="true" />
+                                         </div>
                                     </div>
                                     <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">所属营：</label>
+                                        <div class="am-u-sm-9">
+                                         <select id="battalionId" name="battalionId">
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group" hidden>
                                         <label class="am-u-sm-3 am-form-label">连名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="companyName" placeholder="连名称" value="${platoon.companyName}" required/>
+                                            <input type="text" name="companyName" id="companyName" placeholder="营名称" value="${platoon.companyName}" hidden="true" />
                                         </div>
                                     </div>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">营id：</label>
+                                        <label class="am-u-sm-3 am-form-label">所属连：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="battalionId" placeholder="营id" value="${platoon.battalionId}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">营名称：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="battalionName" placeholder="营名称" value="${platoon.battalionName}" required/>
+                                            <select id="companyId" name="companyId">
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
@@ -80,6 +85,85 @@
     </div>
 </div>
 <%@ include file="../../include/bottom.jsp"%>
+<script src="/static/3rd-lib/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="/static/assets/js/rea.js"></script>
+<script>
+    //查询营
+    $(document).ready(function () {
+        var battalionId = $("#bid").val();
+        var select = $("#battalionId");
+        var battalion = getBattalion();
+        for (var i=0;i<=battalion.length;i++){
+            if (battalion[i]==undefined){
+                break;
+            }
+            if (battalionId == battalion[i].id){
+                var str = ' <option value="'+battalion[i].id+'" selected>'+battalion[i].name+'</option>';
+                $(".battalionName").val(battalion[i].name);
+            }else{
+                var str = ' <option value="'+battalion[i].id+'" >'+battalion[i].name+'</option>';
+            }
+            select.append(str)
+        }
+        //如果select没有选中 选择第一个为默认的选择项
+        if($(select).find("option:selected").text() == undefined){
+            $("#battalionId option:first").attr("selected", true);
+            var name = $("#battalionId").find("option:selected").text();
+            $("#battalionName").val(name);
+        }else{
+            var name = $("#battalionId").find("option:selected").text();
+            $("#battalionName").val(name);
+        }
+        //将连查出来
+        selectCompany()
+    })
+    $("#battalionId").change(function () {
+        //当前选择的option
+        var name = $("#battalionId").find("option:selected").text();
+        $("#battalionName").val(name);
+        //顺手查询连
+        selectCompany()
+    })
+</script>
+
+<script>
+    //查询连
+   function selectCompany() {
+       var battalionId = $("#battalionId").find("option:selected").val();
+       var companyId = $("#cid").val();
+        var select = $("#companyId");
+        select.empty();
+        var company = getCompany(battalionId);
+        for (var i=0;i<=company.length;i++){
+            if (company[i]==undefined){
+                break;
+            }
+            if (companyId == company[i].id){
+                var str = ' <option value="'+company[i].id+'" selected>'+company[i].name+'</option>';
+                $(".battalionName").val(company[i].name);
+            }else{
+                var str = ' <option value="'+company[i].id+'" >'+company[i].name+'</option>';
+            }
+            select.append(str)
+        }
+       //如果select没有选中 选择第一个为默认的选择项
+       if($(select).find("option:selected").text() == undefined){
+           $("#companyId option:first").attr("selected", true);
+           var name = $("#companyId").find("option:selected").text();
+           $("#companyName").val(name);
+       }else{
+           var name = $("#companyId").find("option:selected").text();
+           $("#companyName").val(name);
+       }
+    }
+    $("#companyId").change(function () {
+        //当前选择的option
+        var name = $("#companyId").find("option:selected").text();
+        $("#companyName").val(name);
+    })
+</script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         var msg = '${msg}';

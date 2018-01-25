@@ -1,5 +1,6 @@
 package cn.iutils.mt.controller;
 
+import cn.iutils.mt.entity.Platoon;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,10 @@ public class CompanyController extends BaseController {
     @RequiresPermissions("mt:company:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Company company, RedirectAttributes redirectAttributes) {
+        if (companyService.findOne(Company.newBuilder().battalionName(company.getBattalionName()).name(company.getName()).build()) != null) {
+            addMessage(redirectAttributes,"该连已存在");
+            return "redirect:"+ adminPath +"/mt/company/update?id="+company.getId();
+        }
         companyService.save(company);
         addMessage(redirectAttributes,"新增成功");
         return "redirect:"+ adminPath +"/mt/company/update?id="+company.getId();
@@ -73,6 +78,10 @@ public class CompanyController extends BaseController {
     @RequiresPermissions("mt:company:update")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Company company, RedirectAttributes redirectAttributes) {
+        if (companyService.findOne(Company.newBuilder().battalionName(company.getBattalionName()).name(company.getName()).build()) != null) {
+            addMessage(redirectAttributes,"该连已存在");
+            return "redirect:"+ adminPath +"/mt/company/update?id="+company.getId();
+        }
         companyService.save(company);
         addMessage(redirectAttributes,"修改成功");
         return "redirect:"+ adminPath +"/mt/company/update?id="+company.getId();

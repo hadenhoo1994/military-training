@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,17 +44,38 @@ public class FlyController extends BaseController {
      * @return
      */
     @RequestMapping()
-    public String list(Model model, HttpServletRequest request, Page<MonentVO> monentPage) {
+    public String list(Model model, HttpServletRequest request, Page<Monent> monentPage) {
         //当前登录用户
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
         if (userInfo == null) {
             model.addAttribute("user", null);
         }
         model.addAttribute("user", userInfo);
-        //首页显示图志
-        List<MonentVO> monentList = monentService.getFirstPage(monentPage);
-        monentPage.setList(monentList);
-        model.addAttribute("monentPage", monentPage);
+        //首页显示心情
+        //1.查询出来monent
+        boolean flag = false;
+        if (monentPage.getPageNo() >0){
+            monentPage.setPageNo(monentPage.getPageNo()-1);
+            flag = true;
+        }
+        List<Monent> monentList = monentService.findPage(monentPage, new Monent());
+        //拼入用户信息
+        List<MonentVO> monentVOS = new ArrayList<>();
+        if (monentList.size() < 1) {
+            model.addAttribute("list", null);
+        }else{
+            for (Monent monent : monentList) {
+                MonentVO monentVO = new MonentVO(monent);
+                monentVO.setUserInfo(userInfoService.get(monent.getUserId().toString()));
+                monentVOS.add(monentVO);
+            }
+            model.addAttribute("list", monentVOS);
+        }
+        monentPage.setTotal(monentService.findCount(monentPage, new Monent()));
+        if (flag){
+            monentPage.setPageNo(monentPage.getPageNo()+1);
+        }
+        model.addAttribute("page", monentPage);
         return "fly/html/index";
     }
 
@@ -87,7 +109,7 @@ public class FlyController extends BaseController {
     }
 
     /**
-     * 上传日记页面
+     * 上传心情页面
      */
     @RequestMapping("/my/addMonent")
     public String addMonent(Model model, HttpServletRequest request) {
@@ -116,7 +138,7 @@ public class FlyController extends BaseController {
     }
 
     /**
-     * 我的图志
+     * 我的心情
      */
     @RequestMapping("/my/monent")
     public String myMonent(Model model, HttpServletRequest request) {

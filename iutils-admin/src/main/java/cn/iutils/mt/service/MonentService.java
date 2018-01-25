@@ -33,8 +33,10 @@ public class MonentService extends CrudService<MonentDao, Monent> {
      * @return
      */
     public List<MonentVO> getFirstPage(Page<MonentVO> monentPage) {
-        //查询图志
-        List<Monent> monentList = findPage(new Page<Monent>((monentPage.getPageNo()), monentPage.getPageSize()),new Monent());
+        //查询心情
+        Page page =  new Page<Monent>((monentPage.getPageNo()), monentPage.getPageSize());
+        page.setOrderBy("a.create_date desc");
+        List<Monent> monentList = findPage(page,new Monent());
         List<MonentVO> monentVOS = new ArrayList<>();
         if (monentList.size() < 1) {
             return null;

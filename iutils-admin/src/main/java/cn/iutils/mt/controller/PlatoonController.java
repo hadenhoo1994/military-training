@@ -18,10 +18,11 @@ import cn.iutils.mt.entity.Platoon;
 import cn.iutils.mt.service.PlatoonService;
 
 /**
-* 军排表 控制器
-* @author iutils.cn
-* @version 1.0
-*/
+ * 军排表 控制器
+ *
+ * @author iutils.cn
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("${adminPath}/mt/platoon")
 public class PlatoonController extends BaseController {
@@ -44,13 +45,13 @@ public class PlatoonController extends BaseController {
     @RequiresPermissions("mt:platoon:view")
     @RequestMapping()
     public String list(Model model, Page<Platoon> page) {
-        model.addAttribute("page", page.setList(platoonService.findPage(page,new Platoon())));
+        model.addAttribute("page", page.setList(platoonService.findPage(page, new Platoon())));
         return "mt/platoon/list";
     }
 
     @RequiresPermissions("mt:platoon:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Platoon platoon,Model model) {
+    public String create(Platoon platoon, Model model) {
         model.addAttribute("platoon", platoon);
         return "mt/platoon/form";
     }
@@ -59,9 +60,13 @@ public class PlatoonController extends BaseController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Platoon platoon, RedirectAttributes redirectAttributes) {
         platoon.setFullName(platoon.getBattalionName() + platoon.getCompanyName() + platoon.getName());
+        if (platoonService.findOne(Platoon.newBuilder().fullName(platoon.getFullName()).build()) != null) {
+            addMessage(redirectAttributes, "该排已存在");
+            return "redirect:" + adminPath + "/mt/platoon/update?id=" + platoon.getId();
+        }
         platoonService.save(platoon);
-        addMessage(redirectAttributes,"新增成功");
-        return "redirect:"+ adminPath +"/mt/platoon/update?id="+platoon.getId();
+        addMessage(redirectAttributes, "新增成功");
+        return "redirect:" + adminPath + "/mt/platoon/update?id=" + platoon.getId();
     }
 
     @RequiresPermissions("mt:platoon:update")
@@ -74,16 +79,22 @@ public class PlatoonController extends BaseController {
     @RequiresPermissions("mt:platoon:update")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Platoon platoon, RedirectAttributes redirectAttributes) {
+        platoon.setFullName(platoon.getBattalionName() + platoon.getCompanyName() + platoon.getName());
+        if (platoonService.findOne(Platoon.newBuilder().fullName(platoon.getFullName()).build()) != null) {
+            addMessage(redirectAttributes, "该排已存在");
+            return "redirect:" + adminPath + "/mt/platoon/update?id=" + platoon.getId();
+        }
+
         platoonService.save(platoon);
-        addMessage(redirectAttributes,"修改成功");
-        return "redirect:"+ adminPath +"/mt/platoon/update?id="+platoon.getId();
+        addMessage(redirectAttributes, "修改成功");
+        return "redirect:" + adminPath + "/mt/platoon/update?id=" + platoon.getId();
     }
 
     @RequiresPermissions("mt:platoon:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") String id,int pageNo,int pageSize, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable("id") String id, int pageNo, int pageSize, RedirectAttributes redirectAttributes) {
         platoonService.delete(id);
-        addMessage(redirectAttributes,"删除成功");
-        return "redirect:"+ adminPath +"/mt/platoon?pageNo="+pageNo+"&pageSize="+pageSize;
+        addMessage(redirectAttributes, "删除成功");
+        return "redirect:" + adminPath + "/mt/platoon?pageNo=" + pageNo + "&pageSize=" + pageSize;
     }
 }

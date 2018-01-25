@@ -10,6 +10,9 @@ import cn.iutils.mt.entity.UserInfo;
 public class UserInfoVO extends UserInfo {
 
     private static final long serialVersionUID = 1L;
+    public UserInfoVO() {
+        super();
+    }
 
     public UserInfoVO(UserInfo entity){
         super();
@@ -22,6 +25,8 @@ public class UserInfoVO extends UserInfo {
         setClassName(entity.getClassName());
         setProfessionId(entity.getProfessionId());
         setProfessionName(entity.getProfessionName());
+        setGradeId(entity.getGradeId());
+        setGradeName(entity.getGradeName());
         setDepartmentId(entity.getDepartmentId());
         setDepartmentName(entity.getDepartmentName());
         setPlatoonId(entity.getPlatoonId());

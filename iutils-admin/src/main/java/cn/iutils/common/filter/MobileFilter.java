@@ -1,7 +1,5 @@
 package cn.iutils.common.filter;
 
-import cn.iutils.common.utils.JStringUtils;
-import cn.iutils.common.utils.UserAgentUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

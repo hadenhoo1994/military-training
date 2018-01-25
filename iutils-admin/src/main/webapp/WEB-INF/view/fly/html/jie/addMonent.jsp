@@ -109,10 +109,10 @@
             , exts: "jpg|png|gif|bmp|jpeg"
             , done: function (res) {
                 //上传完毕回调
-                var url = res.results.fileName;
+                var url = res.results.url;
                 var imgDiv = $("#imgDiv");
                 $("#imgLog").hide();
-                imgDiv.attr("src", "/static/upload/" + url);
+                imgDiv.attr("src", url);
                 imgDiv.show();
             }
             , error: function () {

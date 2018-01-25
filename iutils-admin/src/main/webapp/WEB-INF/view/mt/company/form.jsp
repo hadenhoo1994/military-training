@@ -22,23 +22,26 @@
                         </div>
                         <div class="widget-body am-fr">
                             <form class="am-form tpl-form-border-form" data-am-validator modelAttribute="company" action="${ctx}/mt/company/<c:choose><c:when test="${empty company.id}">create</c:when><c:otherwise>update</c:otherwise></c:choose>" method="post">
-                            <input type="hidden" name="id" value="${company.id}"/>
-                                    <div class="am-form-group">
+                                <input type="hidden" name="id" value="${company.id}"/>
+                                <input type="hidden" id="bid" value="${company.battalionId}"/>
+                                <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">连名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="text" name="name" placeholder="连名称" value="${company.name}" required/>
                                         </div>
                                     </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">营id：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="battalionId" placeholder="营id" value="${company.battalionId}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
+                                    <div class="am-form-group" hidden>
                                         <label class="am-u-sm-3 am-form-label">营名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="battalionName" placeholder="营名称" value="${company.battalionName}" required/>
+                                            <input type="text" name="battalionName" id="battalionName" placeholder="营名称" value="${company.battalionName}" hidden="true" />
+                                        </div>
+                                    </div>
+                                <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">所属营：</label>
+                                        <div class="am-u-sm-9">
+                                            <select id="battalionId" name="battalionId">
+                                                <option >请选择连所属营</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
@@ -62,6 +65,32 @@
     </div>
 </div>
 <%@ include file="../../include/bottom.jsp"%>
+<script src="/static/3rd-lib/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="/static/assets/js/rea.js"></script>
+<script>
+    $(document).ready(function () {
+        var battalionId = $("#bid").val();
+        var select = $("#battalionId");
+        var battalion = getBattalion();
+        for (var i=0;i<=battalion.length;i++){
+            if (battalion[i]==undefined){
+                break;
+            }
+           if (battalionId == battalion[i].id){
+               var str = ' <option value="'+battalion[i].id+'" selected>'+battalion[i].name+'</option>';
+                $(".battalionName").val(battalion[i].name);
+           }else{
+               var str = ' <option value="'+battalion[i].id+'" >'+battalion[i].name+'</option>';
+           }
+               select.append(str)
+       }
+    })
+    $("#battalionId").change(function () {
+        //当前选择的option
+        var name = $("#battalionId").find("option:selected").text();
+         $("#battalionName").val(name);
+    })
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         var msg = '${msg}';

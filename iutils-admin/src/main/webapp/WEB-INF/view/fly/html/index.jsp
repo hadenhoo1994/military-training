@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="/WEB-INF/view/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/view/include/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,16 +60,16 @@
 <div class="fly-panel fly-column">
   <div class="layui-container">
     <ul class="layui-clear">
-      <li class="layui-this"><a href="">图志</a></li>
+      <li class="layui-this"><a href="">心情</a></li>
       <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li>
 
       <!-- 用户登入后显示 -->
       <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="/fly/my/diary">我的日记</a></li>
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="/fly/my/monent">我的图志</a></li>
+      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="/fly/my/monent">我的心情</a></li>
     </ul>
 
     <div class="fly-column-right layui-hide-xs">
-      <a href="/fly/my/addMonent" class="layui-btn">发布图志</a>
+      <a href="/fly/my/addMonent" class="layui-btn">发布心情</a>
       <a href="/fly/my/addDiary" class="layui-btn">提交日记</a>
     </div>
     <div class="layui-hide-sm layui-show-xs-block" style="margin-top: -10px; padding-bottom: 10px; text-align: center;">
@@ -80,11 +80,11 @@
 
 <div class="layui-container">
   <div class="layui-row layui-col-space15">
-    <div class="layui-col-md15">
+    <div class="layui-col-md12">
       <div class="fly-panel" style="margin-bottom: 0;">
 
         <ul class="fly-list">
-          <c:forEach items="${monentPage.list}" var="monent">
+          <c:forEach items="${list}" var="monent">
           <li>
             <a href="#" class="fly-avatar" disabled="">
               <c:choose>
@@ -103,28 +103,22 @@
                 <cite>${monent.userInfo.name}</cite>
               </a>
               <span>发表于：<fmt:formatDate value="${monent.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></span>
-              <span class="fly-list-nums" id="likes" onclick="addNum(this)">
+              <span class="fly-list-nums" id="likes" onclick="addNum(this)" data-type="0">
                 <i class="layui-icon" title="点赞"  style="font-size: 20px;color: #6c6c6c;">&#xe6c6;</i>
                   <span style="font-size: 20px;" data-id="${monent.id}" >${monent.likeNum}</span>
               </span>
             </div>
           </li>
+            <img src="${monent.imgUrl}" style="padding-left: 15px">
+            <hr>
           </c:forEach>
         </ul>
+        <div class="layui-col-space15">
+          <div class="layui-col-md5"></div>
 
-        <!-- <div class="fly-none">没有相关数据</div> -->
-
-        <div style="text-align: center">
-          <div class="laypage-main"><span class="laypage-curr">1</span><a href="/jie/page/2/">2</a><a href="/jie/page/3/">3</a><a href="/jie/page/4/">4</a><a href="/jie/page/5/">5</a><span>…</span><a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a><a href="/jie/page/2/" class="laypage-next">下一页</a></div>
+            <div id="pages"></div>
         </div>
-
       </div>
-    </div>
-
-
-
-
-
     </div>
   </div>
 </div>
@@ -132,12 +126,66 @@
 <script src="/static/3rd-lib/jquery/2.2.3/jquery.min.js"></script>
 <script src="/static/res/layui/layui.js"></script>
 <script>
+    var pageNo = ${page.pageNo};    //当前页面
+    var pageSize = ${page.pageSize};  //页面显示 条数
+    var total = ${page.total};      //总数据条数
+    layui.use('laypage', function(){
+        var laypage = layui.laypage;
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pages' //注意，这里的 test1 是 ID，不用加 # 号
+            ,count:total
+            ,limit:pageSize
+            ,curr:pageNo
+            ,jump: function(obj, first){
+                //obj包含了当前分页的所有参数，比如
+                //首次不执行
+                if(!first){
+                    var pageNo = obj.curr;
+                    //跳转链接
+                    window.location.href="/fly?pageSize="+pageSize+"&pageNo="+pageNo;
+                }
+            }
+        });
+    });
+</script>
+<script>
     function addNum(likeBtn){
         var sp=likeBtn;
-        var likeEle = sp.childNodes[3];
+        var flag = $(sp).attr("data-type");
+        if(flag>0){
+            return;
+        }
+        var likeEle = sp.childNodes[3];//span 标签
         var id = $(likeEle).attr("data-id");
         var likeNum = parseInt($(likeEle).text());
-        alert("id:" + id + ",likeNum:" + likeNum);
+        //点赞后修改点赞按钮颜色 并+1
+        //调用接口 添加赞数
+        $.ajax({
+                type: "POST",
+                url: "/rest/monentLike",
+                data: {id: id},
+                dataType: "json",
+                cache: false,
+                async: false,
+                success: function (result) {
+                    if (result.code == 200){
+                        //点赞成功
+                        //修改点赞按钮颜色
+                        var likeLog = sp.childNodes[1];//i标签
+                        $(likeLog).css("color","#b60008");
+                        //点赞字数+1
+                        $(likeEle).text(likeNum+1);
+                        //禁用此按钮
+                        $(sp).attr("data-type",1);
+                    }else{
+                        layer.msg(result.msg)
+                    }
+                }
+                , error: function (data) {
+                alert(JSON.stringify(data));
+                }
+            });
     }
 
 </script>
@@ -156,6 +204,13 @@ layui.config({
 }).extend({
   fly: 'index'
 }).use('fly');
+</script>
+
+<script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_30088308'%3E%3C/span%3E%3Cscript src='"
+        + cnzz_protocol
+        + "w.cnzz.com/c.php%3Fid%3D30088308' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
 </body>

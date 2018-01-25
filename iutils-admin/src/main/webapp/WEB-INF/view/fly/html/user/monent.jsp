@@ -70,7 +70,7 @@
         <li class="layui-nav-item layui-this">
             <a href="/fly/my/monent">
                 <i class="layui-icon">&#xe634;</i>
-                我的图志
+                我的心情
             </a>
         </li>
     </ul>
@@ -94,7 +94,7 @@
         -->
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <ul class="layui-tab-title" id="LAY_mine">
-                <li data-type="mine-jie"  class="layui-this">我的图志（<span>${monentList.size()}</span>）</li>
+                <li data-type="mine-jie"  class="layui-this">我的心情（<span>${monentList.size()}</span>）</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-timeline layui-show">

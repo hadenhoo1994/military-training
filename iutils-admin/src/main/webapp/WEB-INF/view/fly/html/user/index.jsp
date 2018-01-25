@@ -69,7 +69,7 @@
     <li class="layui-nav-item">
       <a href="set.html">
         <i class="layui-icon">&#xe634;</i>
-        我的图志
+        我的心情
       </a>
     </li>
   </ul>

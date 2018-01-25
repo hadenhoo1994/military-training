@@ -59,18 +59,13 @@
                                             <th>序号</th>
                                             <th>性别</th>
                                             <th>姓名</th>
-                                            <th>班级名称</th>
-                                            <th>专业名称</th>
-                                            <th>系别名称</th>
-                                            <th>排名称</th>
-                                            <th>连名称</th>
                                             <th>营名称</th>
+                                            <th>连名称</th>
+                                            <th>排名称</th>
                                             <th>手机号码</th>
                                             <th>qq号码</th>
                                             <th>微信号</th>
                                             <th>用户身份</th>
-                                            <th>创建时间</th>
-                                            <th>修改时间</th>
                                             <th>备注</th>
                                         <th>操作</th>
                                     </tr>
@@ -79,24 +74,25 @@
                                     <c:forEach items="${page.list}" var="userInfo" varStatus="status">
                                         <tr>
                                                 <td>${status.index+1}</td>
-                                            <c:if test="${userInfo.gender==0}">  <td>男</td> </c:if>
-                                            <c:if test="${userInfo.gender==1}">  <td>女</td> </c:if>
+                                            <c:choose>
+                                                <c:when test="${userInfo.gender==0}"><td>男</td></c:when>
+                                                <c:when test="${userInfo.gender==1}"><td>女</td></c:when>
+                                                <c:otherwise><td>未知</td></c:otherwise>
+                                            </c:choose>
                                             <td>${userInfo.name}</td>
-                                            <td>${userInfo.className}</td>
-                                                <td>${userInfo.professionName}</td>
-                                                <td>${userInfo.departmentName}</td>
-                                                <td>${userInfo.platoonName}</td>
-                                                <td>${userInfo.companyName}</td>
-                                                <td>${userInfo.battalionName}</td>
-                                                <td>${userInfo.mobileNumber}</td>
-                                                <td>${userInfo.qq}</td>
-                                                <td>${userInfo.wx}</td>
-                                            <c:if test="${userInfo.identity==0}">  <td>学生</td> </c:if>
-                                            <c:if test="${userInfo.identity==1}">  <td>老师</td> </c:if>
-                                            <c:if test="${userInfo.identity==2}">  <td>教官</td> </c:if>
-                                            <td><fmt:formatDate value="${userInfo.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                            <td><fmt:formatDate value="${userInfo.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                                <td>${userInfo.remarks}</td>
+                                            <td>${userInfo.battalionName}</td>
+                                            <td>${userInfo.companyName}</td>
+                                            <td>${userInfo.platoonName}</td>
+                                            <td>${userInfo.mobileNumber}</td>
+                                            <td>${userInfo.qq}</td>
+                                            <td>${userInfo.wx}</td>
+                                            <c:choose>
+                                                <c:when test="${userInfo.identity==0}"><td>学生</td></c:when>
+                                                <c:when test="${userInfo.identity==1}"><td>老师</td></c:when>
+                                                <c:when test="${userInfo.identity==2}"><td>教官</td></c:when>
+                                                <c:otherwise><td>未知</td></c:otherwise>
+                                            </c:choose>
+                                            <td>${userInfo.remarks}</td>
                                             <td>
                                                 <a href="javascript:;" onclick="openModel('修改用户表','${ctx}/mt/userInfo/update?id=${userInfo.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/userInfo/${userInfo.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>
