@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.iutils.mt.dao.ProjectDao">
+<mapper namespace="cn.iutils.mt.dao.CourseDao">
 
-    <sql id="ProjectColumns">
+    <sql id="CourseColumns">
         a.id AS "id",
+        a.platoon_id AS "platoonId",
+        a.platoon_name AS "platoonName",
+        a.project_id AS "projectId",
         a.project_name AS "projectName",
-        a.number AS "number",
+        a.week AS "week",
+        a.classes AS "classes",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
         a.update_by AS "updateBy",
@@ -14,29 +18,41 @@
         a.status AS "status"
     </sql>
 
-    <sql id="ProjectJoins">
+    <sql id="CourseJoins">
 
     </sql>
 
-    <select id="get" resultType="cn.iutils.mt.entity.Project">
+    <select id="get" resultType="cn.iutils.mt.entity.Course">
         SELECT
-        <include refid="ProjectColumns"/>
-        FROM mt_project a
+        <include refid="CourseColumns"/>
+        FROM mt_course a
         WHERE a.id = #{id}
     </select>
 
     <select id="count" resultType="int">
-        SELECT count(0) FROM mt_project a
+        SELECT count(0) FROM mt_course a
         <where>
         <if test="page.entity != null">
             <if test="page.entity.id != null">
                 AND id = #{page.entity.id}
             </if>
+            <if test="page.entity.platoonId != null">
+                AND platoon_id = #{page.entity.platoonId}
+            </if>
+            <if test="page.entity.platoonName != null">
+                AND platoon_name = #{page.entity.platoonName}
+            </if>
+            <if test="page.entity.projectId != null">
+                AND project_id = #{page.entity.projectId}
+            </if>
             <if test="page.entity.projectName != null">
                 AND project_name = #{page.entity.projectName}
             </if>
-            <if test="page.entity.number != null">
-                AND number = #{page.entity.number}
+            <if test="page.entity.week != null">
+                AND week = #{page.entity.week}
+            </if>
+            <if test="page.entity.classes != null">
+                AND classes = #{page.entity.classes}
             </if>
             <if test="page.entity.createBy != null">
                 AND create_by = #{page.entity.createBy}
@@ -61,16 +77,28 @@
     </select>
 
     <select id="findCount" resultType="int">
-        SELECT count(0) FROM mt_project a
+        SELECT count(0) FROM mt_course a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.platoonId != null">
+                AND platoon_id = #{entity.platoonId}
+            </if>
+            <if test="entity.platoonName != null">
+                AND platoon_name = #{entity.platoonName}
+            </if>
+            <if test="entity.projectId != null">
+                AND project_id = #{entity.projectId}
+            </if>
             <if test="entity.projectName != null">
                 AND project_name = #{entity.projectName}
             </if>
-            <if test="entity.number != null">
-                AND number = #{entity.number}
+            <if test="entity.week != null">
+                AND week = #{entity.week}
+            </if>
+            <if test="entity.classes != null">
+                AND classes = #{entity.classes}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -93,19 +121,31 @@
         </where>
     </select>
 
-    <select id="findOne" resultType="cn.iutils.mt.entity.Project">
+    <select id="findOne" resultType="cn.iutils.mt.entity.Course">
         SELECT
-        <include refid="ProjectColumns"/>
-        FROM mt_project a
+        <include refid="CourseColumns"/>
+        FROM mt_course a
         <where>
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="platoonId != null">
+                AND platoon_id = #{platoonId}
+            </if>
+            <if test="platoonName != null">
+                AND platoon_name = #{platoonName}
+            </if>
+            <if test="projectId != null">
+                AND project_id = #{projectId}
+            </if>
             <if test="projectName != null">
                 AND project_name = #{projectName}
             </if>
-            <if test="number != null">
-                AND number = #{number}
+            <if test="week != null">
+                AND week = #{week}
+            </if>
+            <if test="classes != null">
+                AND classes = #{classes}
             </if>
             <if test="createBy != null">
                 AND create_by = #{createBy}
@@ -128,18 +168,30 @@
         </where>
     </select>
 
-    <select id="findList" resultType="cn.iutils.mt.entity.Project">
-        SELECT <include refid="ProjectColumns"/>
-        FROM mt_project a
+    <select id="findList" resultType="cn.iutils.mt.entity.Course">
+        SELECT <include refid="CourseColumns"/>
+        FROM mt_course a
         <where>
                 <if test="id != null">
                     AND id = #{id}
                 </if>
+                <if test="platoonId != null">
+                    AND platoon_id = #{platoonId}
+                </if>
+                <if test="platoonName != null">
+                    AND platoon_name = #{platoonName}
+                </if>
+                <if test="projectId != null">
+                    AND project_id = #{projectId}
+                </if>
                 <if test="projectName != null">
                     AND project_name = #{projectName}
                 </if>
-                <if test="number != null">
-                    AND number = #{number}
+                <if test="week != null">
+                    AND week = #{week}
+                </if>
+                <if test="classes != null">
+                    AND classes = #{classes}
                 </if>
                 <if test="createBy != null">
                     AND create_by = #{createBy}
@@ -162,18 +214,30 @@
         </where>
     </select>
 
-    <select id="findPage" resultType="cn.iutils.mt.entity.Project">
-        SELECT <include refid="ProjectColumns"/>
-        FROM mt_project a
+    <select id="findPage" resultType="cn.iutils.mt.entity.Course">
+        SELECT <include refid="CourseColumns"/>
+        FROM mt_course a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.platoonId != null">
+                AND platoon_id = #{entity.platoonId}
+            </if>
+            <if test="entity.platoonName != null">
+                AND platoon_name = #{entity.platoonName}
+            </if>
+            <if test="entity.projectId != null">
+                AND project_id = #{entity.projectId}
+            </if>
             <if test="entity.projectName != null">
                 AND project_name = #{entity.projectName}
             </if>
-            <if test="entity.number != null">
-                AND number = #{entity.number}
+            <if test="entity.week != null">
+                AND week = #{entity.week}
+            </if>
+            <if test="entity.classes != null">
+                AND classes = #{entity.classes}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -200,9 +264,13 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_project(
+        insert into mt_course(
+                platoon_id,
+                platoon_name,
+                project_id,
                 project_name,
-                number,
+                week,
+                classes,
                 create_by,
                 create_date,
                 update_by,
@@ -210,8 +278,12 @@
                 remarks,
                 status
         ) values (
+                #{platoonId},
+                #{platoonName},
+                #{projectId},
                 #{projectName},
-                #{number},
+                #{week},
+                #{classes},
                 #{createBy},
                 #{createDate},
                 #{updateBy},
@@ -221,14 +293,26 @@
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Project" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_project
+    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Course" useGeneratedKeys="true" keyProperty="id">
+        insert into mt_course
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="platoonId != null">
+                platoon_id,
+            </if>
+            <if test="platoonName != null">
+                platoon_name,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
             <if test="projectName != null">
                 project_name,
             </if>
-            <if test="number != null">
-                number,
+            <if test="week != null">
+                week,
+            </if>
+            <if test="classes != null">
+                classes,
             </if>
             <if test="createBy != null">
                 create_by,
@@ -250,11 +334,23 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="platoonId != null">
+                #{platoonId},
+            </if>
+            <if test="platoonName != null">
+                #{platoonName},
+            </if>
+            <if test="projectId != null">
+                #{projectId},
+            </if>
             <if test="projectName != null">
                 #{projectName},
             </if>
-            <if test="number != null">
-                #{number},
+            <if test="week != null">
+                #{week},
+            </if>
+            <if test="classes != null">
+                #{classes},
             </if>
             <if test="createBy != null">
                 #{createBy},
@@ -278,9 +374,13 @@
     </insert>
 
     <update id="update">
-        update mt_project set
+        update mt_course set
+                platoon_id = #{platoonId},
+                platoon_name = #{platoonName},
+                project_id = #{projectId},
                 project_name = #{projectName},
-                number = #{number},
+                week = #{week},
+                classes = #{classes},
                 create_by = #{createBy},
                 create_date = #{createDate},
                 update_by = #{updateBy},
@@ -290,14 +390,26 @@
         where id = #{id}
     </update>
 
-    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Project">
-        update mt_project
+    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Course">
+        update mt_course
         <set>
+            <if test="platoonId != null">
+            platoon_id = #{platoonId},
+            </if>
+            <if test="platoonName != null">
+            platoon_name = #{platoonName},
+            </if>
+            <if test="projectId != null">
+            project_id = #{projectId},
+            </if>
             <if test="projectName != null">
             project_name = #{projectName},
             </if>
-            <if test="number != null">
-            number = #{number},
+            <if test="week != null">
+            week = #{week},
+            </if>
+            <if test="classes != null">
+            classes = #{classes},
             </if>
             <if test="createBy != null">
             create_by = #{createBy},
@@ -322,7 +434,7 @@
     </update>
 
     <delete id="delete">
-        delete from mt_project where id=#{id}
+        delete from mt_course where id=#{id}
     </delete>
 
 </mapper>

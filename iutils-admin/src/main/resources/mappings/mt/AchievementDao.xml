@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.iutils.mt.dao.ProjectDao">
+<mapper namespace="cn.iutils.mt.dao.AchievementDao">
 
-    <sql id="ProjectColumns">
+    <sql id="AchievementColumns">
         a.id AS "id",
+        a.user_id AS "userId",
+        a.user_name AS "userName",
+        a.project_id AS "projectId",
         a.project_name AS "projectName",
-        a.number AS "number",
+        a.num AS "num",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
         a.update_by AS "updateBy",
@@ -14,29 +17,38 @@
         a.status AS "status"
     </sql>
 
-    <sql id="ProjectJoins">
+    <sql id="AchievementJoins">
 
     </sql>
 
-    <select id="get" resultType="cn.iutils.mt.entity.Project">
+    <select id="get" resultType="cn.iutils.mt.entity.Achievement">
         SELECT
-        <include refid="ProjectColumns"/>
-        FROM mt_project a
+        <include refid="AchievementColumns"/>
+        FROM mt_achievement a
         WHERE a.id = #{id}
     </select>
 
     <select id="count" resultType="int">
-        SELECT count(0) FROM mt_project a
+        SELECT count(0) FROM mt_achievement a
         <where>
         <if test="page.entity != null">
             <if test="page.entity.id != null">
                 AND id = #{page.entity.id}
             </if>
+            <if test="page.entity.userId != null">
+                AND user_id = #{page.entity.userId}
+            </if>
+            <if test="page.entity.userName != null">
+                AND user_name = #{page.entity.userName}
+            </if>
+            <if test="page.entity.projectId != null">
+                AND project_id = #{page.entity.projectId}
+            </if>
             <if test="page.entity.projectName != null">
                 AND project_name = #{page.entity.projectName}
             </if>
-            <if test="page.entity.number != null">
-                AND number = #{page.entity.number}
+            <if test="page.entity.num != null">
+                AND num = #{page.entity.num}
             </if>
             <if test="page.entity.createBy != null">
                 AND create_by = #{page.entity.createBy}
@@ -61,16 +73,25 @@
     </select>
 
     <select id="findCount" resultType="int">
-        SELECT count(0) FROM mt_project a
+        SELECT count(0) FROM mt_achievement a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.userId != null">
+                AND user_id = #{entity.userId}
+            </if>
+            <if test="entity.userName != null">
+                AND user_name = #{entity.userName}
+            </if>
+            <if test="entity.projectId != null">
+                AND project_id = #{entity.projectId}
+            </if>
             <if test="entity.projectName != null">
                 AND project_name = #{entity.projectName}
             </if>
-            <if test="entity.number != null">
-                AND number = #{entity.number}
+            <if test="entity.num != null">
+                AND num = #{entity.num}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -93,19 +114,28 @@
         </where>
     </select>
 
-    <select id="findOne" resultType="cn.iutils.mt.entity.Project">
+    <select id="findOne" resultType="cn.iutils.mt.entity.Achievement">
         SELECT
-        <include refid="ProjectColumns"/>
-        FROM mt_project a
+        <include refid="AchievementColumns"/>
+        FROM mt_achievement a
         <where>
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="userName != null">
+                AND user_name = #{userName}
+            </if>
+            <if test="projectId != null">
+                AND project_id = #{projectId}
+            </if>
             <if test="projectName != null">
                 AND project_name = #{projectName}
             </if>
-            <if test="number != null">
-                AND number = #{number}
+            <if test="num != null">
+                AND num = #{num}
             </if>
             <if test="createBy != null">
                 AND create_by = #{createBy}
@@ -128,18 +158,27 @@
         </where>
     </select>
 
-    <select id="findList" resultType="cn.iutils.mt.entity.Project">
-        SELECT <include refid="ProjectColumns"/>
-        FROM mt_project a
+    <select id="findList" resultType="cn.iutils.mt.entity.Achievement">
+        SELECT <include refid="AchievementColumns"/>
+        FROM mt_achievement a
         <where>
                 <if test="id != null">
                     AND id = #{id}
                 </if>
+                <if test="userId != null">
+                    AND user_id = #{userId}
+                </if>
+                <if test="userName != null">
+                    AND user_name = #{userName}
+                </if>
+                <if test="projectId != null">
+                    AND project_id = #{projectId}
+                </if>
                 <if test="projectName != null">
                     AND project_name = #{projectName}
                 </if>
-                <if test="number != null">
-                    AND number = #{number}
+                <if test="num != null">
+                    AND num = #{num}
                 </if>
                 <if test="createBy != null">
                     AND create_by = #{createBy}
@@ -162,18 +201,27 @@
         </where>
     </select>
 
-    <select id="findPage" resultType="cn.iutils.mt.entity.Project">
-        SELECT <include refid="ProjectColumns"/>
-        FROM mt_project a
+    <select id="findPage" resultType="cn.iutils.mt.entity.Achievement">
+        SELECT <include refid="AchievementColumns"/>
+        FROM mt_achievement a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.userId != null">
+                AND user_id = #{entity.userId}
+            </if>
+            <if test="entity.userName != null">
+                AND user_name = #{entity.userName}
+            </if>
+            <if test="entity.projectId != null">
+                AND project_id = #{entity.projectId}
+            </if>
             <if test="entity.projectName != null">
                 AND project_name = #{entity.projectName}
             </if>
-            <if test="entity.number != null">
-                AND number = #{entity.number}
+            <if test="entity.num != null">
+                AND num = #{entity.num}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -200,9 +248,12 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_project(
+        insert into mt_achievement(
+                user_id,
+                user_name,
+                project_id,
                 project_name,
-                number,
+                num,
                 create_by,
                 create_date,
                 update_by,
@@ -210,8 +261,11 @@
                 remarks,
                 status
         ) values (
+                #{userId},
+                #{userName},
+                #{projectId},
                 #{projectName},
-                #{number},
+                #{num},
                 #{createBy},
                 #{createDate},
                 #{updateBy},
@@ -221,14 +275,23 @@
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Project" useGeneratedKeys="true" keyProperty="id">
-        insert into mt_project
+    <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Achievement" useGeneratedKeys="true" keyProperty="id">
+        insert into mt_achievement
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
             <if test="projectName != null">
                 project_name,
             </if>
-            <if test="number != null">
-                number,
+            <if test="num != null">
+                num,
             </if>
             <if test="createBy != null">
                 create_by,
@@ -250,11 +313,20 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="userName != null">
+                #{userName},
+            </if>
+            <if test="projectId != null">
+                #{projectId},
+            </if>
             <if test="projectName != null">
                 #{projectName},
             </if>
-            <if test="number != null">
-                #{number},
+            <if test="num != null">
+                #{num},
             </if>
             <if test="createBy != null">
                 #{createBy},
@@ -278,9 +350,12 @@
     </insert>
 
     <update id="update">
-        update mt_project set
+        update mt_achievement set
+                user_id = #{userId},
+                user_name = #{userName},
+                project_id = #{projectId},
                 project_name = #{projectName},
-                number = #{number},
+                num = #{num},
                 create_by = #{createBy},
                 create_date = #{createDate},
                 update_by = #{updateBy},
@@ -290,14 +365,23 @@
         where id = #{id}
     </update>
 
-    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Project">
-        update mt_project
+    <update id="updateSelective" parameterType="cn.iutils.mt.entity.Achievement">
+        update mt_achievement
         <set>
+            <if test="userId != null">
+            user_id = #{userId},
+            </if>
+            <if test="userName != null">
+            user_name = #{userName},
+            </if>
+            <if test="projectId != null">
+            project_id = #{projectId},
+            </if>
             <if test="projectName != null">
             project_name = #{projectName},
             </if>
-            <if test="number != null">
-            number = #{number},
+            <if test="num != null">
+            num = #{num},
             </if>
             <if test="createBy != null">
             create_by = #{createBy},
@@ -322,7 +406,7 @@
     </update>
 
     <delete id="delete">
-        delete from mt_project where id=#{id}
+        delete from mt_achievement where id=#{id}
     </delete>
 
 </mapper>

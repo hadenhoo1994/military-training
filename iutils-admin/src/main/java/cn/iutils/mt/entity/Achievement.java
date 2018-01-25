@@ -5,25 +5,55 @@ import cn.iutils.sys.entity.DataEntity;
 import java.util.Date;
 
 /**
-* 军训项目表
+* 成绩表
 * @author iutils.cn
 * @version 1.0
 */
-public class Project extends DataEntity<Project> {
+public class Achievement extends DataEntity<Achievement> {
 
     private static final long serialVersionUID = 1L;
 
-    // 项目名称
+    // 用户id
+    private Integer userId;
+    // 用户名称
+    private String userName;
+    // 课程id
+    private Integer projectId;
+    // 课程名称
     private String projectName;
-    // 课程编号
-    private Long number;
+    // 分数
+    private Double num;
 
-    public Project() {
+    public Achievement() {
         super();
     }
 
-    public Project(String id){
+    public Achievement(String id){
         super(id);
+    }
+
+    public Integer getUserId(){
+        return userId;
+    }
+
+    public void setUserId(Integer userId){
+        this.userId = userId;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public Integer getProjectId(){
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId){
+        this.projectId = projectId;
     }
 
     public String getProjectName(){
@@ -34,19 +64,22 @@ public class Project extends DataEntity<Project> {
         this.projectName = projectName;
     }
 
-    public Long getNumber() {
-        return number;
+    public Double getNum(){
+        return num;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    public void setNum(Double num){
+        this.num = num;
     }
 
-    private Project(Builder builder) {
+    private Achievement(Builder builder) {
         super();
         setId(builder.id);
+        setUserId(builder.userId);
+        setUserName(builder.userName);
+        setProjectId(builder.projectId);
         setProjectName(builder.projectName);
-        setNumber(builder.number);
+        setNum(builder.num);
         setCreateBy(builder.createBy);
         setCreateDate(builder.createDate);
         setUpdateBy(builder.updateBy);
@@ -63,8 +96,11 @@ public class Project extends DataEntity<Project> {
 
     public static final class Builder {
         private String id;
+        private Integer userId;
+        private String userName;
+        private Integer projectId;
         private String projectName;
-        private Long number;
+        private Double num;
         private String createBy;
         private Date createDate;
         private String updateBy;
@@ -76,13 +112,31 @@ public class Project extends DataEntity<Project> {
             super();
         }
 
-        public Project build() {
-            return new Project(this);
+        public Achievement build() {
+            return new Achievement(this);
         }
 
 
         public Builder id(String id) {
             this.id = id;
+            return this;
+        }
+
+
+        public Builder userId(Integer userId) {
+            this.userId = userId;
+            return this;
+        }
+
+
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+
+        public Builder projectId(Integer projectId) {
+            this.projectId = projectId;
             return this;
         }
 
@@ -93,8 +147,8 @@ public class Project extends DataEntity<Project> {
         }
 
 
-        public Builder number(Long number) {
-            this.number = number;
+        public Builder num(Double num) {
+            this.num = num;
             return this;
         }
 

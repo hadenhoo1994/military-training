@@ -1,5 +1,7 @@
 package cn.iutils.mt.entity;
 
+import cn.iutils.common.utils.json.ImgUrlUsing;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.iutils.sys.entity.DataEntity;
 import java.util.Date;
@@ -15,6 +17,8 @@ public class UserInfo extends DataEntity<UserInfo> {
 
     // 姓名
     private String name;
+    // 编号(工号,学号)
+    private Long number;
     // 密码
     private String password;
     // 班级全称
@@ -56,6 +60,7 @@ public class UserInfo extends DataEntity<UserInfo> {
     // 微信号
     private String wx;
     // 头像
+    @JSONField(serializeUsing = ImgUrlUsing.class)
     private String imgUrl;
     // 住址
     private String address;
@@ -76,6 +81,14 @@ public class UserInfo extends DataEntity<UserInfo> {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public String getPassword(){
@@ -266,6 +279,7 @@ public class UserInfo extends DataEntity<UserInfo> {
         super();
         setId(builder.id);
         setName(builder.name);
+        setNumber(builder.number);
         setPassword(builder.password);
         setFullName(builder.fullName);
         setGender(builder.gender);
@@ -306,6 +320,7 @@ public class UserInfo extends DataEntity<UserInfo> {
     public static final class Builder {
         private String id;
         private String name;
+        private Long number;
         private String password;
         private String fullName;
         private Integer gender;
@@ -353,6 +368,12 @@ public class UserInfo extends DataEntity<UserInfo> {
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+
+        public Builder number(Long number) {
+            this.number = number;
             return this;
         }
 

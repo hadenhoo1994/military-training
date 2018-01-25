@@ -5,25 +5,57 @@ import cn.iutils.sys.entity.DataEntity;
 import java.util.Date;
 
 /**
-* 军训项目表
+* 排课表
 * @author iutils.cn
 * @version 1.0
 */
-public class Project extends DataEntity<Project> {
+public class Course extends DataEntity<Course> {
 
     private static final long serialVersionUID = 1L;
 
-    // 项目名称
+    // 排id
+    private Integer platoonId;
+    // 排名称
+    private String platoonName;
+    // 课程id
+    private Integer projectId;
+    // 课程名称
     private String projectName;
-    // 课程编号
-    private Long number;
+    // 周次
+    private Integer week;
+    // 节次
+    private Integer classes;
 
-    public Project() {
+    public Course() {
         super();
     }
 
-    public Project(String id){
+    public Course(String id){
         super(id);
+    }
+
+    public Integer getPlatoonId(){
+        return platoonId;
+    }
+
+    public void setPlatoonId(Integer platoonId){
+        this.platoonId = platoonId;
+    }
+
+    public String getPlatoonName(){
+        return platoonName;
+    }
+
+    public void setPlatoonName(String platoonName){
+        this.platoonName = platoonName;
+    }
+
+    public Integer getProjectId(){
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId){
+        this.projectId = projectId;
     }
 
     public String getProjectName(){
@@ -34,19 +66,31 @@ public class Project extends DataEntity<Project> {
         this.projectName = projectName;
     }
 
-    public Long getNumber() {
-        return number;
+    public Integer getWeek(){
+        return week;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    public void setWeek(Integer week){
+        this.week = week;
     }
 
-    private Project(Builder builder) {
+    public Integer getClasses(){
+        return classes;
+    }
+
+    public void setClasses(Integer classes){
+        this.classes = classes;
+    }
+
+    private Course(Builder builder) {
         super();
         setId(builder.id);
+        setPlatoonId(builder.platoonId);
+        setPlatoonName(builder.platoonName);
+        setProjectId(builder.projectId);
         setProjectName(builder.projectName);
-        setNumber(builder.number);
+        setWeek(builder.week);
+        setClasses(builder.classes);
         setCreateBy(builder.createBy);
         setCreateDate(builder.createDate);
         setUpdateBy(builder.updateBy);
@@ -63,8 +107,12 @@ public class Project extends DataEntity<Project> {
 
     public static final class Builder {
         private String id;
+        private Integer platoonId;
+        private String platoonName;
+        private Integer projectId;
         private String projectName;
-        private Long number;
+        private Integer week;
+        private Integer classes;
         private String createBy;
         private Date createDate;
         private String updateBy;
@@ -76,13 +124,31 @@ public class Project extends DataEntity<Project> {
             super();
         }
 
-        public Project build() {
-            return new Project(this);
+        public Course build() {
+            return new Course(this);
         }
 
 
         public Builder id(String id) {
             this.id = id;
+            return this;
+        }
+
+
+        public Builder platoonId(Integer platoonId) {
+            this.platoonId = platoonId;
+            return this;
+        }
+
+
+        public Builder platoonName(String platoonName) {
+            this.platoonName = platoonName;
+            return this;
+        }
+
+
+        public Builder projectId(Integer projectId) {
+            this.projectId = projectId;
             return this;
         }
 
@@ -93,8 +159,14 @@ public class Project extends DataEntity<Project> {
         }
 
 
-        public Builder number(Long number) {
-            this.number = number;
+        public Builder week(Integer week) {
+            this.week = week;
+            return this;
+        }
+
+
+        public Builder classes(Integer classes) {
+            this.classes = classes;
             return this;
         }
 

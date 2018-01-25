@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/view/include/taglib.jsp"%>
 <html>
 <head>
-    <title>军排表</title>
+    <title>成绩表</title>
     <%@ include file="../../include/head.jsp"%>
     <link href="${ctxStatic}/custom/css/amazeui.select.css" type="text/css" rel="stylesheet" charset="UTF-8" />
     <style>
@@ -19,21 +19,21 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">军排表</div>
+                            <div class="widget-title am-fl">成绩表</div>
                         </div>
                         <div class="widget-body am-fr">
                             <div class="am-u-sm-12 am-u-md-3 am-u-lg-3">
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
                                         <button type="button" class="am-btn am-btn-default am-btn-success"
-                                                onclick="openModel(false,'${ctx}/mt/platoon/create')"><span class="am-icon-plus"></span> 新增
+                                                onclick="openModel(false,'${ctx}/mt/achievement/create')"><span class="am-icon-plus"></span> 新增
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
-                                <form id="searchForm" action="${ctx}/mt/platoon" method="post">
+                                <form id="searchForm" action="${ctx}/mt/achievement" method="post">
                                     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
                                     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
@@ -57,11 +57,9 @@
                                     <thead>
                                     <tr>
                                             <th>序号</th>
-                                            <th>排名称</th>
-                                            <th>排全称</th>
-                                            <th>连名称</th>
-                                            <th>营名称</th>
-                                            <th>学生数</th>
+                                            <th>学生名称</th>
+                                            <th>课程名称</th>
+                                            <th>分数</th>
                                             <th>创建时间</th>
                                             <th>修改时间</th>
                                             <th>备注</th>
@@ -69,20 +67,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${page.list}" var="platoon" varStatus="status">
+                                    <c:forEach items="${page.list}" var="achievement" varStatus="status">
                                         <tr>
                                                 <td>${status.index+1}</td>
-                                                <td>${platoon.name}</td>
-                                                <td>${platoon.fullName}</td>
-                                                <td>${platoon.companyName}</td>
-                                            <td>${platoon.battalionName}</td>
-                                            <td>${platoon.studentNum}</td>
-                                            <td><fmt:formatDate value="${platoon.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                            <td><fmt:formatDate value="${platoon.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                                <td>${platoon.remarks}</td>
+                                                <td>${achievement.userName}</td>
+                                                <td>${achievement.projectName}</td>
+                                                <td>${achievement.num}</td>
+                                                <td><fmt:formatDate value="${achievement.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                                <td><fmt:formatDate value="${achievement.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                                <td>${achievement.remarks}</td>
                                             <td>
-                                                <a href="javascript:;" onclick="openModel('修改军排表','${ctx}/mt/platoon/update?id=${platoon.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
-                                                <a href="${ctx}/mt/platoon/${platoon.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>
+                                                <a href="javascript:;" onclick="openModel('修改成绩表','${ctx}/mt/achievement/update?id=${achievement.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
+                                                <a href="${ctx}/mt/achievement/${achievement.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

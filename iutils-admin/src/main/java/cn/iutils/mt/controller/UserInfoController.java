@@ -1,5 +1,6 @@
 package cn.iutils.mt.controller;
 
+import cn.iutils.common.utils.sequence.IdWorker;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,7 @@ public class UserInfoController extends BaseController {
     @RequiresPermissions("mt:userInfo:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(UserInfo userInfo, RedirectAttributes redirectAttributes) {
+        userInfo.setNumber(IdWorker.getInstance().nextId());
         userInfoService.save(userInfo);
         addMessage(redirectAttributes,"新增成功");
         return "redirect:"+ adminPath +"/mt/userInfo/update?id="+userInfo.getId();

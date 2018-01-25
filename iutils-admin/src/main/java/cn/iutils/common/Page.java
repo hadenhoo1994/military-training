@@ -1,6 +1,7 @@
 package cn.iutils.common;
 
 import cn.iutils.common.config.JConfig;
+import cn.iutils.common.utils.sequence.IdWorker;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.google.common.collect.Lists;
 
@@ -263,4 +264,8 @@ public class Page<T> {
         this.key = key;
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(IdWorker.getInstance().nextId());
+    }
 }

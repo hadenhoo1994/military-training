@@ -5,6 +5,7 @@
     <sql id="UserInfoColumns">
         a.id AS "id",
         a.name AS "name",
+        a.number AS "number",
         a.password AS "password",
         a.full_name AS "fullName",
         a.gender AS "gender",
@@ -56,6 +57,9 @@
             </if>
             <if test="page.entity.name != null">
                 AND name = #{page.entity.name}
+            </if>
+            <if test="page.entity.number != null">
+                AND number = #{page.entity.number}
             </if>
             <if test="page.entity.password != null">
                 AND password = #{page.entity.password}
@@ -156,6 +160,9 @@
             </if>
             <if test="entity.name != null">
                 AND name = #{entity.name}
+            </if>
+            <if test="entity.number != null">
+                AND number = #{entity.number}
             </if>
             <if test="entity.password != null">
                 AND password = #{entity.password}
@@ -258,6 +265,9 @@
             <if test="name != null">
                 AND name = #{name}
             </if>
+            <if test="number != null">
+                AND number = #{number}
+            </if>
             <if test="password != null">
                 AND password = #{password}
             </if>
@@ -357,6 +367,9 @@
                 </if>
                 <if test="name != null">
                     AND name = #{name}
+                </if>
+                <if test="number != null">
+                    AND number = #{number}
                 </if>
                 <if test="password != null">
                     AND password = #{password}
@@ -458,6 +471,9 @@
             <if test="entity.name != null">
                 AND name = #{entity.name}
             </if>
+            <if test="entity.number != null">
+                AND number = #{entity.number}
+            </if>
             <if test="entity.password != null">
                 AND password = #{entity.password}
             </if>
@@ -554,6 +570,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_user_info(
                 name,
+                number,
                 password,
                 full_name,
                 gender,
@@ -585,6 +602,7 @@
                 status
         ) values (
                 #{name},
+                #{number},
                 #{password},
                 #{fullName},
                 #{gender},
@@ -622,6 +640,9 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="name != null">
                 name,
+            </if>
+            <if test="number != null">
+                number,
             </if>
             <if test="password != null">
                 password,
@@ -714,6 +735,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="name != null">
                 #{name},
+            </if>
+            <if test="number != null">
+                #{number},
             </if>
             <if test="password != null">
                 #{password},
@@ -808,6 +832,7 @@
     <update id="update">
         update mt_user_info set
                 name = #{name},
+                number = #{number},
                 password = #{password},
                 full_name = #{fullName},
                 gender = #{gender},
@@ -845,6 +870,9 @@
         <set>
             <if test="name != null">
             name = #{name},
+            </if>
+            <if test="number != null">
+            number = #{number},
             </if>
             <if test="password != null">
             password = #{password},
