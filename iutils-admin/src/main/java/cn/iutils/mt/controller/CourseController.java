@@ -44,7 +44,7 @@ public class CourseController extends BaseController {
     @RequiresPermissions("mt:course:view")
     @RequestMapping()
     public String list(Model model, Page<Course> page) {
-        model.addAttribute("page", page.setList(courseService.findPage(page)));
+        model.addAttribute("page", page.setList(courseService.findPage(page,new Course())));
         return "mt/course/list";
     }
 

@@ -41,6 +41,19 @@
 
     </sql>
 
+    <select id="getStudentByNameOrNumber" resultType="cn.iutils.mt.entity.UserInfo">
+        SELECT
+        <include refid="UserInfoColumns"/>
+        FROM
+        mt_user_info a
+        <where>
+            <if test="name != null || name!= ''">
+                a.name LIKE '%${name}%'
+                or a.number like '%${name}%'
+            </if>
+        </where>
+    </select>
+
     <select id="get" resultType="cn.iutils.mt.entity.UserInfo">
         SELECT
         <include refid="UserInfoColumns"/>

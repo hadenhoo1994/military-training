@@ -3,6 +3,9 @@ package cn.iutils.mt.dao;
 import cn.iutils.common.ICrudDao;
 import cn.iutils.common.annotation.MyBatisDao;
 import cn.iutils.mt.entity.Project;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * 军训项目表 DAO接口
@@ -12,4 +15,5 @@ import cn.iutils.mt.entity.Project;
 @MyBatisDao
 public interface ProjectDao extends ICrudDao<Project> {
 
+    List<Project> getProjectByNameOrNumber(@Param("name") String name);
 }

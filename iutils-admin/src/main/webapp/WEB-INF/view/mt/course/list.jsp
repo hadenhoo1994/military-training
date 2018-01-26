@@ -56,38 +56,28 @@
                                 <table id="contentTable" class="am-table am-table-compact am-table-striped tpl-table-black">
                                     <thead>
                                     <tr>
-                                            <th>主键id</th>
-                                            <th>排id</th>
+                                            <th>排序</th>
                                             <th>排名称</th>
-                                            <th>课程id</th>
                                             <th>课程名称</th>
                                             <th>周次</th>
                                             <th>节次</th>
-                                            <th>创建人</th>
                                             <th>创建时间</th>
-                                            <th>修改人</th>
                                             <th>修改时间</th>
                                             <th>备注</th>
-                                            <th>状态 0:正常 1:删除</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${page.list}" var="course" varStatus="status">
                                         <tr>
-                                                <td>${course.id}</td>
-                                                <td>${course.platoonId}</td>
+                                                <td>${status.index+1}</td>
                                                 <td>${course.platoonName}</td>
-                                                <td>${course.projectId}</td>
                                                 <td>${course.projectName}</td>
                                                 <td>${course.week}</td>
                                                 <td>${course.classes}</td>
-                                                <td>${course.createBy}</td>
-                                                <td>${course.createDate}</td>
-                                                <td>${course.updateBy}</td>
-                                                <td>${course.updateDate}</td>
+                                            <td><fmt:formatDate value="${course.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${course.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${course.remarks}</td>
-                                                <td>${course.status}</td>
                                             <td>
                                                 <a href="javascript:;" onclick="openModel('修改排课表','${ctx}/mt/course/update?id=${course.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/course/${course.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>

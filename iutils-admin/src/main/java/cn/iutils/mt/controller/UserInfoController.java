@@ -1,15 +1,14 @@
 package cn.iutils.mt.controller;
 
+import cn.iutils.common.ResultJson;
 import cn.iutils.common.utils.sequence.IdWorker;
+import cn.iutils.mt.entity.rest.UserInfoSelectRes;
+import com.mzlion.core.json.fastjson.JsonUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cn.iutils.common.Page;
@@ -17,6 +16,11 @@ import cn.iutils.common.utils.JStringUtils;
 import cn.iutils.common.BaseController;
 import cn.iutils.mt.entity.UserInfo;
 import cn.iutils.mt.service.UserInfoService;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
 * 用户表 控制器
@@ -86,5 +90,15 @@ public class UserInfoController extends BaseController {
         userInfoService.delete(id);
         addMessage(redirectAttributes,"删除成功");
         return "redirect:"+ adminPath +"/mt/userInfo?pageNo="+pageNo+"&pageSize="+pageSize;
+    }
+
+    @RequestMapping("/getStudentByNameOrNumber")
+    @ResponseBody
+    public String getStudentByNameOrNumber(String name){
+        Map<String, List> resultMap = new HashMap<>();
+        List<UserInfoSelectRes> userInfos = userInfoService.getStudentByNameOrNumber(name);
+        resultMap.put("results", userInfos);
+        return JsonUtil.toJson( resultMap);
+
     }
 }

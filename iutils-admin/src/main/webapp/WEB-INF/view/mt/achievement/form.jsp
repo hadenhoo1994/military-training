@@ -7,6 +7,15 @@
     <style>
         .tpl-content-wrapper{margin-left:0}
     </style>
+    <link href="${ctxStatic}/res/select2/css/select2.min.css" rel="stylesheet"/>
+<style type="text/css">
+    select2-container--open{
+        z-index:9999999
+    }
+    span.select2-container {
+        z-index:10050;
+    }
+</style>
 </head>
 <body>
 <script src="${ctxStatic}/assets/js/theme.js"></script>
@@ -24,27 +33,35 @@
                             <form class="am-form tpl-form-border-form" data-am-validator modelAttribute="achievement" action="${ctx}/mt/achievement/<c:choose><c:when test="${empty achievement.id}">create</c:when><c:otherwise>update</c:otherwise></c:choose>" method="post">
                             <input type="hidden" name="id" value="${achievement.id}"/>
                                     <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">用户id：</label>
+                                        <label class="am-u-sm-3 am-form-label">学生名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="userId" placeholder="用户id" value="${achievement.userId}" required/>
+                                            <input type="hidden" name="userId" id="userId" value="${achievement.userId}"/>
+                                            <input type="text" name="userName" id="userName" placeholder="用户名称" value="${achievement.userName}" required/>
+                                            <select id="selectHouse" class="js-data-example-ajax form-control">
+                                                <option selected="selected">根据学生名称或学号查询学生</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">用户名称：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="userName" placeholder="用户名称" value="${achievement.userName}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="am-form-group">
-                                        <label class="am-u-sm-3 am-form-label">课程id：</label>
-                                        <div class="am-u-sm-9">
-                                            <input type="text" name="projectId" placeholder="课程id" value="${achievement.projectId}" required/>
-                                        </div>
-                                    </div>
+                                    <%--<div class="am-form-group">--%>
+                                        <%--<label class="am-u-sm-3 am-form-label">用户名称：</label>--%>
+                                        <%--<div class="am-u-sm-9">--%>
+                                            <%--<input type="text" name="userName" placeholder="用户名称" value="${achievement.userName}" required/>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="am-form-group">--%>
+                                        <%--<label class="am-u-sm-3 am-form-label">课程id：</label>--%>
+                                        <%--<div class="am-u-sm-9">--%>
+                                            <%--<input type="text" name="projectId" placeholder="课程id" value="${achievement.projectId}" required/>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">课程名称：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="projectName" placeholder="课程名称" value="${achievement.projectName}" required/>
+                                            <input type="hidden" name="projectId" id="projectId" placeholder="课程id" value="${achievement.projectId}" />
+                                            <input type="text" name="projectName" id="projectName" placeholder="课程名称" value="${achievement.projectName}" required/>
+                                            <select id="selectProject" class="js-data-example-ajax form-control">
+                                                <option selected="selected">根据科目名称或科目编号查询科目</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
@@ -56,7 +73,7 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-3 am-form-label">备注：</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" name="remarks" placeholder="备注" value="${achievement.remarks}" required/>
+                                            <input type="text" name="remarks" placeholder="备注" value="${achievement.remarks}" />
                                         </div>
                                     </div>
                             <div class="am-form-group">
@@ -74,6 +91,8 @@
     </div>
 </div>
 <%@ include file="../../include/bottom.jsp"%>
+<script type="text/javascript" src="${ctxStatic}/res/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="${ctxStatic}/res/achievement/select-house.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var msg = '${msg}';

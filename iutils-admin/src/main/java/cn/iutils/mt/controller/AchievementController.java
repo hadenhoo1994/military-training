@@ -44,7 +44,7 @@ public class AchievementController extends BaseController {
     @RequiresPermissions("mt:achievement:view")
     @RequestMapping()
     public String list(Model model, Page<Achievement> page) {
-        model.addAttribute("page", page.setList(achievementService.findPage(page)));
+        model.addAttribute("page", page.setList(achievementService.findPage(page,new Achievement())));
         return "mt/achievement/list";
     }
 

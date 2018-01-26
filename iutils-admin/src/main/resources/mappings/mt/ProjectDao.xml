@@ -18,6 +18,19 @@
 
     </sql>
 
+    <select id="getProjectByNameOrNumber" resultType="cn.iutils.mt.entity.Project">
+        SELECT
+        <include refid="ProjectColumns"/>
+        FROM
+        mt_project a
+        <where>
+            <if test="name != null || name!= ''">
+                a.project_name LIKE '%${name}%'
+                or a.number like '%${name}%'
+            </if>
+        </where>
+    </select>
+
     <select id="get" resultType="cn.iutils.mt.entity.Project">
         SELECT
         <include refid="ProjectColumns"/>
