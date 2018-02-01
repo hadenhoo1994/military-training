@@ -4,12 +4,25 @@
 
     <sql id="CourseColumns">
         a.id AS "id",
+        a.battalion_id AS "battalionId",
+        a.company_id AS "companyId",
         a.platoon_id AS "platoonId",
         a.platoon_name AS "platoonName",
         a.project_id AS "projectId",
         a.project_name AS "projectName",
         a.week AS "week",
-        a.classes AS "classes",
+        a.days AS "days",
+        a.classes1 AS "classes1",
+        a.classes2 AS "classes2",
+        a.classes3 AS "classes3",
+        a.classes4 AS "classes4",
+        a.classes5 AS "classes5",
+        a.classes6 AS "classes6",
+        a.classes7 AS "classes7",
+        a.classes8 AS "classes8",
+        a.classes9 AS "classes9",
+        a.classes10 AS "classes10",
+        a.classes11 AS "classes11",
         a.create_by AS "createBy",
         a.create_date AS "createDate",
         a.update_by AS "updateBy",
@@ -22,6 +35,12 @@
 
     </sql>
 
+    <select id="getCountCourseProject" resultType="int">
+        select count('0') from mt_course a
+        where a.platoon_id = #{id}
+        and a.`status` = 0
+    </select>
+
     <select id="get" resultType="cn.iutils.mt.entity.Course">
         SELECT
         <include refid="CourseColumns"/>
@@ -32,47 +51,86 @@
     <select id="count" resultType="int">
         SELECT count(0) FROM mt_course a
         <where>
-        <if test="page.entity != null">
-            <if test="page.entity.id != null">
-                AND id = #{page.entity.id}
+            <if test="page.entity != null">
+                <if test="page.entity.id != null">
+                    AND id = #{page.entity.id}
+                </if>
+                <if test="page.entity.battalionId != null">
+                    AND battalion_id = #{page.entity.battalionId}
+                </if>
+                <if test="page.entity.companyId != null">
+                    AND company_id = #{page.entity.companyId}
+                </if>
+                <if test="page.entity.platoonId != null">
+                    AND platoon_id = #{page.entity.platoonId}
+                </if>
+                <if test="page.entity.platoonName != null">
+                    AND platoon_name = #{page.entity.platoonName}
+                </if>
+                <if test="page.entity.projectId != null">
+                    AND project_id = #{page.entity.projectId}
+                </if>
+                <if test="page.entity.projectName != null">
+                    AND project_name = #{page.entity.projectName}
+                </if>
+                <if test="page.entity.week != null">
+                    AND week = #{page.entity.week}
+                </if>
+                <if test="page.entity.days != null">
+                    AND days = #{page.entity.days}
+                </if>
+                <if test="page.entity.classes1 != null">
+                    AND classes1 = #{page.entity.classes1}
+                </if>
+                <if test="page.entity.classes2 != null">
+                    AND classes2 = #{page.entity.classes2}
+                </if>
+                <if test="page.entity.classes3 != null">
+                    AND classes3 = #{page.entity.classes3}
+                </if>
+                <if test="page.entity.classes4 != null">
+                    AND classes4 = #{page.entity.classes4}
+                </if>
+                <if test="page.entity.classes5 != null">
+                    AND classes5 = #{page.entity.classes5}
+                </if>
+                <if test="page.entity.classes6 != null">
+                    AND classes6 = #{page.entity.classes6}
+                </if>
+                <if test="page.entity.classes7 != null">
+                    AND classes7 = #{page.entity.classes7}
+                </if>
+                <if test="page.entity.classes8 != null">
+                    AND classes8 = #{page.entity.classes8}
+                </if>
+                <if test="page.entity.classes9 != null">
+                    AND classes9 = #{page.entity.classes9}
+                </if>
+                <if test="page.entity.classes10 != null">
+                    AND classes10 = #{page.entity.classes10}
+                </if>
+                <if test="page.entity.classes11 != null">
+                    AND classes11 = #{page.entity.classes11}
+                </if>
+                <if test="page.entity.createBy != null">
+                    AND create_by = #{page.entity.createBy}
+                </if>
+                <if test="page.entity.createDate != null">
+                    AND create_date = #{page.entity.createDate}
+                </if>
+                <if test="page.entity.updateBy != null">
+                    AND update_by = #{page.entity.updateBy}
+                </if>
+                <if test="page.entity.updateDate != null">
+                    AND update_date = #{page.entity.updateDate}
+                </if>
+                <if test="page.entity.remarks != null">
+                    AND remarks = #{page.entity.remarks}
+                </if>
+                <if test="page.entity.status != null">
+                    AND status = #{page.entity.status}
+                </if>
             </if>
-            <if test="page.entity.platoonId != null">
-                AND platoon_id = #{page.entity.platoonId}
-            </if>
-            <if test="page.entity.platoonName != null">
-                AND platoon_name = #{page.entity.platoonName}
-            </if>
-            <if test="page.entity.projectId != null">
-                AND project_id = #{page.entity.projectId}
-            </if>
-            <if test="page.entity.projectName != null">
-                AND project_name = #{page.entity.projectName}
-            </if>
-            <if test="page.entity.week != null">
-                AND week = #{page.entity.week}
-            </if>
-            <if test="page.entity.classes != null">
-                AND classes = #{page.entity.classes}
-            </if>
-            <if test="page.entity.createBy != null">
-                AND create_by = #{page.entity.createBy}
-            </if>
-            <if test="page.entity.createDate != null">
-                AND create_date = #{page.entity.createDate}
-            </if>
-            <if test="page.entity.updateBy != null">
-                AND update_by = #{page.entity.updateBy}
-            </if>
-            <if test="page.entity.updateDate != null">
-                AND update_date = #{page.entity.updateDate}
-            </if>
-            <if test="page.entity.remarks != null">
-                AND remarks = #{page.entity.remarks}
-            </if>
-            <if test="page.entity.status != null">
-                AND status = #{page.entity.status}
-            </if>
-        </if>
         </where>
     </select>
 
@@ -81,6 +139,12 @@
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
+            </if>
+            <if test="entity.battalionId != null">
+                AND battalion_id = #{entity.battalionId}
+            </if>
+            <if test="entity.companyId != null">
+                AND company_id = #{entity.companyId}
             </if>
             <if test="entity.platoonId != null">
                 AND platoon_id = #{entity.platoonId}
@@ -97,8 +161,41 @@
             <if test="entity.week != null">
                 AND week = #{entity.week}
             </if>
-            <if test="entity.classes != null">
-                AND classes = #{entity.classes}
+            <if test="entity.days != null">
+                AND days = #{entity.days}
+            </if>
+            <if test="entity.classes1 != null">
+                AND classes1 = #{entity.classes1}
+            </if>
+            <if test="entity.classes2 != null">
+                AND classes2 = #{entity.classes2}
+            </if>
+            <if test="entity.classes3 != null">
+                AND classes3 = #{entity.classes3}
+            </if>
+            <if test="entity.classes4 != null">
+                AND classes4 = #{entity.classes4}
+            </if>
+            <if test="entity.classes5 != null">
+                AND classes5 = #{entity.classes5}
+            </if>
+            <if test="entity.classes6 != null">
+                AND classes6 = #{entity.classes6}
+            </if>
+            <if test="entity.classes7 != null">
+                AND classes7 = #{entity.classes7}
+            </if>
+            <if test="entity.classes8 != null">
+                AND classes8 = #{entity.classes8}
+            </if>
+            <if test="entity.classes9 != null">
+                AND classes9 = #{entity.classes9}
+            </if>
+            <if test="entity.classes10 != null">
+                AND classes10 = #{entity.classes10}
+            </if>
+            <if test="entity.classes11 != null">
+                AND classes11 = #{entity.classes11}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -129,6 +226,12 @@
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="battalionId != null">
+                AND battalion_id = #{battalionId}
+            </if>
+            <if test="companyId != null">
+                AND company_id = #{companyId}
+            </if>
             <if test="platoonId != null">
                 AND platoon_id = #{platoonId}
             </if>
@@ -144,8 +247,41 @@
             <if test="week != null">
                 AND week = #{week}
             </if>
-            <if test="classes != null">
-                AND classes = #{classes}
+            <if test="days != null">
+                AND days = #{days}
+            </if>
+            <if test="classes1 != null">
+                AND classes1 = #{classes1}
+            </if>
+            <if test="classes2 != null">
+                AND classes2 = #{classes2}
+            </if>
+            <if test="classes3 != null">
+                AND classes3 = #{classes3}
+            </if>
+            <if test="classes4 != null">
+                AND classes4 = #{classes4}
+            </if>
+            <if test="classes5 != null">
+                AND classes5 = #{classes5}
+            </if>
+            <if test="classes6 != null">
+                AND classes6 = #{classes6}
+            </if>
+            <if test="classes7 != null">
+                AND classes7 = #{classes7}
+            </if>
+            <if test="classes8 != null">
+                AND classes8 = #{classes8}
+            </if>
+            <if test="classes9 != null">
+                AND classes9 = #{classes9}
+            </if>
+            <if test="classes10 != null">
+                AND classes10 = #{classes10}
+            </if>
+            <if test="classes11 != null">
+                AND classes11 = #{classes11}
             </if>
             <if test="createBy != null">
                 AND create_by = #{createBy}
@@ -169,57 +305,104 @@
     </select>
 
     <select id="findList" resultType="cn.iutils.mt.entity.Course">
-        SELECT <include refid="CourseColumns"/>
+        SELECT
+        <include refid="CourseColumns"/>
         FROM mt_course a
         <where>
-                <if test="id != null">
-                    AND id = #{id}
-                </if>
-                <if test="platoonId != null">
-                    AND platoon_id = #{platoonId}
-                </if>
-                <if test="platoonName != null">
-                    AND platoon_name = #{platoonName}
-                </if>
-                <if test="projectId != null">
-                    AND project_id = #{projectId}
-                </if>
-                <if test="projectName != null">
-                    AND project_name = #{projectName}
-                </if>
-                <if test="week != null">
-                    AND week = #{week}
-                </if>
-                <if test="classes != null">
-                    AND classes = #{classes}
-                </if>
-                <if test="createBy != null">
-                    AND create_by = #{createBy}
-                </if>
-                <if test="createDate != null">
-                    AND create_date = #{createDate}
-                </if>
-                <if test="updateBy != null">
-                    AND update_by = #{updateBy}
-                </if>
-                <if test="updateDate != null">
-                    AND update_date = #{updateDate}
-                </if>
-                <if test="remarks != null">
-                    AND remarks = #{remarks}
-                </if>
-                <if test="status != null">
-                    AND status = #{status}
-                </if>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="battalionId != null">
+                AND battalion_id = #{battalionId}
+            </if>
+            <if test="companyId != null">
+                AND company_id = #{companyId}
+            </if>
+            <if test="platoonId != null">
+                AND platoon_id = #{platoonId}
+            </if>
+            <if test="platoonName != null">
+                AND platoon_name = #{platoonName}
+            </if>
+            <if test="projectId != null">
+                AND project_id = #{projectId}
+            </if>
+            <if test="projectName != null">
+                AND project_name = #{projectName}
+            </if>
+            <if test="week != null">
+                AND week = #{week}
+            </if>
+            <if test="days != null">
+                AND days = #{days}
+            </if>
+            <if test="classes1 != null">
+                AND classes1 = #{classes1}
+            </if>
+            <if test="classes2 != null">
+                AND classes2 = #{classes2}
+            </if>
+            <if test="classes3 != null">
+                AND classes3 = #{classes3}
+            </if>
+            <if test="classes4 != null">
+                AND classes4 = #{classes4}
+            </if>
+            <if test="classes5 != null">
+                AND classes5 = #{classes5}
+            </if>
+            <if test="classes6 != null">
+                AND classes6 = #{classes6}
+            </if>
+            <if test="classes7 != null">
+                AND classes7 = #{classes7}
+            </if>
+            <if test="classes8 != null">
+                AND classes8 = #{classes8}
+            </if>
+            <if test="classes9 != null">
+                AND classes9 = #{classes9}
+            </if>
+            <if test="classes10 != null">
+                AND classes10 = #{classes10}
+            </if>
+            <if test="classes11 != null">
+                AND classes11 = #{classes11}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy}
+            </if>
+            <if test="createDate != null">
+                AND create_date = #{createDate}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy}
+            </if>
+            <if test="updateDate != null">
+                AND update_date = #{updateDate}
+            </if>
+            <if test="remarks != null">
+                AND remarks = #{remarks}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
         </where>
     </select>
 
     <select id="findPage" resultType="cn.iutils.mt.entity.Course">
-        SELECT <include refid="CourseColumns"/>
+        SELECT
+        <include refid="CourseColumns"/>
         FROM mt_course a
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
+            </if>
+            <if test="entity.battalionId != null">
+                AND battalion_id = #{entity.battalionId}
+            </if>
+            <if test="entity.companyId != null">
+                AND company_id = #{entity.companyId}
             </if>
             <if test="entity.platoonId != null">
                 AND platoon_id = #{entity.platoonId}
@@ -236,8 +419,41 @@
             <if test="entity.week != null">
                 AND week = #{entity.week}
             </if>
-            <if test="entity.classes != null">
-                AND classes = #{entity.classes}
+            <if test="entity.days != null">
+                AND days = #{entity.days}
+            </if>
+            <if test="entity.classes1 != null">
+                AND classes1 = #{entity.classes1}
+            </if>
+            <if test="entity.classes2 != null">
+                AND classes2 = #{entity.classes2}
+            </if>
+            <if test="entity.classes3 != null">
+                AND classes3 = #{entity.classes3}
+            </if>
+            <if test="entity.classes4 != null">
+                AND classes4 = #{entity.classes4}
+            </if>
+            <if test="entity.classes5 != null">
+                AND classes5 = #{entity.classes5}
+            </if>
+            <if test="entity.classes6 != null">
+                AND classes6 = #{entity.classes6}
+            </if>
+            <if test="entity.classes7 != null">
+                AND classes7 = #{entity.classes7}
+            </if>
+            <if test="entity.classes8 != null">
+                AND classes8 = #{entity.classes8}
+            </if>
+            <if test="entity.classes9 != null">
+                AND classes9 = #{entity.classes9}
+            </if>
+            <if test="entity.classes10 != null">
+                AND classes10 = #{entity.classes10}
+            </if>
+            <if test="entity.classes11 != null">
+                AND classes11 = #{entity.classes11}
             </if>
             <if test="entity.createBy != null">
                 AND create_by = #{entity.createBy}
@@ -265,12 +481,25 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_course(
+                battalion_id,
+                company_id,
                 platoon_id,
                 platoon_name,
                 project_id,
                 project_name,
                 week,
-                classes,
+                days,
+                classes1,
+                classes2,
+                classes3,
+                classes4,
+                classes5,
+                classes6,
+                classes7,
+                classes8,
+                classes9,
+                classes10,
+                classes11,
                 create_by,
                 create_date,
                 update_by,
@@ -278,12 +507,25 @@
                 remarks,
                 status
         ) values (
+                #{battalionId},
+                #{companyId},
                 #{platoonId},
                 #{platoonName},
                 #{projectId},
                 #{projectName},
                 #{week},
-                #{classes},
+                #{days},
+                #{classes1},
+                #{classes2},
+                #{classes3},
+                #{classes4},
+                #{classes5},
+                #{classes6},
+                #{classes7},
+                #{classes8},
+                #{classes9},
+                #{classes10},
+                #{classes11},
                 #{createBy},
                 #{createDate},
                 #{updateBy},
@@ -295,7 +537,13 @@
 
     <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Course" useGeneratedKeys="true" keyProperty="id">
         insert into mt_course
-        <trim prefix="(" suffix=")" suffixOverrides="," >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="battalionId != null">
+                battalion_id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
             <if test="platoonId != null">
                 platoon_id,
             </if>
@@ -311,8 +559,41 @@
             <if test="week != null">
                 week,
             </if>
-            <if test="classes != null">
-                classes,
+            <if test="days != null">
+                days,
+            </if>
+            <if test="classes1 != null">
+                classes1,
+            </if>
+            <if test="classes2 != null">
+                classes2,
+            </if>
+            <if test="classes3 != null">
+                classes3,
+            </if>
+            <if test="classes4 != null">
+                classes4,
+            </if>
+            <if test="classes5 != null">
+                classes5,
+            </if>
+            <if test="classes6 != null">
+                classes6,
+            </if>
+            <if test="classes7 != null">
+                classes7,
+            </if>
+            <if test="classes8 != null">
+                classes8,
+            </if>
+            <if test="classes9 != null">
+                classes9,
+            </if>
+            <if test="classes10 != null">
+                classes10,
+            </if>
+            <if test="classes11 != null">
+                classes11,
             </if>
             <if test="createBy != null">
                 create_by,
@@ -333,7 +614,13 @@
                 status
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="battalionId != null">
+                #{battalionId},
+            </if>
+            <if test="companyId != null">
+                #{companyId},
+            </if>
             <if test="platoonId != null">
                 #{platoonId},
             </if>
@@ -349,8 +636,41 @@
             <if test="week != null">
                 #{week},
             </if>
-            <if test="classes != null">
-                #{classes},
+            <if test="days != null">
+                #{days},
+            </if>
+            <if test="classes1 != null">
+                #{classes1},
+            </if>
+            <if test="classes2 != null">
+                #{classes2},
+            </if>
+            <if test="classes3 != null">
+                #{classes3},
+            </if>
+            <if test="classes4 != null">
+                #{classes4},
+            </if>
+            <if test="classes5 != null">
+                #{classes5},
+            </if>
+            <if test="classes6 != null">
+                #{classes6},
+            </if>
+            <if test="classes7 != null">
+                #{classes7},
+            </if>
+            <if test="classes8 != null">
+                #{classes8},
+            </if>
+            <if test="classes9 != null">
+                #{classes9},
+            </if>
+            <if test="classes10 != null">
+                #{classes10},
+            </if>
+            <if test="classes11 != null">
+                #{classes11},
             </if>
             <if test="createBy != null">
                 #{createBy},
@@ -375,12 +695,25 @@
 
     <update id="update">
         update mt_course set
+                battalion_id = #{battalionId},
+                company_id = #{companyId},
                 platoon_id = #{platoonId},
                 platoon_name = #{platoonName},
                 project_id = #{projectId},
                 project_name = #{projectName},
                 week = #{week},
-                classes = #{classes},
+                days = #{days},
+                classes1 = #{classes1},
+                classes2 = #{classes2},
+                classes3 = #{classes3},
+                classes4 = #{classes4},
+                classes5 = #{classes5},
+                classes6 = #{classes6},
+                classes7 = #{classes7},
+                classes8 = #{classes8},
+                classes9 = #{classes9},
+                classes10 = #{classes10},
+                classes11 = #{classes11},
                 create_by = #{createBy},
                 create_date = #{createDate},
                 update_by = #{updateBy},
@@ -393,41 +726,80 @@
     <update id="updateSelective" parameterType="cn.iutils.mt.entity.Course">
         update mt_course
         <set>
+            <if test="battalionId != null">
+                battalion_id = #{battalionId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
             <if test="platoonId != null">
-            platoon_id = #{platoonId},
+                platoon_id = #{platoonId},
             </if>
             <if test="platoonName != null">
-            platoon_name = #{platoonName},
+                platoon_name = #{platoonName},
             </if>
             <if test="projectId != null">
-            project_id = #{projectId},
+                project_id = #{projectId},
             </if>
             <if test="projectName != null">
-            project_name = #{projectName},
+                project_name = #{projectName},
             </if>
             <if test="week != null">
-            week = #{week},
+                week = #{week},
             </if>
-            <if test="classes != null">
-            classes = #{classes},
+            <if test="days != null">
+                days = #{days},
+            </if>
+            <if test="classes1 != null">
+                classes1 = #{classes1},
+            </if>
+            <if test="classes2 != null">
+                classes2 = #{classes2},
+            </if>
+            <if test="classes3 != null">
+                classes3 = #{classes3},
+            </if>
+            <if test="classes4 != null">
+                classes4 = #{classes4},
+            </if>
+            <if test="classes5 != null">
+                classes5 = #{classes5},
+            </if>
+            <if test="classes6 != null">
+                classes6 = #{classes6},
+            </if>
+            <if test="classes7 != null">
+                classes7 = #{classes7},
+            </if>
+            <if test="classes8 != null">
+                classes8 = #{classes8},
+            </if>
+            <if test="classes9 != null">
+                classes9 = #{classes9},
+            </if>
+            <if test="classes10 != null">
+                classes10 = #{classes10},
+            </if>
+            <if test="classes11 != null">
+                classes11 = #{classes11},
             </if>
             <if test="createBy != null">
-            create_by = #{createBy},
+                create_by = #{createBy},
             </if>
             <if test="createDate != null">
-            create_date = #{createDate},
+                create_date = #{createDate},
             </if>
             <if test="updateBy != null">
-            update_by = #{updateBy},
+                update_by = #{updateBy},
             </if>
             <if test="updateDate != null">
-            update_date = #{updateDate},
+                update_date = #{updateDate},
             </if>
             <if test="remarks != null">
-            remarks = #{remarks},
+                remarks = #{remarks},
             </if>
             <if test="status != null">
-            status = #{status}
+                status = #{status}
             </if>
         </set>
         where id = #{id}

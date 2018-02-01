@@ -58,9 +58,7 @@
                                     <tr>
                                             <th>排序</th>
                                             <th>排名称</th>
-                                            <th>课程名称</th>
-                                            <th>周次</th>
-                                            <th>节次</th>
+                                            <th>已有课次</th>
                                             <th>创建时间</th>
                                             <th>修改时间</th>
                                             <th>备注</th>
@@ -72,9 +70,7 @@
                                         <tr>
                                                 <td>${status.index+1}</td>
                                                 <td>${course.platoonName}</td>
-                                                <td>${course.projectName}</td>
-                                                <td>${course.week}</td>
-                                                <td>${course.classes}</td>
+                                                <td>${course.classes1}</td>
                                             <td><fmt:formatDate value="${course.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                             <td><fmt:formatDate value="${course.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                                                 <td>${course.remarks}</td>

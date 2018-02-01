@@ -16,4 +16,8 @@ import cn.iutils.mt.entity.Course;
 @Transactional(readOnly = true)
 public class CourseService extends CrudService<CourseDao, Course> {
 
+    public int getCountCourseProject(String id) {
+        int i = dao.getCountCourseProject(id);
+        return i;
+    }
 }

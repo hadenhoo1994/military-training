@@ -40,19 +40,30 @@
                                     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
                                     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <div class="tagsinput">
-                                            <c:if test="${not empty page.key}"><span class="tags"><input type="hidden"
-                                                                                                         name="key"
-                                                                                                         value="${page.key}"/>关键字=${page.key} <a
-                                                    href="javascript:;"
-                                                    onclick="$(this).parent().remove()">x</a></span></c:if>
-                                            <span class="am-select am-input-group-sm">
-                                                     <input type="text" class="am-select-input" autocomplete="off"
-                                                            style="border: none;"
-                                                            placeholder="关键字"
-                                                            am-data='[{"field":"key","desc":"关键字","type":"string"}]'>
-                                                    <ul class="am-select-ul"></ul>
-                                                </span>
+                                        <%--<div class="tagsinput">--%>
+                                        <%--<c:if test="${not empty page.key}"><span class="tags">--%>
+                                        <%--<input type="hidden"name="key"value="${page.key}"/>关键字=${page.key}--%>
+                                        <%--<a href="javascript:;" onclick="$(this).parent().remove()">x</a></span></c:if>--%>
+                                        <%--<span class="am-select am-input-group-sm">--%>
+                                        <%--<input type="text" class="am-select-input" autocomplete="off"style="border: none;" placeholder="关键字" am-data='[{"field":"key","desc":"关键字","type":"string"}]'>--%>
+                                        <%--<ul class="am-select-ul"></ul>--%>
+                                        <%--</span>--%>
+                                        <%--</div>--%>
+
+                                                <div class="tagsinput">
+                                                    <select name="identity" style="width: 150px">
+                                                        <option value="">--请选择用户身份--</option>
+                                                        <option value="0"
+                                                                <c:if test="${userInfo.identity == 0}">selected</c:if> >学生
+                                                        </option>
+                                                        <option value="1"
+                                                                <c:if test="${userInfo.identity == 1}">selected</c:if>>老师
+                                                        </option>
+                                                        <option value="2"
+                                                                <c:if test="${userInfo.identity == 2}">selected</c:if>>教官
+                                                        </option>
+                                                    </select>
+
                                         </div>
                                         <span class="am-input-group-btn">
                                             <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"

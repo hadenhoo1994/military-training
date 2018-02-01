@@ -3,6 +3,7 @@ package cn.iutils.mt.dao;
 import cn.iutils.common.ICrudDao;
 import cn.iutils.common.annotation.MyBatisDao;
 import cn.iutils.mt.entity.Course;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * 排课表 DAO接口
@@ -12,4 +13,5 @@ import cn.iutils.mt.entity.Course;
 @MyBatisDao
 public interface CourseDao extends ICrudDao<Course> {
 
+    int getCountCourseProject(@Param("id") String id);
 }

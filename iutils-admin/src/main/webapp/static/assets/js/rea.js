@@ -21,6 +21,30 @@ function getBattalion() {
     })
     return resule;
 }
+
+//获取课程
+function getProject() {
+    var resule;
+    $.ajax({
+        type: "POST",
+        url: "/rest/getProject",
+        dataType: "json",
+        cache: false,
+        async: false,
+        success: function (result) {
+            if (result.code == 200){
+                //获取成功
+                resule = result.results;
+            }else{
+                layer.msg(result.msg)
+            }
+        }
+        , error: function (data) {
+            alert(JSON.stringify(data));
+        }
+    })
+    return resule;
+}
 //获取连
 function getCompany(id) {
     var resule;

@@ -27,7 +27,8 @@ public class RestController extends BaseController {
     private CompanyService companyService;
     @Autowired
     private PlatoonService platoonService;
-
+    @Autowired
+    private ProjectService projectService;
     /**
      * 点赞接口
      *
@@ -68,6 +69,14 @@ public class RestController extends BaseController {
     public String getBattalion() {
         List<Battalion> battalion = battalionService.findList(new Battalion());
         return JsonUtil.toJson(ResultJson.successJson("200", battalion));
+    }
+
+    //课程
+    @ResponseBody
+    @RequestMapping(value = "/getProject")
+    public String getProject() {
+        List<Project> projects = projectService.findList(new Project());
+        return   JsonUtil.toJson(ResultJson.successJson("200", projects));
     }
 
     /**

@@ -551,16 +551,19 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     public static void main(String[] args) {
-        Date now = new Date();
-        String start = DateUtils.formatDate(now, "M月dd日");
-        String end = DateUtils.formatDate(DateUtils.addDays(now, 3), "dd日");
-
-        System.out.println(start + end);
-        System.out.println(FilenameUtils.getExtension("123.gif"));
-
-        calendar.set(2017, 7, 16, 01, 22, 33);
-        System.out.println(fromToday(calendar.getTime()));
-
-        System.out.println(DateUtils.offset(new Date(), DateField.WEEK_OF_YEAR, -1));
+//        Date now = new Date();
+//        String start = DateUtils.formatDate(now, "M月dd日");
+//        String end = DateUtils.formatDate(DateUtils.addDays(now, 3), "dd日");
+//
+//        System.out.println(start + end);
+//        System.out.println(FilenameUtils.getExtension("123.gif"));
+//
+//        calendar.set(2017, 7, 16, 01, 22, 33);
+//        System.out.println(fromToday(calendar.getTime()));
+//
+//        System.out.println(DateUtils.offset(new Date(), DateField.WEEK_OF_YEAR, -1));
+        Integer i = 1;
+        Integer k = 1;
+        System.out.println(i.compareTo(k)==0);
     }
 }
