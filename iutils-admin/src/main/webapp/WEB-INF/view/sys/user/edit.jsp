@@ -45,7 +45,7 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label"><span class="error">*</span>账号：</label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" name="username" minlength="3" placeholder="账号（至少3个字符）"
+                                        <input type="text" name="username" minlength="3" placeholder="账号（手机号码）"
                                                value="${user.username}" ${empty user.id?'':'readonly'} required/>
                                     </div>
                                 </div>

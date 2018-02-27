@@ -109,7 +109,7 @@
               </span>
             </div>
           </li>
-            <img src="${monent.imgUrl}" style="padding-left: 15px">
+            <img src="${monent.imgUrl}" style="padding-left: 15px;max-width: 90%;">
             <hr>
           </c:forEach>
         </ul>

@@ -83,7 +83,7 @@
                         <div class="layui-col-md15">
                             <c:if test="${diary.imgs.size()>0}">
                                 <c:forEach items="${diary.imgs}" var="imgs">
-                                <div class="layui-col-md15 "><img src="${imgs.imgUrl}"></div>
+                                <div class="layui-col-md15 "><img  src="${imgs.imgUrl}" style="max-width: 90%;"></div>
                                 </c:forEach>
                             </c:if>
                         </div>

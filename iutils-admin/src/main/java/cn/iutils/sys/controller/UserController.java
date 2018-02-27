@@ -3,6 +3,10 @@ package cn.iutils.sys.controller;
 import cn.iutils.common.ResultVo;
 import cn.iutils.common.utils.CacheUtils;
 import cn.iutils.common.utils.UserUtils;
+import cn.iutils.common.utils.sequence.IdWorker;
+import cn.iutils.mt.entity.UserInfo;
+import cn.iutils.mt.entity.rest.UserInfoSelectRes;
+import cn.iutils.mt.service.UserInfoService;
 import cn.iutils.sys.entity.Organization;
 import cn.iutils.sys.entity.Role;
 import cn.iutils.sys.service.PasswordHelper;
@@ -30,7 +34,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserInfoService userInfoService;
     @Autowired
     private OrganizationService organizationService;
     @Autowired
@@ -104,7 +109,14 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(User user, RedirectAttributes redirectAttributes) {
         passwordHelper.encryptPassword(user);
+        //将用户名设为手机号码
+        user.setMobile(user.getUsername());
         userService.save(user);
+        //创建一个userInfo
+        UserInfo userInfo = UserInfo.newBuilder().name(user.getName()).mobileNumber(user.getMobile())
+                .number(IdWorker.getInstance().nextId()).build();
+        userInfo.setPassword("123456");
+        userInfoService.save(userInfo);
         addMessage(redirectAttributes, "保存成功");
         return "redirect:" + adminPath + "/user/update?id=" + user.getId();
     }

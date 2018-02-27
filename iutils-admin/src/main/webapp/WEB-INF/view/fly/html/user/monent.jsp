@@ -104,7 +104,7 @@
                                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                                 <div class="layui-timeline-content layui-text">
                                     <h3 class="layui-timeline-title">${monent.content}</h3>
-                                    <img src="${monent.imgUrl}">
+                                    <img src="${monent.imgUrl}" style="max-width: 90%;">
                                     <p>发表于：<fmt:formatDate value="${monent.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></p>
                                     <p><em>${monent.likeNum}</em>赞</p>
                                 </div>

@@ -131,9 +131,37 @@
             return;
         }
         var imgDiv = $("#imgDiv");
-        var str = '<div class="layui-col-md15"><img src="/static/upload/' + url + '"id="imgs' + uploadNum + '"></div>'
-        imgDiv.append(str);
+        //显示进度条
+        var progress = $("#progress");
+        if($("#progress").length<1){
+            imgDiv.append('<div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true" id="progress">' +
+                '<div class="layui-progress-bar" lay-percent="0%"></div>' +
+                '</div>');
+        }else{
+            progress.show();
+        }
+        //进度条动态
+        layui.use('element', function () {
+            var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+            //模拟loading
+            var n = 0, timer = setInterval(function () {
+                n = n + 20;
+                if (n > 100) {
+                    n = 100;
+                    clearInterval(timer);
+                }
+                element.progress('demo', n + '%');
+            }, 1000);
+        });
         $("#uploadNum").text(uploadNum + 1);
+        setTimeout(function(){showImg(url,uploadNum)},5000);
+    }
+
+    function showImg(url,uploadNum){
+        var imgDiv = $("#imgDiv");
+        $("#progress").hide();
+        var str = '<div class="layui-col-md15"><img src="/static/upload/' + url + '"id="imgs' + uploadNum + '" style="max-width: 90%;"></div>';
+        imgDiv.append(str);
     }
 </script>
 <script>

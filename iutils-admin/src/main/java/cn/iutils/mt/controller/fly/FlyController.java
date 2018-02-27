@@ -61,7 +61,7 @@ public class FlyController extends BaseController {
         List<Monent> monentList = monentService.findPage(monentPage, new Monent());
         //拼入用户信息
         List<MonentVO> monentVOS = new ArrayList<>();
-        if (monentList.size() < 1) {
+        if (monentList == null ||monentList.size() < 1) {
             model.addAttribute("list", null);
         }else{
             for (Monent monent : monentList) {

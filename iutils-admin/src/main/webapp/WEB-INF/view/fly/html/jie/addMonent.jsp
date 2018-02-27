@@ -65,7 +65,7 @@
         <div class="layui-form layui-form-pane">
             <div class="layui-tab layui-tab-brief" lay-filter="user">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">发表日记<!-- 编辑帖子 --></li>
+                    <li class="layui-this">发表心情<!-- 编辑帖子 --></li>
                 </ul>
                 <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                     <div class="layui-tab-item layui-show">
@@ -81,9 +81,9 @@
                         </div>
                         <hr>
                         <span id="uploadNum" hidden>1</span>
-                        <div class="layui-col-md15">
+                        <div class="layui-col-md15" id="showDiv">
                             <img src="/static/assets/img/uploadImg.png" id="imgLog">
-                            <img src="" id="imgDiv" hidden>
+                            <img src="" id="imgDiv" hidden style="max-width: 90%;">
                         </div>
                         <button class="layui-btn" onclick="putDiary()">立即发布</button>
                     </div>
@@ -109,17 +109,41 @@
             , exts: "jpg|png|gif|bmp|jpeg"
             , done: function (res) {
                 //上传完毕回调
-                var url = res.results.url;
+                var url = "/static/upload/" + res.results.fileName;
                 var imgDiv = $("#imgDiv");
                 $("#imgLog").hide();
-                imgDiv.attr("src", url);
-                imgDiv.show();
+                //显示进度条
+                var showDiv = $("#showDiv");
+                showDiv.append('<div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true" id="progress">' +
+                    '<div class="layui-progress-bar" lay-percent="0%"></div>' +
+                    '</div>');
+                //进度条动态
+                layui.use('element', function () {
+                    var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+                    //模拟loading
+                    var n = 0, timer = setInterval(function () {
+                        n = n + 20;
+                        if (n > 100) {
+                            n = 100;
+                            clearInterval(timer);
+                        }
+                        element.progress('demo', n + '%');
+                    }, 1000);
+                });
+                setTimeout(function(){showImg(url)},5000);
             }
             , error: function () {
                 //请求异常回调
             }
         });
     });
+
+    function showImg(url){
+        var imgDiv = $("#imgDiv");
+        $("#progress").hide();
+        imgDiv.attr("src", url);
+        imgDiv.show();
+    }
 </script>
 <script>
     function putDiary() {
@@ -129,14 +153,14 @@
             return;
         }
         var imgDiv = $("#imgDiv").attr("src");
-        if(imgDiv == null || imgDiv == ""){
+        if (imgDiv == null || imgDiv == "") {
             layer.msg("需上传一张图片")
             return;
         }
         $.ajax({
             type: "POST",
             url: "/flyDiary/putMonent",
-            data: { content: content, imgUrl: imgDiv},
+            data: {content: content, imgUrl: imgDiv},
             dataType: "json",
             cache: false,
             async: false,
