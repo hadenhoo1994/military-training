@@ -36,10 +36,7 @@
                                         <label class="am-u-sm-3 am-form-label">学生名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="hidden" name="userId" id="userId" value="${achievement.userId}"/>
-                                            <input type="text" name="userName" id="userName" placeholder="用户名称" value="${achievement.userName}" required/>
-                                            <select id="selectHouse" class="js-data-example-ajax form-control">
-                                                <option selected="selected">根据学生名称或学号查询学生</option>
-                                            </select>
+                                            <input type="text" name="userName" id="userName" placeholder="用户名称" value="${achievement.userName}" required disabled/>
                                         </div>
                                     </div>
                                     <%--<div class="am-form-group">--%>
@@ -58,10 +55,7 @@
                                         <label class="am-u-sm-3 am-form-label">课程名称：</label>
                                         <div class="am-u-sm-9">
                                             <input type="hidden" name="projectId" id="projectId" placeholder="课程id" value="${achievement.projectId}" />
-                                            <input type="text" name="projectName" id="projectName" placeholder="课程名称" value="${achievement.projectName}" required/>
-                                            <select id="selectProject" class="js-data-example-ajax form-control">
-                                                <option selected="selected">根据科目名称或科目编号查询科目</option>
-                                            </select>
+                                            <input type="text" name="projectName" id="projectName" placeholder="课程名称" value="${achievement.projectName}" required disabled/>
                                         </div>
                                     </div>
                                     <div class="am-form-group">

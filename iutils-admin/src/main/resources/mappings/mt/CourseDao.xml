@@ -5,6 +5,7 @@
     <sql id="CourseColumns">
         a.id AS "id",
         a.battalion_id AS "battalionId",
+        a.organization_id AS "organizationId",
         a.company_id AS "companyId",
         a.platoon_id AS "platoonId",
         a.platoon_name AS "platoonName",
@@ -54,6 +55,9 @@
             <if test="page.entity != null">
                 <if test="page.entity.id != null">
                     AND id = #{page.entity.id}
+                </if>
+                <if test="page.entity.organizationId != null">
+                    AND organization_id = #{page.entity.organizationId}
                 </if>
                 <if test="page.entity.battalionId != null">
                     AND battalion_id = #{page.entity.battalionId}
@@ -139,6 +143,9 @@
         <where>
             <if test="entity.id != null">
                 AND id = #{entity.id}
+            </if>
+            <if test="entity.organizationId != null">
+                AND organization_id = #{entity.organizationId}
             </if>
             <if test="entity.battalionId != null">
                 AND battalion_id = #{entity.battalionId}
@@ -226,6 +233,9 @@
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="organizationId != null">
+                AND organization_id = #{organizationId}
+            </if>
             <if test="battalionId != null">
                 AND battalion_id = #{battalionId}
             </if>
@@ -311,6 +321,9 @@
         <where>
             <if test="id != null">
                 AND id = #{id}
+            </if>
+            <if test="organizationId != null">
+                AND organization_id = #{organizationId}
             </if>
             <if test="battalionId != null">
                 AND battalion_id = #{battalionId}
@@ -398,6 +411,9 @@
             <if test="entity.id != null">
                 AND id = #{entity.id}
             </if>
+            <if test="entity.organizationId != null">
+                AND organization_id = #{entity.organizationId}
+            </if>
             <if test="entity.battalionId != null">
                 AND battalion_id = #{entity.battalionId}
             </if>
@@ -481,6 +497,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into mt_course(
+                organization_id,
                 battalion_id,
                 company_id,
                 platoon_id,
@@ -507,6 +524,7 @@
                 remarks,
                 status
         ) values (
+                #{organizationId},
                 #{battalionId},
                 #{companyId},
                 #{platoonId},
@@ -538,6 +556,9 @@
     <insert id="insertSelective" parameterType="cn.iutils.mt.entity.Course" useGeneratedKeys="true" keyProperty="id">
         insert into mt_course
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="organizationId != null">
+               organization_id,
+            </if>
             <if test="battalionId != null">
                 battalion_id,
             </if>
@@ -615,6 +636,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="organizationId != null">
+              #{organizationId},
+            </if>
             <if test="battalionId != null">
                 #{battalionId},
             </if>
@@ -695,6 +719,7 @@
 
     <update id="update">
         update mt_course set
+            organization_id = #{organizationId},
                 battalion_id = #{battalionId},
                 company_id = #{companyId},
                 platoon_id = #{platoonId},
@@ -726,6 +751,9 @@
     <update id="updateSelective" parameterType="cn.iutils.mt.entity.Course">
         update mt_course
         <set>
+            <if test="organizationId != null">
+                 organization_id = #{organizationId}
+            </if>
             <if test="battalionId != null">
                 battalion_id = #{battalionId},
             </if>

@@ -2,6 +2,9 @@ package cn.iutils.sys.controller;
 
 import cn.iutils.common.Page;
 import cn.iutils.common.utils.UserUtils;
+import cn.iutils.mt.entity.Course;
+import cn.iutils.mt.service.CourseService;
+import com.mzlion.core.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import cn.iutils.sys.entity.Organization;
 import cn.iutils.sys.service.OrganizationService;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 组织机构控制器
@@ -30,6 +35,8 @@ public class OrganizationController extends BaseController {
 
     @Autowired
     private OrganizationService organizationService;
+    @Autowired
+    private CourseService courseService;
 
     @ModelAttribute
     public Organization get(@RequestParam(required = false) String id) {
@@ -109,12 +116,46 @@ public class OrganizationController extends BaseController {
      */
     @RequiresPermissions("sys:organization:edit")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Organization organization,
-                         RedirectAttributes redirectAttributes) {
+    public String update(Organization organization, RedirectAttributes redirectAttributes) {
+        boolean flag = false;
+        if (organization.getIsNewId()) {
+            flag = true;
+        }
         organizationService.save(organization);
+        if (flag) {      //如果是新的排机构
+            int count = StringUtils.getSubCount(organization.getParentIds(), "/");
+            if (count == 4) {    //排级
+                //为当前排生成5天的初始课表
+                createCourse(organization);
+            }
+        }
         addMessage(redirectAttributes, "修改成功");
         return "redirect:" + adminPath + "/organization/update?id=" + organization.getId();
     }
+
+    /**
+     * 创建初始课表
+     *
+     * @param organization
+     */
+    private void createCourse(Organization organization) {
+        for (int i = 1; i <= 11; i++) {
+            Course course = new Course();
+            course.setOrganizationId(organization.getId());
+            course.setPlatoonName(organization.getName());
+            course.setDays(i);      //节次1-11
+            //周一至周五
+            course.setClasses1("军体拳");
+            course.setClasses2("军体拳");
+            course.setClasses3("军体拳");
+            course.setClasses4("军体拳");
+            course.setClasses5("军体拳");
+
+            courseService.save(course);
+        }
+    }
+
+
 
     /**
      * 删除
@@ -141,5 +182,4 @@ public class OrganizationController extends BaseController {
         }
         return "redirect:" + adminPath + "/organization?id=" + organization.getParentId() + "&pageNo=" + pageNo + "&pageSize=" + pageSize;
     }
-
 }

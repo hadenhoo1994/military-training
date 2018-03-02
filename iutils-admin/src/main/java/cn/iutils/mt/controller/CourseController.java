@@ -1,8 +1,11 @@
 package cn.iutils.mt.controller;
 
 import cn.iutils.common.ResultJson;
+import cn.iutils.common.utils.UserUtils;
 import cn.iutils.mt.entity.Project;
 import cn.iutils.mt.service.ProjectService;
+import cn.iutils.sys.entity.Organization;
+import cn.iutils.sys.service.OrganizationService;
 import com.mzlion.core.json.fastjson.JsonUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,8 @@ public class CourseController extends BaseController {
 
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private OrganizationService organizationService;
 
 
     @ModelAttribute
@@ -47,28 +52,80 @@ public class CourseController extends BaseController {
 
     @RequiresPermissions("mt:course:view")
     @RequestMapping()
-    public String list(Model model, Page<Course> page,Course course) {
+    public String list(Model model, Page<Course> page, Course course) {
+        Organization organization = new Organization();
+        organization.setUser(UserUtils.getLoginUser());
+        List<Organization> organizationList = organizationService.findList(organization);
+        model.addAttribute("organizationList", organizationList);
+        //初始化加载第一个
+        if (JStringUtils.isBlank(course.getOrganizationId()) && organizationList.size() > 0) {
+            course.setOrganizationId(organizationList.get(0).getId());
+        }
         List<Course> courses = courseService.findPage(page, course);
-        if (courses.size()>0){
-            courses =  setCourseCount(courses);
+        boolean flag = sortList(courses);
+        if (flag) {
+            model.addAttribute("organizationId", courses.get(1).getOrganizationId());
         }
         model.addAttribute("page", page.setList(courses));
         return "mt/course/list";
     }
 
+    @RequiresPermissions("mt:course:view")
+    @RequestMapping("/updateClasses")
+    public String updateClasses(Model model, Page<Course> page, Course course) {
+        Organization organization = new Organization();
+        organization.setUser(UserUtils.getLoginUser());
+        List<Organization> organizationList = organizationService.findList(organization);
+        model.addAttribute("organizationList", organizationList);
+        //初始化加载第一个
+        if (JStringUtils.isBlank(course.getOrganizationId()) && organizationList.size() > 0) {
+            course.setOrganizationId(organizationList.get(0).getId());
+        }
+        List<Course> courses = courseService.findPage(page, course);
+        boolean flag = sortList(courses);
+        if (flag) {
+            model.addAttribute("organizationId", courses.get(1).getOrganizationId());
+        }
+        model.addAttribute("page", page.setList(courses));
+        return "mt/course/update";
+    }
+
     /**
-     * 添加总数
+     * 对集合进行排序
+     *
      * @param courses
      */
-    public List<Course> setCourseCount(List<Course> courses) {
-        List<Course> courseList = new ArrayList<>();
-        for (Course c :courses) {
-           int i = courseService.getCountCourseProject(c.getId());
-           c.setClasses1(i);
-            courseList.add(c);
+    private Boolean sortList(List<Course> courses) {
+        boolean flag = false;
+        if (courses != null && courses.size() == 11) {
+            //对集合进行排序
+            Comparator comparator = (Comparator<Course>) (o1, o2) -> {
+                if (o1.getDays() > o2.getDays()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            };
+            courses.sort(comparator);
+            flag = true;
         }
-        return courseList;
+        return flag;
     }
+
+//    /**
+//     * 添加总数
+//     *
+//     * @param courses
+//     */
+//    public List<Course> setCourseCount(List<Course> courses) {
+//        List<Course> courseList = new ArrayList<>();
+//        for (Course c : courses) {
+//            int i = courseService.getCountCourseProject(c.getId());
+//            c.setClasses1(i);
+//            courseList.add(c);
+//        }
+//        return courseList;
+//    }
 
     @RequiresPermissions("mt:course:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -108,6 +165,61 @@ public class CourseController extends BaseController {
         return "redirect:" + adminPath + "/mt/course?pageNo=" + pageNo + "&pageSize=" + pageSize;
     }
 
+    /**
+     * 设置排课
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/setCourse")
+    public String setCourse(String organizationId, Integer days, Integer classes, String projectName) {
+        //1.根据节次和排id查询出来排课数据
+        Course addCourse = Course.newBuilder().organizationId(organizationId).days(days).build();
+        Course course = courseService.findOne(addCourse);
+        //2.修改课程信息
+        if (course != null) {
+            switch (classes) {
+                case 1:
+                    course.setClasses1(projectName);
+                    break;
+                case 2:
+                    course.setClasses2(projectName);
+                    break;
+                case 3:
+                    course.setClasses3(projectName);
+                    break;
+                case 4:
+                    course.setClasses4(projectName);
+                    break;
+                case 5:
+                    course.setClasses5(projectName);
+                    break;
+                case 6:
+                    course.setClasses6(projectName);
+                    break;
+                case 7:
+                    course.setClasses7(projectName);
+                    break;
+                case 8:
+                    course.setClasses8(projectName);
+                    break;
+                case 9:
+                    course.setClasses9(projectName);
+                    break;
+                case 10:
+                    course.setClasses10(projectName);
+                    break;
+                case 11:
+                    course.setClasses11(projectName);
+                    break;
+            }
+            courseService.save(course);
+            return JsonUtil.toJson(ResultJson.successJson("200", "成功"));
+        }
+        return JsonUtil.toJson(ResultJson.failureJson("300", "失败"));
+
+    }
+
     //获取周次
     @ResponseBody
     @RequestMapping(value = "/getWeek")
@@ -138,7 +250,6 @@ public class CourseController extends BaseController {
 //        }
         return JsonUtil.toJson(weekList);
     }
-
 
 
 }

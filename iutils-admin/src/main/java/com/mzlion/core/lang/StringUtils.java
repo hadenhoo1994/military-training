@@ -18,6 +18,8 @@ package com.mzlion.core.lang;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * StringUtils工具类主要提供了针对字符串，字符串数组常用的工具类方法.
@@ -619,6 +621,22 @@ public class StringUtils {
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * 计算key字符在str中出现的次数
+     *
+     * @param str
+     * @param key
+     * @return
+     */
+    public static int getSubCount(String str, String key) {
+        int count = 0;
+        Matcher m = Pattern.compile(key).matcher(str);
+        while (m.find()) {
+            count++;
+        }
+        return count;
     }
 
     public static final String EMPTY_STRING = "";

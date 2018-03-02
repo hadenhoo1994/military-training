@@ -1,18 +1,20 @@
 package cn.iutils.mt.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import cn.iutils.sys.entity.DataEntity;
+
 import java.util.Date;
 
 /**
-* 排课表
-* @author iutils.cn
-* @version 1.0
-*/
+ * 排课表
+ *
+ * @author iutils.cn
+ * @version 1.0
+ */
 public class Course extends DataEntity<Course> {
 
     private static final long serialVersionUID = 1L;
 
+    private String organizationId;
     // 营id
     private Integer battalionId;
     // 连id
@@ -27,194 +29,203 @@ public class Course extends DataEntity<Course> {
     private String projectName;
     // 周次
     private Integer week;
-    // 周几 1-7
+    // 节数
     private Integer days;
+    // 周1
+    private String classes1;
+    // 周2
+    private String classes2;
+    // 周3
+    private String classes3;
+    // 周4
+    private String classes4;
+    // 周5
+    private String classes5;
     // 节次
-    private Integer classes1;
+    private String classes6;
     // 节次
-    private Integer classes2;
+    private String classes7;
     // 节次
-    private Integer classes3;
+    private String classes8;
     // 节次
-    private Integer classes4;
+    private String classes9;
     // 节次
-    private Integer classes5;
+    private String classes10;
     // 节次
-    private Integer classes6;
-    // 节次
-    private Integer classes7;
-    // 节次
-    private Integer classes8;
-    // 节次
-    private Integer classes9;
-    // 节次
-    private Integer classes10;
-    // 节次
-    private Integer classes11;
+    private String classes11;
 
     public Course() {
         super();
     }
 
-    public Course(String id){
+    public Course(String id) {
         super(id);
     }
 
-    public Integer getBattalionId(){
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public Integer getBattalionId() {
         return battalionId;
     }
 
-    public void setBattalionId(Integer battalionId){
+    public void setBattalionId(Integer battalionId) {
         this.battalionId = battalionId;
     }
 
-    public Integer getCompanyId(){
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Integer companyId){
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
-    public Integer getPlatoonId(){
+    public Integer getPlatoonId() {
         return platoonId;
     }
 
-    public void setPlatoonId(Integer platoonId){
+    public void setPlatoonId(Integer platoonId) {
         this.platoonId = platoonId;
     }
 
-    public String getPlatoonName(){
+    public String getPlatoonName() {
         return platoonName;
     }
 
-    public void setPlatoonName(String platoonName){
+    public void setPlatoonName(String platoonName) {
         this.platoonName = platoonName;
     }
 
-    public Integer getProjectId(){
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId){
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 
-    public String getProjectName(){
+    public String getProjectName() {
         return projectName;
     }
 
-    public void setProjectName(String projectName){
+    public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
-    public Integer getWeek(){
+    public Integer getWeek() {
         return week;
     }
 
-    public void setWeek(Integer week){
+    public void setWeek(Integer week) {
         this.week = week;
     }
 
-    public Integer getDays(){
+    public Integer getDays() {
         return days;
     }
 
-    public void setDays(Integer days){
+    public void setDays(Integer days) {
         this.days = days;
     }
 
-    public Integer getClasses1(){
+    public String getClasses1() {
         return classes1;
     }
 
-    public void setClasses1(Integer classes1){
+    public void setClasses1(String classes1) {
         this.classes1 = classes1;
     }
 
-    public Integer getClasses2(){
+    public String getClasses2() {
         return classes2;
     }
 
-    public void setClasses2(Integer classes2){
+    public void setClasses2(String classes2) {
         this.classes2 = classes2;
     }
 
-    public Integer getClasses3(){
+    public String getClasses3() {
         return classes3;
     }
 
-    public void setClasses3(Integer classes3){
+    public void setClasses3(String classes3) {
         this.classes3 = classes3;
     }
 
-    public Integer getClasses4(){
+    public String getClasses4() {
         return classes4;
     }
 
-    public void setClasses4(Integer classes4){
+    public void setClasses4(String classes4) {
         this.classes4 = classes4;
     }
 
-    public Integer getClasses5(){
+    public String getClasses5() {
         return classes5;
     }
 
-    public void setClasses5(Integer classes5){
+    public void setClasses5(String classes5) {
         this.classes5 = classes5;
     }
 
-    public Integer getClasses6(){
+    public String getClasses6() {
         return classes6;
     }
 
-    public void setClasses6(Integer classes6){
+    public void setClasses6(String classes6) {
         this.classes6 = classes6;
     }
 
-    public Integer getClasses7(){
+    public String getClasses7() {
         return classes7;
     }
 
-    public void setClasses7(Integer classes7){
+    public void setClasses7(String classes7) {
         this.classes7 = classes7;
     }
 
-    public Integer getClasses8(){
+    public String getClasses8() {
         return classes8;
     }
 
-    public void setClasses8(Integer classes8){
+    public void setClasses8(String classes8) {
         this.classes8 = classes8;
     }
 
-    public Integer getClasses9(){
+    public String getClasses9() {
         return classes9;
     }
 
-    public void setClasses9(Integer classes9){
+    public void setClasses9(String classes9) {
         this.classes9 = classes9;
     }
 
-    public Integer getClasses10(){
+    public String getClasses10() {
         return classes10;
     }
 
-    public void setClasses10(Integer classes10){
+    public void setClasses10(String classes10) {
         this.classes10 = classes10;
     }
 
-    public Integer getClasses11(){
+    public String getClasses11() {
         return classes11;
     }
 
-    public void setClasses11(Integer classes11){
+    public void setClasses11(String classes11) {
         this.classes11 = classes11;
     }
 
     private Course(Builder builder) {
         super();
         setId(builder.id);
+        setOrganizationId(builder.organizationId);
         setBattalionId(builder.battalionId);
         setCompanyId(builder.companyId);
         setPlatoonId(builder.platoonId);
@@ -250,6 +261,7 @@ public class Course extends DataEntity<Course> {
 
     public static final class Builder {
         private String id;
+        private String organizationId;
         private Integer battalionId;
         private Integer companyId;
         private Integer platoonId;
@@ -258,17 +270,17 @@ public class Course extends DataEntity<Course> {
         private String projectName;
         private Integer week;
         private Integer days;
-        private Integer classes1;
-        private Integer classes2;
-        private Integer classes3;
-        private Integer classes4;
-        private Integer classes5;
-        private Integer classes6;
-        private Integer classes7;
-        private Integer classes8;
-        private Integer classes9;
-        private Integer classes10;
-        private Integer classes11;
+        private String classes1;
+        private String classes2;
+        private String classes3;
+        private String classes4;
+        private String classes5;
+        private String classes6;
+        private String classes7;
+        private String classes8;
+        private String classes9;
+        private String classes10;
+        private String classes11;
         private String createBy;
         private Date createDate;
         private String updateBy;
@@ -290,7 +302,10 @@ public class Course extends DataEntity<Course> {
             return this;
         }
 
-
+        public Builder organizationId(String organizationId) {
+            this.organizationId = organizationId;
+            return this;
+        }
         public Builder battalionId(Integer battalionId) {
             this.battalionId = battalionId;
             return this;
@@ -339,67 +354,67 @@ public class Course extends DataEntity<Course> {
         }
 
 
-        public Builder classes1(Integer classes1) {
+        public Builder classes1(String classes1) {
             this.classes1 = classes1;
             return this;
         }
 
 
-        public Builder classes2(Integer classes2) {
+        public Builder classes2(String classes2) {
             this.classes2 = classes2;
             return this;
         }
 
 
-        public Builder classes3(Integer classes3) {
+        public Builder classes3(String classes3) {
             this.classes3 = classes3;
             return this;
         }
 
 
-        public Builder classes4(Integer classes4) {
+        public Builder classes4(String classes4) {
             this.classes4 = classes4;
             return this;
         }
 
 
-        public Builder classes5(Integer classes5) {
+        public Builder classes5(String classes5) {
             this.classes5 = classes5;
             return this;
         }
 
 
-        public Builder classes6(Integer classes6) {
+        public Builder classes6(String classes6) {
             this.classes6 = classes6;
             return this;
         }
 
 
-        public Builder classes7(Integer classes7) {
+        public Builder classes7(String classes7) {
             this.classes7 = classes7;
             return this;
         }
 
 
-        public Builder classes8(Integer classes8) {
+        public Builder classes8(String classes8) {
             this.classes8 = classes8;
             return this;
         }
 
 
-        public Builder classes9(Integer classes9) {
+        public Builder classes9(String classes9) {
             this.classes9 = classes9;
             return this;
         }
 
 
-        public Builder classes10(Integer classes10) {
+        public Builder classes10(String classes10) {
             this.classes10 = classes10;
             return this;
         }
 
 
-        public Builder classes11(Integer classes11) {
+        public Builder classes11(String classes11) {
             this.classes11 = classes11;
             return this;
         }

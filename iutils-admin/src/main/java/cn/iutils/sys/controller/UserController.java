@@ -111,6 +111,7 @@ public class UserController extends BaseController {
         passwordHelper.encryptPassword(user);
         //将用户名设为手机号码
         user.setMobile(user.getUsername());
+        user.setNo(IdWorker.getInstance().nextIdStr());
         userService.save(user);
         //创建一个userInfo
         UserInfo userInfo = UserInfo.newBuilder().name(user.getName()).mobileNumber(user.getMobile())

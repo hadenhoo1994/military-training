@@ -111,7 +111,7 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">手机：</label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" name="mobile" placeholder="手机" value="${user.mobile}"/>
+                                        <input type="text" name="mobile" placeholder="手机" value="${user.mobile}" required/>
                                     </div>
                                 </div>
                                 <div class="am-form-group">

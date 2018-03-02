@@ -61,7 +61,7 @@
         </if>
     </select>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into sys_organization(name,parent_id,parent_ids,available,create_by,create_date,remarks)
         values(#{name},#{parentId},#{parentIds},#{available},#{createBy},#{createDate},#{remarks})
     </insert>
