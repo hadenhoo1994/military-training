@@ -12,8 +12,9 @@ import java.util.Date;
 public class Diary extends DataEntity<Diary> {
 
     private static final long serialVersionUID = 1L;
+private String userName;
 
-    // 
+    //
     private Integer userId;
     // 日记内容
     private String content;
@@ -22,6 +23,14 @@ public class Diary extends DataEntity<Diary> {
 
     public Diary() {
         super();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Diary(String id){

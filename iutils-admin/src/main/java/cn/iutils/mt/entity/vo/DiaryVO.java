@@ -16,6 +16,15 @@ public class DiaryVO extends Diary {
     private String img2;
     private String img3;
     private List<DiaryImg> imgs;
+    private  String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public List<DiaryImg> getImgs() {
         return imgs;

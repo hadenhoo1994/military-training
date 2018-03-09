@@ -19,37 +19,17 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">日记表</div>
+                            <div class="widget-title am-fl">学生日记</div>
                         </div>
                         <div class="widget-body am-fr">
                             <div class="am-u-sm-12 am-u-md-3 am-u-lg-3">
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <button type="button" class="am-btn am-btn-default am-btn-success"
-                                                onclick="openModel(false,'${ctx}/mt/diary/create')"><span class="am-icon-plus"></span> 新增
-                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
-                                <form id="searchForm" action="${ctx}/mt/diary" method="post">
-                                    <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-                                    <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <div class="tagsinput">
-                                            <c:if test="${not empty page.key}"><span class="tags"><input type="hidden" name="key" value="${page.key}" />关键字=${page.key} <a href="javascript:;" onclick="$(this).parent().remove()">x</a></span></c:if>
-                                                <span class="am-select am-input-group-sm">
-                                                     <input type="text" class="am-select-input" autocomplete="off" style="border: none;"
-                                                            placeholder="关键字" am-data='[{"field":"key","desc":"关键字","type":"string"}]'>
-                                                    <ul class="am-select-ul"></ul>
-                                                </span>
-                                        </div>
-                                        <span class="am-input-group-btn">
-                                            <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit" onclick="initSearchForm()"></button>
-                                        </span>
-                                    </div>
-                                </form>
                             </div>
 
                             <div class="am-u-sm-12">
@@ -57,25 +37,20 @@
                                     <thead>
                                     <tr>
                                             <th>序号</th>
-                                            <th>创建人</th>
-                                            <th>创建时间</th>
-                                            <th>修改人</th>
-                                            <th>修改时间</th>
-                                            <th>备注</th>
-                                            <th>状态 0:正常 1:删除</th>
+                                        <th>标题</th>
+                                        <th>发表人</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${page.list}" var="diary" varStatus="status">
                                         <tr>
-                                                <td>${status.index+1}</td>
+                                            <td>${status.index+1}</td>
+                                            <td><a href="${ctx}/mt/diary/DiaryDetail?id=${diary.id}">${diary.title}</a></td>
+                                            <td>${diary.userName}</td>
                                             <td><fmt:formatDate value="${diary.createDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                            <td><fmt:formatDate value="${diary.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                                                <td>${diary.remarks}</td>
-                                                <td>${diary.status}</td>
                                             <td>
-                                                <a href="javascript:;" onclick="openModel('修改日记表','${ctx}/mt/diary/update?id=${diary.id}')" title="编辑"><span class="am-icon-pencil"></span></a>
                                                 <a href="${ctx}/mt/diary/${diary.id}/delete?pageNo=${page.pageNo}&pageSize=${page.pageSize}" onclick="return confirm('确认要删除该条数据吗？', this.href)" title="删除"><span class="am-text-danger am-icon-trash-o"></span></a></td>
                                         </tr>
                                     </c:forEach>
